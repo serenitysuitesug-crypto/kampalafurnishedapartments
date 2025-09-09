@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Furnished Apartments Uganda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <meta name="description" content="Affordable, cheap, and fully furnished apartments in Kampala. Perfect for short stay getaways, long stay, hotels, motels, lodges, guest houses, Airbnb in Kampala, and more.">
+  <meta name="keywords" content="airbnb kampala, airbnb near me, airbnb near kampala, airbnb in kampala, hotel kampala, cheap hotel kampala, affordable apartments kampala, guest house kampala, furnished apartments uganda, short stay get away kampala, long stay kampala">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+
+  <style>
+    body {
+      background: #f5f6fa;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.08rem;
+      scroll-behavior: smooth;
+    }
+    h1,h2,h3,h4,h5,h6,.navbar-brand,.card-title,.btn,.nav-link {
+      font-weight: 700 !important;
+      letter-spacing: 0.5px;
+    }
+    .hero-section {
+      position: relative;
+      background: url('images/hero.jpg') center center/cover no-repeat;
+      min-height: 420px;
+      margin-bottom: 0;
+    }
+    .hero-section .overlay {
+      position: absolute; top:0; left:0; width:100%; height:100%;
+      background: rgba(41,121,255,0.68);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-top: 5rem; padding-bottom: 4.5rem;
+      text-align: center;
+    }
+    .form-availability {
+      margin-top: -2.5rem; margin-bottom: 2rem;
+      background: #fff; border-radius: .5rem;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.06);
+      padding: 1.25rem;
+      position: relative; z-index: 3;
+    }
+    .apartment-amenities i {
+      margin-right: 8px;
+      color: #2979ff;
+      font-size: 1.2rem;
+    }
+    .apartment-services ul {
+      padding-left: 0;
+      margin-bottom: 0.5rem;
+      font-size: 0.92rem;
+    }
+    .apartment-services li {
+      list-style: none;
+      text-align: left;
+    }
+    .footer-logo-circle {
+      width:60px; height:60px; font-size:1.4rem; font-weight:bold;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    }
+    .footer-social a { font-size: 1.5rem; margin-right: 10px; color: #fff; }
+    .footer-social a:hover { color: #d1ecff; }
+
+    /* Modal carousel */
+    .modal-content { border-radius: 20px; overflow: hidden; }
+    .swiper-button-next, .swiper-button-prev {
+      color: #fff !important;
+      background: rgba(0,0,0,0.4);
+      width: 50px; height: 50px;
+      border-radius: 50%;
+    }
+    .swiper-button-next::after, .swiper-button-prev::after {
+      font-size: 22px; font-weight: bold;
+    }
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background: rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center fw-bold" href="#">
+      <div class="rounded-circle bg-white text-primary d-flex align-items-center justify-content-center" 
+           style="width:45px; height:45px; font-size:1.2rem; font-weight:700; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+        FA
+      </div>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#apartments">Apartments</a></li>
+        <li class="nav-item"><a class="nav-link" href="#form">Book Now</a></li>
+      </ul>
+      <!-- Language dropdown -->
+      <div class="dropdown ms-3">
+        <button class="btn btn-light btn-sm dropdown-toggle fw-bold" type="button" id="langDropdown" data-bs-toggle="dropdown">
+          ENG
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+          <li><a class="dropdown-item" href="#">English</a></li>
+          <li><a class="dropdown-item" href="#">French</a></li>
+          <li><a class="dropdown-item" href="#">Swahili</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero-section">
+  <div class="overlay"></div>
+  <div class="container hero-content">
+    <h1 class="display-4 fw-bold text-white mb-3">Furnished Apartments Uganda</h1>
+    <p class="lead text-white mb-4">Modern, Secure, Fully Furnished Apartments in Kampala</p>
+    <a href="https://wa.me/256704229100" class="btn btn-lg btn-success fw-bold shadow">
+      <i class="bi bi-whatsapp"></i> Book Now
+    </a>
+  </div>
+</section>
+
+<!-- Booking Form -->
+<div class="container form-availability shadow" id="form">
+  <form class="row g-2 align-items-end justify-content-center">
+    <div class="col-lg-3 col-md-4">
+      <label for="name" class="form-label mb-1">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Your name">
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <label for="checkin" class="form-label mb-1">Check-in</label>
+      <input type="date" class="form-control" id="checkin">
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <label for="checkout" class="form-label mb-1">Check-out</label>
+      <input type="date" class="form-control" id="checkout">
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <label for="type" class="form-label mb-1">Apartment Type</label>
+      <select class="form-select" id="type">
+        <option>Studio Apartment</option>
+        <option>One Bedroom</option>
+        <option>Two Bedroom</option>
+      </select>
+    </div>
+    <div class="col-lg-2 col-md-4 d-grid">
+      <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold">
+        <i class="bi bi-whatsapp"></i> Check Availability
+      </a>
+    </div>
+  </form>
+</div>
+
+<!-- Apartments -->
+<div class="container pb-5" id="apartments">
+  <h2 class="mb-4 mt-2 fw-bold">Featured Apartments</h2>
+  <div class="row">
+
+    <!-- Apartment 1 -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="images/apartment1-1.jpg" class="card-img-top" alt="Ntinda Comfort Suite" data-bs-toggle="modal" data-bs-target="#apt1Modal">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold">Ntinda Comfort Suite</h5>
+          <div class="apartment-amenities mb-2">
+            <i class="bi bi-wifi"></i>
+            <i class="bi bi-tv"></i>
+            <i class="bi bi-cup-straw"></i>
+            <i class="bi bi-door-open"></i>
+            <i class="bi bi-snow"></i>
+          </div>
+          <p>Location: Ntinda</p><p>Price: $45/night</p>
+
+          <!-- New Services -->
+          <div class="apartment-services text-start">
+            <p class="fw-bold mb-1">Services:</p>
+            <ul>
+              <li>✅ Free WiFi</li>
+              <li>✅ Daily Cleaning</li>
+              <li>✅ 24/7 Security</li>
+              <li>✅ Breakfast Included</li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
+            <i class="bi bi-whatsapp"></i> Book on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Apartment 2 -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="images/apartment2-1.jpg" class="card-img-top" alt="Ntinda Executive" data-bs-toggle="modal" data-bs-target="#apt2Modal">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold">Ntinda Executive</h5>
+          <div class="apartment-amenities mb-2">
+            <i class="bi bi-wifi"></i>
+            <i class="bi bi-tv"></i>
+            <i class="bi bi-cup-straw"></i>
+            <i class="bi bi-door-open"></i>
+            <i class="bi bi-snow"></i>
+          </div>
+          <p>Location: Ntinda</p><p>Price: $60/night</p>
+
+          <!-- New Services -->
+          <div class="apartment-services text-start">
+            <p class="fw-bold mb-1">Services:</p>
+            <ul>
+              <li>✅ Free WiFi</li>
+              <li>✅ Daily Cleaning</li>
+              <li>✅ 24/7 Security</li>
+              <li>✅ Breakfast Included</li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
+            <i class="bi bi-whatsapp"></i> Book on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Apartment 3 -->
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="images/apartment3-1.jpg" class="card-img-top" alt="Ntinda Deluxe Loft" data-bs-toggle="modal" data-bs-target="#apt3Modal">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold">Ntinda Deluxe Loft</h5>
+          <div class="apartment-amenities mb-2">
+            <i class="bi bi-wifi"></i>
+            <i class="bi bi-tv"></i>
+            <i class="bi bi-cup-straw"></i>
+            <i class="bi bi-door-open"></i>
+            <i class="bi bi-snow"></i>
+          </div>
+          <p>Location: Ntinda</p><p>Price: $75/night</p>
+
+          <!-- New Services -->
+          <div class="apartment-services text-start">
+            <p class="fw-bold mb-1">Services:</p>
+            <ul>
+              <li>✅ Free WiFi</li>
+              <li>✅ Daily Cleaning</li>
+              <li>✅ 24/7 Security</li>
+              <li>✅ Breakfast Included</li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
+            <i class="bi bi-whatsapp"></i> Book on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-primary text-white mt-5">
+  <div class="container py-4 d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <div class="d-flex align-items-center mb-3 mb-md-0">
+      <div class="rounded-circle bg-white text-primary d-flex align-items-center justify-content-center me-3 footer-logo-circle">FA</div>
+      <div>
+        <div style="font-size:1rem; font-weight:600;">Furnished Apartments</div>
+        <div style="font-size:0.9rem;">Kampala, Uganda</div>
+      </div>
+    </div>
+    <div class="text-center text-md-end">
+      <div style="font-size:1.08rem; font-weight:500;" class="mb-2">
+        <i class="bi bi-telephone-fill"></i> Tel/WhatsApp:
+        <a href="https://wa.me/256780228391" target="_blank" class="text-white text-decoration-underline fw-bold">+256 780 228391</a>,
+        <a href="https://wa.me/256704229100" target="_blank" class="text-white text-decoration-underline fw-bold">+256 704 229100</a>
+      </div>
+      <div class="footer-social mb-2">
+        <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://wa.me/256704229100" target="_blank"><i class="bi bi-whatsapp"></i></a>
+      </div>
+      <div class="mt-1" style="font-size:0.97rem;">
+        <span class="opacity-75"><i class="bi bi-shield-check"></i> Secure bookings – Proudly Ugandan</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-center text-white-50 py-2" style="background:rgba(0,0,0,0.08); font-size:0.96rem;">
+    &copy; <span id="copyright-year"></span> Furnished Apartments. All rights reserved.
+  </div>
+</footer>
+
+<!-- Modals with Swiper for Apartments -->
+<!-- Apartment 1 Modal -->
+<div class="modal fade" id="apt1Modal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="swiper apt1Swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/apartment1-1.jpg" class="w-100"></div>
+            <div class="swiper-slide"><img src="images/apartment1-2.jpg" class="w-100"></div>
+            <div class="swiper-slide"><img src="images/apartment1-3.jpg" class="w-100"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Apartment 2 Modal -->
+<div class="modal fade" id="apt2Modal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="swiper apt2Swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/apartment2-1.jpg" class="w-100"></div>
+            <div class="swiper-slide"><img src="images/apartment2-2.jpg" class="w-100"></div>
+            <div class="swiper-slide"><img src="images/apartment2-3.jpg" class="w-100"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Apartment 3 Modal -->
+<div class="modal fade" id="apt3Modal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="swiper apt3Swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/apartment3-1.jpg" class="w-100"></div>
+            <div class="swiper-slide"><img src="images/apartment3-2.jpg" class="w-100"></div>
+            <div class="swiper-slide"><img src="images/apartment3-3.jpg" class="w-100"></div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+  const swipers = {};
+  function initSwiper(modalId, swiperClass){
+    const modal = document.getElementById(modalId);
+    modal.addEventListener('shown.bs.modal', () => {
+      if (!swipers[swiperClass]) {
+        swipers[swiperClass] = new Swiper('.' + swiperClass, {
+          loop: true,
+          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        });
+      }
+    });
+  }
+  initSwiper('apt1Modal','apt1Swiper');
+  initSwiper('apt2Modal','apt2Swiper');
+  initSwiper('apt3Modal','apt3Swiper');
+
+  // Keyboard arrow support
+  document.addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight") {
+      Object.values(swipers).forEach(sw => {
+        if (sw && sw.el.closest(".modal.show")) sw.slideNext();
+      });
+    }
+    if (e.key === "ArrowLeft") {
+      Object.values(swipers).forEach(sw => {
+        if (sw && sw.el.closest(".modal.show")) sw.slidePrev();
+      });
+    }
+  });
+
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
