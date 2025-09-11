@@ -60,15 +60,6 @@
       color: #2979ff;
       font-size: 1.2rem;
     }
-    .apartment-services ul {
-      padding-left: 0;
-      margin-bottom: 0.5rem;
-      font-size: 0.92rem;
-    }
-    .apartment-services li {
-      list-style: none;
-      text-align: left;
-    }
     .footer-logo-circle {
       width:60px; height:60px; font-size:1.4rem; font-weight:bold;
       box-shadow:0 2px 8px rgba(0,0,0,0.06);
@@ -170,101 +161,11 @@
   </form>
 </div>
 
-<!-- Apartments -->
+<!-- Apartments (Dynamic) -->
 <div class="container pb-5" id="apartments">
   <h2 class="mb-4 mt-2 fw-bold">Featured Apartments</h2>
-  <div class="row">
-
-    <!-- Apartment 1 -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm">
-        <img src="images/apartment1-1.jpg" class="card-img-top" alt="Ntinda Comfort Suite" data-bs-toggle="modal" data-bs-target="#apt1Modal">
-        <div class="card-body text-center">
-          <h5 class="card-title fw-bold">Ntinda Comfort Suite</h5>
-          <div class="apartment-amenities mb-2">
-            <i class="bi bi-wifi"></i>
-            <i class="bi bi-tv"></i>
-            <i class="bi bi-cup-straw"></i>
-            <i class="bi bi-door-open"></i>
-            <i class="bi bi-snow"></i>
-          </div>
-          <p>Location: Ntinda</p><p>Price: $45/night</p>
-          <div class="apartment-services text-start">
-            <p class="fw-bold mb-1">Services:</p>
-            <ul>
-              <li>✅ Free WiFi</li>
-              <li>✅ Daily Cleaning</li>
-              <li>✅ 24/7 Security</li>
-              <li>✅ Breakfast Included</li>
-            </ul>
-          </div>
-          <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
-            <i class="bi bi-whatsapp"></i> Book on WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Apartment 2 -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm">
-        <img src="images/apartment2-1.jpg" class="card-img-top" alt="Ntinda Executive" data-bs-toggle="modal" data-bs-target="#apt2Modal">
-        <div class="card-body text-center">
-          <h5 class="card-title fw-bold">Ntinda Executive</h5>
-          <div class="apartment-amenities mb-2">
-            <i class="bi bi-wifi"></i>
-            <i class="bi bi-tv"></i>
-            <i class="bi bi-cup-straw"></i>
-            <i class="bi bi-door-open"></i>
-            <i class="bi bi-snow"></i>
-          </div>
-          <p>Location: Ntinda</p><p>Price: $60/night</p>
-          <div class="apartment-services text-start">
-            <p class="fw-bold mb-1">Services:</p>
-            <ul>
-              <li>✅ Free WiFi</li>
-              <li>✅ Daily Cleaning</li>
-              <li>✅ 24/7 Security</li>
-              <li>✅ Breakfast Included</li>
-            </ul>
-          </div>
-          <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
-            <i class="bi bi-whatsapp"></i> Book on WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Apartment 3 -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm">
-        <img src="images/apartment3-1.jpg" class="card-img-top" alt="Ntinda Deluxe Loft" data-bs-toggle="modal" data-bs-target="#apt3Modal">
-        <div class="card-body text-center">
-          <h5 class="card-title fw-bold">Ntinda Deluxe Loft</h5>
-          <div class="apartment-amenities mb-2">
-            <i class="bi bi-wifi"></i>
-            <i class="bi bi-tv"></i>
-            <i class="bi bi-cup-straw"></i>
-            <i class="bi bi-door-open"></i>
-            <i class="bi bi-snow"></i>
-          </div>
-          <p>Location: Ntinda</p><p>Price: $75/night</p>
-          <div class="apartment-services text-start">
-            <p class="fw-bold mb-1">Services:</p>
-            <ul>
-              <li>✅ Free WiFi</li>
-              <li>✅ Daily Cleaning</li>
-              <li>✅ 24/7 Security</li>
-              <li>✅ Breakfast Included</li>
-            </ul>
-          </div>
-          <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
-            <i class="bi bi-whatsapp"></i> Book on WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-
+  <div class="row" id="apartment-list">
+    <!-- Apartments will load here dynamically -->
   </div>
 </div>
 
@@ -299,103 +200,65 @@
   </div>
 </footer>
 
-<!-- Modals with Swiper for Apartments -->
-<!-- Apartment 1 Modal -->
-<div class="modal fade" id="apt1Modal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body p-0">
-        <div class="swiper apt1Swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/apartment1-1.jpg" class="w-100"></div>
-            <div class="swiper-slide"><img src="images/apartment1-2.jpg" class="w-100"></div>
-            <div class="swiper-slide"><img src="images/apartment1-3.jpg" class="w-100"></div>
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Apartment 2 Modal -->
-<div class="modal fade" id="apt2Modal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body p-0">
-        <div class="swiper apt2Swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/apartment2-1.jpg" class="w-100"></div>
-            <div class="swiper-slide"><img src="images/apartment2-2.jpg" class="w-100"></div>
-            <div class="swiper-slide"><img src="images/apartment2-3.jpg" class="w-100"></div>
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Apartment 3 Modal -->
-<div class="modal fade" id="apt3Modal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body p-0">
-        <div class="swiper apt3Swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="images/apartment3-1.jpg" class="w-100"></div>
-            <div class="swiper-slide"><img src="images/apartment3-2.jpg" class="w-100"></div>
-            <div class="swiper-slide"><img src="images/apartment3-3.jpg" class="w-100"></div>
-          </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script>
-  const swipers = {};
-  function initSwiper(modalId, swiperClass){
-    const modal = document.getElementById(modalId);
-    modal.addEventListener('shown.bs.modal', () => {
-      if (!swipers[swiperClass]) {
-        swipers[swiperClass] = new Swiper('.' + swiperClass, {
-          loop: true,
-          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+  // Fetch apartments from JSON
+  fetch('data/apartments.json')
+    .then(response => response.json())
+    .then(apartments => {
+      let container = document.getElementById('apartment-list');
+      apartments.forEach((apt, index) => {
+        let card = `
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <img src="${apt.image}" class="card-img-top" alt="${apt.title}" data-bs-toggle="modal" data-bs-target="#aptModal${index}">
+              <div class="card-body text-center">
+                <h5 class="card-title fw-bold">${apt.title}</h5>
+                <p>Location: ${apt.location}</p>
+                <p>Price: ${apt.price}</p>
+                <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
+                  <i class="bi bi-whatsapp"></i> Book on WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal for this apartment -->
+          <div class="modal fade" id="aptModal${index}" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body p-0">
+                  <div class="swiper swiper${index}">
+                    <div class="swiper-wrapper">
+                      ${apt.gallery.map(img => `<div class='swiper-slide'><img src='${img}' class='w-100'></div>`).join('')}
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += card;
+
+        // Init Swiper when modal is shown
+        let modal = document.getElementById(`aptModal${index}`);
+        modal.addEventListener('shown.bs.modal', () => {
+          if (!modal.swiper) {
+            modal.swiper = new Swiper(`.swiper${index}`, {
+              loop: true,
+              navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            });
+          }
         });
-      }
+      });
     });
-  }
-  initSwiper('apt1Modal','apt1Swiper');
-  initSwiper('apt2Modal','apt2Swiper');
-  initSwiper('apt3Modal','apt3Swiper');
 
-  // Keyboard arrow support
-  document.addEventListener("keydown", function(e){
-    if (e.key === "ArrowRight") {
-      Object.values(swipers).forEach(sw => {
-        if (sw && sw.el.closest(".modal.show")) sw.slideNext();
-      });
-    }
-    if (e.key === "ArrowLeft") {
-      Object.values(swipers).forEach(sw => {
-        if (sw && sw.el.closest(".modal.show")) sw.slidePrev();
-      });
-    }
-  });
-
+  // Footer year
   document.getElementById('copyright-year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
-
-
-
-
