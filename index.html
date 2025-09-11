@@ -33,7 +33,7 @@
     .hero-section {
       position: relative;
       background: url('images/hero.jpeg') center center no-repeat;
-      background-size: 100%; /* zoomed out */
+      background-size: cover;
       min-height: 420px;
       margin-bottom: 0;
     }
@@ -61,6 +61,27 @@
     }
     .footer-social a { font-size: 1.5rem; margin-right: 10px; color: #fff; }
     .footer-social a:hover { color: #d1ecff; }
+
+    /* Equalize apartment cards */
+    .card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Equalize images */
+    .card-img-top {
+      height: 250px;       /* consistent height */
+      object-fit: cover;   /* crop nicely */
+      border-top-left-radius: .5rem;
+      border-top-right-radius: .5rem;
+    }
 
     /* Modal carousel */
     .modal-content { border-radius: 20px; overflow: hidden; }
