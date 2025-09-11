@@ -32,8 +32,8 @@
     }
     .hero-section {
       position: relative;
-      background: url('images/hero.webp') center center no-repeat;
-      background-size: 100%; /* zoomed out by ~40% */
+      background: url('images/hero.jpeg') center center no-repeat;
+      background-size: 100%; /* zoomed out */
       min-height: 420px;
       margin-bottom: 0;
     }
@@ -54,11 +54,6 @@
       box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.06);
       padding: 1.25rem;
       position: relative; z-index: 3;
-    }
-    .apartment-amenities i {
-      margin-right: 8px;
-      color: #2979ff;
-      font-size: 1.2rem;
     }
     .footer-logo-circle {
       width:60px; height:60px; font-size:1.4rem; font-weight:bold;
@@ -94,7 +89,6 @@
         FA
       </div>
     </a>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -104,16 +98,6 @@
         <li class="nav-item"><a class="nav-link" href="#apartments">Apartments</a></li>
         <li class="nav-item"><a class="nav-link" href="#form">Book Now</a></li>
       </ul>
-      <div class="dropdown ms-3">
-        <button class="btn btn-light btn-sm dropdown-toggle fw-bold" type="button" id="langDropdown" data-bs-toggle="dropdown">
-          ENG
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
-          <li><a class="dropdown-item" href="#">English</a></li>
-          <li><a class="dropdown-item" href="#">French</a></li>
-          <li><a class="dropdown-item" href="#">Swahili</a></li>
-        </ul>
-      </div>
     </div>
   </div>
 </nav>
@@ -161,7 +145,7 @@
   </form>
 </div>
 
-<!-- Apartments (Dynamic) -->
+<!-- Apartments -->
 <div class="container pb-5" id="apartments">
   <h2 class="mb-4 mt-2 fw-bold">Featured Apartments</h2>
   <div class="row" id="apartment-list">
@@ -210,6 +194,8 @@
     .then(apartments => {
       let container = document.getElementById('apartment-list');
       apartments.forEach((apt, index) => {
+        let servicesList = apt.services.map(s => `<li>✅ ${s}</li>`).join('');
+
         let card = `
           <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
@@ -218,6 +204,10 @@
                 <h5 class="card-title fw-bold">${apt.title}</h5>
                 <p>Location: ${apt.location}</p>
                 <p>Price: ${apt.price}</p>
+                <div class="apartment-services text-start">
+                  <p class="fw-bold mb-1">Services:</p>
+                  <ul>${servicesList}</ul>
+                </div>
                 <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
                   <i class="bi bi-whatsapp"></i> Book on WhatsApp
                 </a>
