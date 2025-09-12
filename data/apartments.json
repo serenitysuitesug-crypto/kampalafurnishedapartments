@@ -5,7 +5,7 @@
     "location": "Ntinda",
     "image": "images/A-1.jpeg",
     "gallery": ["images/A-1.jpeg","images/A-2.jpeg","images/A-3.jpeg","images/A-4.jpeg"],
-    "services": ["Free WiFi", "24/7 Water", "Air Conditioning", "Daily Cleaning"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
     "title": "Studio apartment",
@@ -13,7 +13,7 @@
     "location": "Ntinda",
     "image": "images/B-1.jpeg",
     "gallery": ["images/B-1.jpeg","images/B-2.jpeg","images/B-3.jpeg","images/B-4.jpeg"],
-    "services": ["Free WiFi", "Hot Shower", "Smart TV", "Secure Parking"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
     "title": "Studio apartment",
@@ -21,7 +21,7 @@
     "location": "Ntinda",
     "image": "images/C-1.jpeg",
     "gallery": ["images/C-1.jpeg","images/C-2.jpeg","images/C-3.jpeg","images/C-4.jpeg"],
-    "services": ["Free WiFi", "Water Supply", "Fully Equipped Kitchen", "24/7 Security"]
+   "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
    "title": "Studio apartment",
@@ -29,7 +29,7 @@
     "location": "Ntinda",
     "image": "images/D-1.jpeg",
     "gallery": ["images/D-1.jpeg","images/D-2.jpeg","images/D-3.jpeg","images/D-4.jpeg"],
-    "services": ["Free WiFi", "Smart TV", "Balcony View", "Housekeeping"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
     "title": "Studio apartment",
@@ -37,7 +37,7 @@
     "location": "Ntinda",
     "image": "images/E-1.jpeg",
     "gallery": ["images/E-1.jpeg","images/E-2.jpeg","images/E-3.jpeg","images/E-4.jpeg"],
-    "services": ["Free WiFi", "24/7 Water", "Private Parking", "Daily Cleaning"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
     "title": "Studio apartment",
@@ -45,7 +45,7 @@
     "location": "Ntinda",
     "image": "images/F-1.jpeg",
     "gallery": ["images/F-1.jpeg","images/F-2.jpeg","images/F-3.jpeg","images/F-4.jpeg"],
-    "services": ["Free WiFi", "Hot Shower", "Kitchen Access", "Secure Compound"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
    "title": "Studio apartment",
@@ -53,7 +53,7 @@
     "location": "Ntinda",
     "image": "images/G-1.jpeg",
     "gallery": ["images/G-1.jpeg","images/G-2.jpeg","images/G-3.jpeg","images/G-4.jpeg"],
-    "services": ["Free WiFi", "AC", "Gym Access", "24/7 Security"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
     "title": "Studio apartment",
@@ -61,7 +61,7 @@
     "location": "Ntinda",
     "image": "images/H-1.jpeg",
     "gallery": ["images/H-1.jpeg","images/H-2.jpeg","images/H-3.jpeg","images/H-4.jpeg"],
-    "services": ["Free WiFi", "Water Supply", "Smart TV", "Daily Cleaning"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
    "title": "Studio apartment",
@@ -69,7 +69,7 @@
     "location": "Ntinda",
     "image": "images/I-1.jpeg",
     "gallery": ["images/I-1.jpeg","images/I-2.jpeg","images/I-3.jpeg","images/I-4.jpeg"],
-    "services": ["Free WiFi", "Private Kitchen", "Balcony View", "Secure Parking"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   },
   {
    "title": "Studio apartment",
@@ -77,6 +77,6 @@
     "location": "Kulambiro",
     "image": "images/J-1.jpeg",
     "gallery": ["images/J-1.jpeg","images/J-2.jpeg","images/J-3.jpeg","images/J-4.jpeg"],
-    "services": ["Free WiFi", "AC", "Smart TV", "24/7 Security"]
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
   }
 ]
