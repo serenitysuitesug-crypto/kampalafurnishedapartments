@@ -250,6 +250,7 @@
                     <div class="swiper-wrapper">
                       ${apt.gallery.map(img => `<div class='swiper-slide'><img src='${img}' class='w-100'></div>`).join('')}
                     </div>
+                    <!-- Unique nav buttons -->
                     <div class="swiper-button-next swiper-next-${index}"></div>
                     <div class="swiper-button-prev swiper-prev-${index}"></div>
                   </div>
@@ -269,7 +270,7 @@
               navigation: { 
                 nextEl: `.swiper-next-${index}`, 
                 prevEl: `.swiper-prev-${index}` 
-              },
+              }
             });
           }
         });
@@ -281,4 +282,3 @@
 </script>
 </body>
 </html>
-
