@@ -216,6 +216,7 @@
     .then(response => response.json())
     .then(apartments => {
       let container = document.getElementById('apartment-list');
+
       apartments.forEach((apt, index) => {
         let servicesList = apt.services.map(s => `<li>✅ ${s}</li>`).join('');
 
@@ -256,17 +257,16 @@
           </div>
         `;
         container.innerHTML += card;
+      });
 
-        // Init Swiper when modal is shown
-        let modal = document.getElementById(`aptModal${index}`);
-        modal.addEventListener('shown.bs.modal', () => {
-          modal.swiper = new Swiper(`.swiper${index}`, {
-            loop: true,
-            navigation: {
-              nextEl: `.swiper-next-${index}`,
-              prevEl: `.swiper-prev-${index}`
-            }
-          });
+      // ✅ Initialize all Swipers AFTER cards are added
+      apartments.forEach((apt, index) => {
+        new Swiper(`.swiper${index}`, {
+          loop: true,
+          navigation: {
+            nextEl: `.swiper-next-${index}`,
+            prevEl: `.swiper-prev-${index}`
+          }
         });
       });
     });
