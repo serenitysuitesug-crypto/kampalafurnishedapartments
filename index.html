@@ -38,17 +38,13 @@
       min-height: 420px;
       margin-bottom: 0;
     }
-    /* Overlay removed */
-    .hero-section .overlay {
-      display: none;
-    }
+    .hero-section .overlay { display: none; }
     .hero-content {
       position: relative;
       z-index: 2;
       padding-top: 5rem; padding-bottom: 4.5rem;
       text-align: center;
     }
-    /* Text shadow for readability */
     .hero-content h1,
     .hero-content p {
       text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
@@ -68,19 +64,13 @@
     .footer-social a:hover { color: #d1ecff; }
 
     /* Equalize apartment cards */
-    .card {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
+    .card { height: 100%; display: flex; flex-direction: column; }
     .card-body {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-
-    /* Equalize images */
     .card-img-top {
       height: 250px;
       object-fit: cover;
@@ -103,12 +93,11 @@
       background: rgba(0,0,0,0.6);
     }
 
-    /* Limit & uniform modal images */
+    /* Modal images uniform */
     .modal-body img {
       max-height: 80vh;
-      width: 100%;          /* always span modal width */
-      object-fit: contain;  /* keep proportions */
-      margin: 0 auto;
+      width: 100%;
+      object-fit: contain;
       display: block;
     }
   </style>
@@ -139,7 +128,6 @@
 
 <!-- Hero -->
 <section class="hero-section">
-  <div class="overlay"></div>
   <div class="container hero-content">
     <h1 class="display-4 fw-bold text-white mb-3">Furnished Apartments Uganda</h1>
     <p class="lead text-white mb-4">Modern, Secure, Fully Furnished Apartments in Kampala</p>
@@ -272,15 +260,13 @@
         // Init Swiper when modal is shown
         let modal = document.getElementById(`aptModal${index}`);
         modal.addEventListener('shown.bs.modal', () => {
-          if (!modal.swiper) {
-            modal.swiper = new Swiper(`.swiper${index}`, {
-              loop: true,
-              navigation: { 
-                nextEl: `.swiper-next-${index}`, 
-                prevEl: `.swiper-prev-${index}` 
-              },
-            });
-          }
+          modal.swiper = new Swiper(`.swiper${index}`, {
+            loop: true,
+            navigation: {
+              nextEl: `.swiper-next-${index}`,
+              prevEl: `.swiper-prev-${index}`
+            }
+          });
         });
       });
     });
