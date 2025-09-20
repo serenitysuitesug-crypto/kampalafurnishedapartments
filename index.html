@@ -212,7 +212,8 @@
                 <p class="fw-bold mb-1">Services:</p>
                 <ul>${servicesList}</ul>
               </div>
-              <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold w-100">
+              <a href="javascript:void(0)" onclick="bookApartment('${apt.title}','${apt.location}','${apt.price}')" 
+                 class="btn btn-success fw-bold w-100">
                 <i class="bi bi-whatsapp"></i> Book on WhatsApp
               </a>
             </div>
@@ -263,7 +264,7 @@
     renderApartments(filtered);
   }
 
-  // ✅ Send WhatsApp message with booking details
+  // ✅ General availability request
   function sendWhatsApp() {
     let checkin = document.getElementById('checkin').value;
     let checkout = document.getElementById('checkout').value;
@@ -275,6 +276,23 @@ Check-in: ${checkin || "Not specified"}%0A
 Check-out: ${checkout || "Not specified"}%0A
 Location: ${location}%0A
 Apartment Type: ${type}`;
+
+    let phone = "256704229100"; // your WhatsApp number
+    let url = `https://wa.me/${phone}?text=${message}`;
+    window.open(url, "_blank");
+  }
+
+  // ✅ Booking request from specific apartment card
+  function bookApartment(title, location, price) {
+    let checkin = document.getElementById('checkin').value;
+    let checkout = document.getElementById('checkout').value;
+
+    let message = `Hello, I’d like to book this apartment.%0A
+Apartment: ${title}%0A
+Location: ${location}%0A
+Price: ${price}%0A
+Check-in: ${checkin || "Not specified"}%0A
+Check-out: ${checkout || "Not specified"}`;
 
     let phone = "256704229100"; // your WhatsApp number
     let url = `https://wa.me/${phone}?text=${message}`;
