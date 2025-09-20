@@ -38,7 +38,6 @@
       min-height: 420px;
       margin-bottom: 0;
     }
-    .hero-section .overlay { display: none; }
     .hero-content {
       position: relative;
       z-index: 2;
@@ -62,53 +61,27 @@
     }
     .footer-social a { font-size: 1.5rem; margin-right: 10px; color: #fff; }
     .footer-social a:hover { color: #d1ecff; }
-
-    /* Equalize apartment cards */
     .card { height: 100%; display: flex; flex-direction: column; }
-    .card-body {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card-img-top {
-      height: 250px;
-      object-fit: cover;
-      border-top-left-radius: .5rem;
-      border-top-right-radius: .5rem;
-    }
-
-    /* Modal carousel */
+    .card-body { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-img-top { height: 250px; object-fit: cover; border-top-left-radius: .5rem; border-top-right-radius: .5rem; }
     .modal-content { border-radius: 20px; overflow: hidden; }
     .swiper-button-next, .swiper-button-prev {
-      color: #fff !important;
-      background: rgba(0,0,0,0.4);
-      width: 50px; height: 50px;
-      border-radius: 50%;
+      color: #fff !important; background: rgba(0,0,0,0.4);
+      width: 50px; height: 50px; border-radius: 50%;
     }
-    .swiper-button-next::after, .swiper-button-prev::after {
-      font-size: 22px; font-weight: bold;
-    }
-    .swiper-button-next:hover, .swiper-button-prev:hover {
-      background: rgba(0,0,0,0.6);
-    }
-
-    /* Modal images uniform */
-    .modal-body img {
-      max-height: 80vh;
-      width: 100%;
-      object-fit: contain;
-      display: block;
-    }
+    .swiper-button-next::after, .swiper-button-prev::after { font-size: 22px; font-weight: bold; }
+    .swiper-button-next:hover, .swiper-button-prev:hover { background: rgba(0,0,0,0.6); }
+    .modal-body img { max-height: 80vh; width: 100%; object-fit: contain; display: block; }
   </style>
- <!-- ✅ Google Analytics tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CGLN8ENCKY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-CGLN8ENCKY');
-</script>
+
+  <!-- ✅ Google Analytics tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGLN8ENCKY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CGLN8ENCKY');
+  </script>
 </head> 
 <body>
 
@@ -145,13 +118,9 @@
   </div>
 </section>
 
-<!-- Booking Form -->
+<!-- Booking + Filter Form -->
 <div class="container form-availability shadow" id="form">
   <form class="row g-2 align-items-end justify-content-center">
-    <div class="col-lg-3 col-md-4">
-      <label for="name" class="form-label mb-1">Name</label>
-      <input type="text" class="form-control" id="name" placeholder="Your name">
-    </div>
     <div class="col-lg-3 col-md-4">
       <label for="checkin" class="form-label mb-1">Check-in</label>
       <input type="date" class="form-control" id="checkin">
@@ -161,37 +130,23 @@
       <input type="date" class="form-control" id="checkout">
     </div>
     <div class="col-lg-3 col-md-4">
-      <label for="type" class="form-label mb-1">Apartment Type</label>
-      <select class="form-select" id="type">
-        <option>Studio Apartment</option>
-        <option>One Bedroom</option>
-        <option>Two Bedroom</option>
+      <label for="filter-size" class="form-label mb-1">Apartment Type</label>
+      <select id="filter-size" class="form-select">
+        <option value="">All Types</option>
+      </select>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <label for="filter-location" class="form-label mb-1">Location</label>
+      <select id="filter-location" class="form-select">
+        <option value="">All Locations</option>
       </select>
     </div>
     <div class="col-lg-2 col-md-4 d-grid">
-      <a href="https://wa.me/256704229100" target="_blank" class="btn btn-success fw-bold">
+      <button type="button" onclick="sendWhatsApp()" class="btn btn-success fw-bold">
         <i class="bi bi-whatsapp"></i> Check Availability
-      </a>
+      </button>
     </div>
   </form>
-</div>
-
-<!-- ✅ Filter Controls -->
-<div class="container mb-3">
-  <div class="row g-2">
-    <div class="col-md-4">
-      <select id="filter-size" class="form-select">
-        <option value="">All Types</option>
-        <!-- Filled dynamically -->
-      </select>
-    </div>
-    <div class="col-md-4">
-      <select id="filter-location" class="form-select">
-        <option value="">All Locations</option>
-        <!-- Filled dynamically -->
-      </select>
-    </div>
-  </div>
 </div>
 
 <!-- Apartments -->
@@ -306,6 +261,24 @@
     });
 
     renderApartments(filtered);
+  }
+
+  // ✅ Send WhatsApp message with booking details
+  function sendWhatsApp() {
+    let checkin = document.getElementById('checkin').value;
+    let checkout = document.getElementById('checkout').value;
+    let type = document.getElementById('filter-size').value || "Any";
+    let location = document.getElementById('filter-location').value || "Any";
+
+    let message = `Hello, I’d like to check availability.%0A
+Check-in: ${checkin || "Not specified"}%0A
+Check-out: ${checkout || "Not specified"}%0A
+Location: ${location}%0A
+Apartment Type: ${type}`;
+
+    let phone = "256704229100"; // your WhatsApp number
+    let url = `https://wa.me/${phone}?text=${message}`;
+    window.open(url, "_blank");
   }
 
   // Fetch data + populate filters
