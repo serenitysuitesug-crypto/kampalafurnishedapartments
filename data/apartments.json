@@ -1,7 +1,7 @@
 [
   {
     "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/A-1.jpeg",
     "gallery": ["images/A-1.jpeg","images/A-2.jpeg","images/A-3.jpeg","images/A-4.jpeg"],
@@ -9,7 +9,7 @@
   },
   {
     "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/B-1.jpeg",
     "gallery": ["images/B-1.jpeg","images/B-2.jpeg","images/B-3.jpeg","images/B-4.jpeg"],
@@ -17,7 +17,7 @@
   },
   {
     "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/C-1.jpeg",
     "gallery": ["images/C-1.jpeg","images/C-2.jpeg","images/C-3.jpeg","images/C-4.jpeg"],
@@ -25,7 +25,7 @@
   },
   {
    "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/D-1.jpeg",
     "gallery": ["images/D-1.jpeg","images/D-2.jpeg","images/D-3.jpeg","images/D-4.jpeg"],
@@ -33,7 +33,7 @@
   },
   {
     "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/E-1.jpeg",
     "gallery": ["images/E-1.jpeg","images/E-2.jpeg","images/E-3.jpeg","images/E-4.jpeg"],
@@ -41,7 +41,7 @@
   },
   {
     "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/F-1.jpeg",
     "gallery": ["images/F-1.jpeg","images/F-2.jpeg","images/F-3.jpeg","images/F-4.jpeg"],
@@ -49,7 +49,7 @@
   },
   {
    "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/G-1.jpeg",
     "gallery": ["images/G-1.jpeg","images/G-2.jpeg","images/G-3.jpeg","images/G-4.jpeg"],
@@ -57,7 +57,7 @@
   },
   {
     "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/H-1.jpeg",
     "gallery": ["images/H-1.jpeg","images/H-2.jpeg","images/H-3.jpeg","images/H-4.jpeg"],
@@ -65,7 +65,7 @@
   },
   {
    "title": "Studio apartment",
-    "price": "$30/night",
+    "price": "100000ugx/night",
     "location": "Ntinda",
     "image": "images/I-1.jpeg",
     "gallery": ["images/I-1.jpeg","images/I-2.jpeg","images/I-3.jpeg","images/I-4.jpeg"],
@@ -73,10 +73,66 @@
   },
   {
    "title": "Studio apartment",
-    "price": "$45/night",
+    "price": "160000ugx/night",
     "location": "Kulambiro",
     "image": "images/J-1.jpeg",
-    "gallery": ["images/J-1.jpeg","images/J-2.jpeg","images/J-3.jpeg","images/J-4.jpeg"],
+    "gallery": ["images/J-1.jpeg","images/J-2.jpeg","images/J-3.jpeg","images/J-4.jpeg","images/J-5.jpeg"],
     "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+   "title": "Studio apartment",
+    "price": "160000ugx/night",
+    "location": "Kulambiro",
+    "image": "images/K-1.jpeg",
+    "gallery": ["images/K-1.jpeg","images/K-2.jpeg","images/K-3.jpeg","images/K-4.jpeg","images/K-5.jpeg","images/K-6.jpeg","images/K-7.jpeg","images/K-8.jpeg"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+   "title": "Three bedroom apartment",
+    "price": "300000ugx/night",
+    "location": "Kisaasi",
+    "image": "images/L-1.jpg",
+    "gallery": ["images/L-1.jpg","images/L-2.jpg","images/L-3.jpg","images/L-4.jpg","images/L-5.jpg","images/L-6.jpg","images/L-7.jpg","images/L-8.jpg","images/L-9.jpg","images/L-10.jpg","images/L-11.jpg"],
+    "services": ["Free WiFi", "3-bedrooms & 2 bathrooms", "Fully Equipped Kitchen", "Ample Parking", "Washing machine", "Swimming Pool"]
+  },
+  {
+   "title": "Three bedroom apartment",
+    "price": "300000ugx/night",
+    "location": "Ntinda",
+    "image": "images/M-1.jpg",
+    "gallery": ["images/M-1.jpg","images/M-2.jpg","images/M-3.jpg","images/M-4.jpg","images/M-5.jpg","images/M-6.jpg","images/M-7.jpg","images/M-8.jpg","images/M-8-1.jpg","images/M-9.jpg"],
+    "services": ["Free WiFi", "3-bedrooms & 2 bathrooms", "Fully Equipped Kitchen", "Ample Parking", "Washing machine"]
+  },
+  {
+   "title": "One bedroom apartment",
+    "price": "160000ugx/night",
+    "location": "Kiwatule",
+    "image": "images/N-1.jpg",
+    "gallery": ["images/N-1.jpg","images/N-2.jpg","images/N-3.jpg","images/N-4.jpg","images/N-5.jpg","images/N-6.jpg","images/N-7.jpg"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+   "title": "One bedroom apartment",
+    "price": "160000ugx/night",
+    "location": "Kisaasi",
+    "image": "images/O-1.jpg",
+    "gallery": ["images/O-1.jpg","images/O-2.jpg","images/O-3.jpg","images/O-4.jpg","images/O-5.jpg","images/O-6.jpg","images/O-7.jpg"],
+    "services": ["Free WiFi", "Smart TV", "Fully Equipped Kitchen", "Ample Parking"]
+  },
+  {
+   "title": "One bedroom apartment",
+    "price": "160000ugx/night",
+    "location": "Ntinda",
+    "image": "images/P-1.jpg",
+    "gallery": ["images/P-1.jpg","images/P-2.jpg","images/P-3.jpg","images/P-4.jpg","images/P-5.jpg","images/P-6.jpg","images/P-6-1.jpg","images/P-7.jpg","images/P-8.jpg","images/P-9.jpg"],
+    "services": ["Free WiFi", "Smart TV", "Fully Equipped Kitchen", "Ample Parking"]
+  },
+  {
+   "title": "One bedroom apartment",
+    "price": "160000ugx/night",
+    "location": "Ntinda",
+    "image": "images/Q-1.jpg",
+    "gallery": ["images/Q-1.jpg","images/Q-2.jpg","images/Q-3.jpg","images/Q-4.jpg","images/Q-5.jpg","images/Q-6.jpg","images/Q-7.jpg","images/Q-8.jpg","images/Q-9.jpg","images/Q-10.jpg","images/Q-11.jpg"],
+    "services": ["Free WiFi", "Smart TV", "Fully Equipped Kitchen", "Ample Parking", "Quiet Environment"]
   }
 ]
