@@ -17,9 +17,9 @@
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://yourdomain.com/#business",
+        "@id": "https://kampalafurnishedapartments.com/#business",
         "name": "Furnished Apartments Uganda",
-        "image": "https://yourdomain.com/images/hero.webp",
+        "image": "https://kampalafurnishedapartments.com/images/hero.webp",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Kampala",
@@ -35,16 +35,16 @@
         "telephone": "+256778663411",
         "openingHours": "Mo-Su 00:00-23:59",
         "priceRange": "$$",
-        "url": "https://yourdomain.com"
+        "url": "https://kampalafurnishedapartments.com"
       },
       {
         "@type": "WebSite",
-        "@id": "https://yourdomain.com/#website",
-        "url": "https://yourdomain.com",
+        "@id": "https://kampalafurnishedapartments.com/#website",
+        "url": "https://kampalafurnishedapartments.com",
         "name": "Furnished Apartments Uganda",
         "description": "Fully furnished apartments in Kampala for short and long stays",
         "publisher": {
-          "@id": "https://yourdomain.com/#business"
+          "@id": "https://kampalafurnishedapartments.com/#business"
         }
       }
     ]
@@ -248,31 +248,27 @@
 <script>
   let apartmentsData = [];
 
-  // Helper function to create URL slugs
-  function createSlug(title) {
-    return title.toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-');
-  }
-
   function renderApartments(list) {
     let container = document.getElementById('apartment-list');
     container.innerHTML = '';
 
     list.forEach((apt, index) => {
       let servicesList = apt.services.map(s => `<li>✅ ${s}</li>`).join('');
-      let slug = createSlug(apt.title);
+      
+      // Create slug with apartments/ folder prefix
+      const aptCode = String.fromCharCode(65 + index); // A, B, C, D...
+      const slug = `apartments/apartment-${aptCode.toLowerCase()}`;
       
       let card = `
         <div class="col-md-4 mb-4">
           <div class="card h-100 shadow-sm">
-            <a href="/apartments/${slug}.html">
-              <img src="${apt.image}" class="card-img-top" alt="${apt.title}" data-bs-toggle="modal" data-bs-target="#aptModal${index}">
+            <a href="${slug}.html">
+              <img src="${apt.image}" class="card-img-top" alt="${apt.title}" 
+                   data-bs-toggle="modal" data-bs-target="#aptModal${index}">
             </a>
             <div class="card-body text-center">
               <h5 class="card-title fw-bold">
-                <a href="/apartments/${slug}.html" class="text-decoration-none text-dark">
+                <a href="${slug}.html" class="text-decoration-none text-dark">
                   ${apt.title}
                 </a>
               </h5>
