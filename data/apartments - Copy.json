@@ -1,0 +1,138 @@
+[
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/A-1.webp",
+    "gallery": ["images/A-1.webp", "images/A-2.webp", "images/A-3.webp", "images/A-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/B-1.webp",
+    "gallery": ["images/B-1.webp", "images/B-2.webp", "images/B-3.webp", "images/B-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/C-1.webp",
+    "gallery": ["images/C-1.webp", "images/C-2.webp", "images/C-3.webp", "images/C-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/D-1.webp",
+    "gallery": ["images/D-1.webp", "images/D-2.webp", "images/D-3.webp", "images/D-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/E-1.webp",
+    "gallery": ["images/E-1.webp", "images/E-2.webp", "images/E-3.webp", "images/E-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/F-1.webp",
+    "gallery": ["images/F-1.webp", "images/F-2.webp", "images/F-3.webp", "images/F-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/G-1.webp",
+    "gallery": ["images/G-1.webp", "images/G-2.webp", "images/G-3.webp", "images/G-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/H-1.webp",
+    "gallery": ["images/H-1.webp", "images/H-2.webp", "images/H-3.webp", "images/H-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "100000ugx/night",
+    "location": "Ntinda",
+    "image": "images/I-1.webp",
+    "gallery": ["images/I-1.webp", "images/I-2.webp", "images/I-3.webp", "images/I-4.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "160000ugx/night",
+    "location": "Kulambiro",
+    "image": "images/J-1.webp",
+    "gallery": ["images/J-1.webp", "images/J-2.webp", "images/J-3.webp", "images/J-4.webp", "images/J-5.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Studio apartment",
+    "price": "160000ugx/night",
+    "location": "Kulambiro",
+    "image": "images/K-1.webp",
+    "gallery": ["images/K-1.webp", "images/K-2.webp", "images/K-3.webp", "images/K-4.webp", "images/K-5.webp", "images/K-6.webp", "images/K-7.webp", "images/K-8.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "Three bedroom apartment",
+    "price": "300000ugx/night",
+    "location": "Kisaasi",
+    "image": "images/L-1.webp",
+    "gallery": ["images/L-1.webp", "images/L-2.webp", "images/L-3.webp", "images/L-4.webp", "images/L-5.webp", "images/L-6.webp", "images/L-7.webp", "images/L-8.webp", "images/L-9.webp", "images/L-10.webp", "images/L-11.webp"],
+    "services": ["Free WiFi", "3-bedrooms & 2 bathrooms", "Fully Equipped Kitchen", "Ample Parking", "Washing machine", "Swimming Pool"]
+  },
+  {
+    "title": "Three bedroom apartment",
+    "price": "300000ugx/night",
+    "location": "Ntinda",
+    "image": "images/M-1.webp",
+    "gallery": ["images/M-1.webp", "images/M-2.webp", "images/M-3.webp", "images/M-4.webp", "images/M-5.webp", "images/M-6.webp", "images/M-7.webp", "images/M-8.webp", "images/M-8-1.webp", "images/M-9.webp"],
+    "services": ["Free WiFi", "3-bedrooms & 2 bathrooms", "Fully Equipped Kitchen", "Ample Parking", "Washing machine"]
+  },
+  {
+    "title": "One bedroom apartment",
+    "price": "160000ugx/night",
+    "location": "Kiwatule",
+    "image": "images/N-1.webp",
+    "gallery": ["images/N-1.webp", "images/N-2.webp", "images/N-3.webp", "images/N-4.webp", "images/N-5.webp", "images/N-6.webp", "images/N-7.webp"],
+    "services": ["Free WiFi", "Balcony View", "Fully Equipped Kitchen", "Daily Cleaning"]
+  },
+  {
+    "title": "One bedroom apartment",
+    "price": "160000ugx/night",
+    "location": "Kisaasi",
+    "image": "images/O-1.webp",
+    "gallery": ["images/O-1.webp", "images/O-2.webp", "images/O-3.webp", "images/O-4.webp", "images/O-5.webp", "images/O-6.webp", "images/O-7.webp"],
+    "services": ["Free WiFi", "Smart TV", "Fully Equipped Kitchen", "Ample Parking"]
+  },
+  {
+    "title": "One bedroom apartment",
+    "price": "160000ugx/night",
+    "location": "Ntinda",
+    "image": "images/P-1.webp",
+    "gallery": ["images/P-1.webp", "images/P-2.webp", "images/P-3.webp", "images/P-4.webp", "images/P-5.webp", "images/P-6.webp", "images/P-6-1.webp", "images/P-7.webp", "images/P-8.webp", "images/P-9.webp"],
+    "services": ["Free WiFi", "Smart TV", "Fully Equipped Kitchen", "Ample Parking"]
+  },
+  {
+    "title": "One bedroom apartment",
+    "price": "160000ugx/night",
+    "location": "Ntinda",
+    "image": "images/Q-1.webp",
+    "gallery": ["images/Q-1.webp", "images/Q-2.webp", "images/Q-3.webp", "images/Q-4.webp", "images/Q-5.webp", "images/Q-6.webp", "images/Q-7.webp", "images/Q-8.webp", "images/Q-9.webp", "images/Q-10.webp", "images/Q-11.webp"],
+    "services": ["Free WiFi", "Smart TV", "Fully Equipped Kitchen", "Ample Parking", "Quiet Environment"]
+  }
+]
