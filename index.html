@@ -2,14 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Furnished Apartments Uganda</title>
+  <!-- PERFECT TITLE: Your suggestion - legally safe and highly clickable -->
+  <title>Airbnb-Styled Apartments in Kampala from as low as 70,000 UGX/Night</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO -->
-  <meta name="description" content="Affordable, cheap, and fully furnished apartments in Kampala. Perfect for short stay getaways, long stay, hotels, motels, lodges, guest houses, Airbnb in Kampala, and more.">
-  <meta name="keywords" content="airbnb kampala, airbnb near me, airbnb near kampala, airbnb in kampala, hotel kampala, cheap hotel kampala, affordable apartments kampala, guest house kampala, furnished apartments uganda, short stay get away kampala, long stay kampala">
+  <!-- OPTIMIZED META DESCRIPTION: No "save 20%" as requested -->
+  <meta name="description" content="✅ Book fully furnished apartments in Kampala from just 70,000 UGX per night! Airbnb-style apartments with WiFi, kitchen, parking included. Direct booking with local hosts. WhatsApp available 24/7.">
+  <meta name="keywords" content="airbnb styled apartments kampala, airbnb kampala, furnished apartments kampala, cheap apartments kampala, short stay kampala, kampala accommodation">
   <meta name="google-site-verification" content="rLjEVKRM0qckd3z85iLLPBOh2bBnLd7H-qq3cSN0mAA" />
+  
   <!-- Schema.org markup for Google -->
   <script type="application/ld+json">
   {
@@ -34,15 +37,21 @@
         },
         "telephone": "+256778663411",
         "openingHours": "Mo-Su 00:00-23:59",
-        "priceRange": "$$",
-        "url": "https://kampalafurnishedapartments.com"
+        "priceRange": "UGX 70,000 - 250,000",
+        "url": "https://kampalafurnishedapartments.com",
+        "makesOffer": [{
+          "@type": "Offer",
+          "price": "70000",
+          "priceCurrency": "UGX",
+          "description": "Budget Airbnb-styled apartment in Kampala"
+        }]
       },
       {
         "@type": "WebSite",
         "@id": "https://kampalafurnishedapartments.com/#website",
         "url": "https://kampalafurnishedapartments.com",
         "name": "Furnished Apartments Uganda",
-        "description": "Fully furnished apartments in Kampala for short and long stays",
+        "description": "Airbnb-styled furnished apartments in Kampala from 70,000 UGX/night",
         "publisher": {
           "@id": "https://kampalafurnishedapartments.com/#business"
         }
@@ -122,18 +131,47 @@
     img.lazyloaded {
       opacity: 1;
     }
+    
+    /* New Styles */
+    .price-badge {
+      font-size: 1.4rem;
+      padding: 10px 20px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    }
+    .comparison-card {
+      transition: transform 0.3s;
+      border: none;
+    }
+    .comparison-card:hover {
+      transform: translateY(-5px);
+    }
+    .benefit-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+    /* New style for "as low as" emphasis */
+    .price-emphasis {
+      color: #ff6b6b;
+      font-weight: 800;
+    }
   </style>
 
-  <!-- ✅ Google Analytics tag -->
-  <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17287370504"></script> <script> window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+  <!-- Google Analytics tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17287370504"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
     gtag('config', 'AW-17287370504');
+    gtag('event', 'conversion', {'send_to': 'AW-17287370504/txkQCNKT0J8bEIiuobNA'});
   </script>
-  <!-- Event snippet for Website traffic conversion page -->
-<script>
-  gtag('event', 'conversion', {'send_to': 'AW-17287370504/txkQCNKT0J8bEIiuobNA'});
-</script>
-
 </head> 
 <body>
 
@@ -145,6 +183,9 @@
            style="width:45px; height:45px; font-size:1.2rem; font-weight:700; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
         FA
       </div>
+      <span class="ms-2 d-none d-md-block" style="font-size: 0.9rem;">
+        From <span class="price-emphasis">70,000 UGX</span>/night
+      </span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
@@ -154,6 +195,7 @@
         <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#apartments">Apartments</a></li>
         <li class="nav-item"><a class="nav-link" href="#form">Book Now</a></li>
+        <li class="nav-item"><a class="nav-link" href="#why-us">Why Choose Us</a></li>
       </ul>
     </div>
   </div>
@@ -162,13 +204,34 @@
 <!-- Hero -->
 <section class="hero-section">
   <div class="container hero-content">
-    <h1 class="display-4 fw-bold text-white mb-3">Furnished Apartments Uganda</h1>
-    <p class="lead text-white mb-4">Modern, Secure, Fully Furnished Apartments in Kampala</p>
-    <a href="tel:+256778663411" 
-   class="btn btn-lg fw-bold shadow" 
-   style="background-color:#007bff; border:none; color:#fff;">
-  <i class="bi bi-telephone-fill"></i> Call Now
-    </a>
+    <!-- UPDATED H1 to match title strategy -->
+    <h1 class="display-4 fw-bold text-white mb-3">
+      Premium Airbnb-Styled<br>Apartments in Kampala
+    </h1>
+    
+    <!-- UPDATED Subtitle with your exact price phrase -->
+    <p class="lead text-white mb-4">
+      Fully Furnished • Local Hosts • Direct Booking
+      <br>
+      <span class="price-badge d-inline-block mt-3">
+        <i class="bi bi-tag-fill"></i> From as low as <strong>70,000 UGX</strong>/night
+      </span>
+    </p>
+    
+    <!-- CTA buttons -->
+    <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+      <a href="#form" class="btn btn-success btn-lg fw-bold shadow">
+        <i class="bi bi-calendar-check"></i> Check Availability
+      </a>
+      <a href="tel:+256778663411" 
+         class="btn btn-lg fw-bold shadow" 
+         style="background-color:#007bff; border:none; color:#fff;">
+        <i class="bi bi-telephone-fill"></i> Call Now
+      </a>
+    </div>
+    <p class="text-white mt-3">
+      <small><i class="bi bi-check-circle"></i> No hidden fees • <i class="bi bi-check-circle"></i> Direct local support</small>
+    </p>
   </div>
 </section>
 
@@ -205,9 +268,50 @@
 
 <!-- Apartments -->
 <div class="container pb-5" id="apartments">
-  <h2 class="mb-4 mt-2 fw-bold">Featured Apartments</h2>
+  <h2 class="mb-4 mt-2 fw-bold">Featured Airbnb-Styled Apartments</h2>
+  <p class="text-muted mb-4">All apartments include WiFi, fully equipped kitchen, and secure parking</p>
   <div class="row" id="apartment-list">
     <!-- Apartments will load here dynamically -->
+  </div>
+</div>
+
+<!-- Why Choose Us Section -->
+<div class="container py-5" id="why-us">
+  <h2 class="fw-bold mb-4 text-center">Why Choose Our Airbnb-Styled Apartments?</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 comparison-card">
+        <div class="card-body text-center">
+          <div class="benefit-icon bg-primary bg-opacity-10 text-primary mx-auto">
+            <i class="bi bi-currency-exchange fs-3"></i>
+          </div>
+          <h4 class="text-primary mb-3">Best Value</h4>
+          <p>Starting from <strong class="price-emphasis">70,000 UGX per night</strong> for fully furnished apartments with all amenities included.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 comparison-card">
+        <div class="card-body text-center">
+          <div class="benefit-icon bg-success bg-opacity-10 text-success mx-auto">
+            <i class="bi bi-person-check fs-3"></i>
+          </div>
+          <h4 class="text-success mb-3">Local Hosts</h4>
+          <p>Get personalized service from Ugandan hosts who know Kampala best. We're here to make your stay perfect.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 comparison-card">
+        <div class="card-body text-center">
+          <div class="benefit-icon bg-warning bg-opacity-10 text-warning mx-auto">
+            <i class="bi bi-chat-dots fs-3"></i>
+          </div>
+          <h4 class="text-warning mb-3">Direct Communication</h4>
+          <p>Chat directly with property managers via WhatsApp. No automated responses, just real human support.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -217,8 +321,11 @@
     <div class="d-flex align-items-center mb-3 mb-md-0">
       <div class="rounded-circle bg-white text-primary d-flex align-items-center justify-content-center me-3 footer-logo-circle">FA</div>
       <div>
-        <div style="font-size:1rem; font-weight:600;">Furnished Apartments</div>
+        <div style="font-size:1rem; font-weight:600;">Airbnb-Styled Apartments</div>
         <div style="font-size:0.9rem;">Kampala, Uganda</div>
+        <div style="font-size:0.9rem;" class="mt-1">
+          From <span class="fw-bold text-white">70,000 UGX</span>/night
+        </div>
       </div>
     </div>
     <div class="text-center text-md-end">
@@ -233,12 +340,12 @@
         <a href="https://wa.me/256704229100" target="_blank"><i class="bi bi-whatsapp"></i></a>
       </div>
       <div class="mt-1" style="font-size:0.97rem;">
-        <span class="opacity-75"><i class="bi bi-shield-check"></i> Secure bookings – Proudly Ugandan</span>
+        <span class="opacity-75"><i class="bi bi-shield-check"></i> Secure bookings – Local Ugandan Hosts</span>
       </div>
     </div>
   </div>
   <div class="text-center text-white-50 py-2" style="background:rgba(0,0,0,0.08); font-size:0.96rem;">
-    &copy; <span id="copyright-year"></span> Furnished Apartments. All rights reserved.
+    &copy; <span id="copyright-year"></span> Furnished Apartments Uganda. All rights reserved.
   </div>
 </footer>
 
@@ -256,7 +363,7 @@
       let servicesList = apt.services.map(s => `<li>✅ ${s}</li>`).join('');
       
       // Create slug with apartments/ folder prefix
-      const aptCode = String.fromCharCode(65 + index); // A, B, C, D...
+      const aptCode = String.fromCharCode(65 + index);
       const slug = `apartments/apartment-${aptCode.toLowerCase()}`;
       
       let card = `
@@ -272,11 +379,11 @@
                   ${apt.title}
                 </a>
               </h5>
-              <p>Location: ${apt.location}</p>
-              <p>Price: ${apt.price}</p>
+              <p><i class="bi bi-geo-alt"></i> ${apt.location}</p>
+              <p class="fw-bold text-primary">${apt.price}</p>
               <div class="apartment-services text-start">
-                <p class="fw-bold mb-1">Services:</p>
-                <ul>${servicesList}</ul>
+                <p class="fw-bold mb-1">Amenities:</p>
+                <ul class="mb-3">${servicesList}</ul>
               </div>
               <a href="javascript:void(0)" onclick="bookApartment('${apt.title}','${apt.location}','${apt.price}')" 
                  class="btn btn-success fw-bold w-100">
@@ -330,37 +437,35 @@
     renderApartments(filtered);
   }
 
-  // ✅ General availability request
   function sendWhatsApp() {
     let checkin = document.getElementById('checkin').value;
     let checkout = document.getElementById('checkout').value;
     let type = document.getElementById('filter-size').value || "Any";
     let location = document.getElementById('filter-location').value || "Any";
 
-    let message = `Hello, I'd like to check availability.%0A
+    let message = `Hello, I'd like to check availability for Airbnb-styled apartments.%0A
 Check-in: ${checkin || "Not specified"}%0A
 Check-out: ${checkout || "Not specified"}%0A
 Location: ${location}%0A
 Apartment Type: ${type}`;
 
-    let phone = "256704229100"; // your WhatsApp number
+    let phone = "256704229100";
     let url = `https://wa.me/${phone}?text=${message}`;
     window.open(url, "_blank");
   }
 
-  // ✅ Booking request from specific apartment card
   function bookApartment(title, location, price) {
     let checkin = document.getElementById('checkin').value;
     let checkout = document.getElementById('checkout').value;
 
-    let message = `Hello, I'd like to book this apartment.%0A
+    let message = `Hello, I'd like to book this Airbnb-styled apartment.%0A
 Apartment: ${title}%0A
 Location: ${location}%0A
 Price: ${price}%0A
 Check-in: ${checkin || "Not specified"}%0A
 Check-out: ${checkout || "Not specified"}`;
 
-    let phone = "256704229100"; // your WhatsApp number
+    let phone = "256704229100";
     let url = `https://wa.me/${phone}?text=${message}`;
     window.open(url, "_blank");
   }
@@ -403,5 +508,3 @@ Check-out: ${checkout || "Not specified"}`;
 </script>
 </body>
 </html>
-
-
