@@ -90,12 +90,12 @@ TYPES = {
 # Opening sentences rotate between units so that similar apartments
 # do not have identical text.
 OPENERS = [
-    "{label} {ref_phrase} is a fully furnished home in {loc}, ready for you to move straight in.",
-    "Stay in {loc} in this fully furnished {short_l} apartment ({ref_phrase}), set up for comfortable short and long stays.",
-    "This {short_l} apartment in {loc} ({ref_phrase}) gives you your own private, furnished space with everything you need for the day-to-day.",
-    "Looking for a furnished place to stay in {loc}? {label} {ref_phrase} is a comfortable, self-contained option at a fair nightly price.",
-    "{label} {ref_phrase} offers a private, fully furnished stay in {loc}, with a kitchen so you can cook for yourself.",
-    "Book {ref_phrase}, a furnished {short_l} apartment in {loc}, directly with our local host team and skip platform fees.",
+    "This {short_l} apartment is a fully furnished home in {loc}, ready for you to move straight in.",
+    "Stay in {loc} in this fully furnished {short_l} apartment, set up for comfortable short and long stays.",
+    "This {short_l} apartment in {loc} gives you your own private, furnished space with everything you need for the day-to-day.",
+    "Looking for a furnished place to stay in {loc}? This {short_l} apartment is a comfortable, self-contained option at a fair nightly price.",
+    "Enjoy a private, fully furnished stay in {loc} in this {short_l} apartment, with a kitchen so you can cook for yourself.",
+    "Book this furnished {short_l} apartment in {loc} directly with our local host team and skip platform fees.",
 ]
 
 CSS = """
@@ -183,7 +183,7 @@ def apt_slug(a):
 
 def apt_name(a):
     t = TYPES[a['title']]
-    return f"{t['label']} in {a['location']} (Unit {a['ref']})"
+    return a['name']
 
 def head(title, description, canonical, image, schema, extra=""):
     schema_json = json.dumps(schema, indent=2, ensure_ascii=False)
@@ -292,13 +292,13 @@ def card(a, eager=False):
     t = TYPES[a['title']]
     w, h = img_size(thumb(a['image']))
     feats = "".join(f"<li>{esc(s)}</li>" for s in a['services'][:4])
-    msg = f"Hello, I'd like to book the {t['label'].lower()} in {a['location']} (Unit {a['ref']}, {ugx(a['price'])}/night). Is it available?"
+    msg = f"Hello, I'd like to book the {a['name']} ({ugx(a['price'])}/night): {SITE}{apt_slug(a)} Is it available?"
     loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
     return f"""<div class="col-sm-6 col-lg-4 mb-4 apt-item" data-type="{esc(a['title'])}" data-location="{esc(a['location'])}">
   <article class="apt-card">
-    <a href="{apt_slug(a)}"><img src="{thumb(a['image'])}" width="{w}" height="{h}" {loading} decoding="async" alt="{esc(t['label'])} in {esc(a['location'])}, Kampala – Unit {a['ref']}"></a>
+    <a href="{apt_slug(a)}"><img src="{thumb(a['image'])}" width="{w}" height="{h}" {loading} decoding="async" alt="{esc(a['name'])}, Kampala"></a>
     <div class="body">
-      <h3><a href="{apt_slug(a)}">{esc(t['label'])} – Unit {a['ref']}</a></h3>
+      <h3><a href="{apt_slug(a)}">{esc(a['name'])}</a></h3>
       <div class="loc"><i class="bi bi-geo-alt"></i> <a href="/{AREAS[a['location']]['slug']}/" class="text-reset">{esc(a['location'])}</a>, Kampala · {len(a['gallery'])} photos</div>
       <div class="price">{ugx(a['price'])} <span class="fw-normal text-muted">/ night</span></div>
       <ul>{feats}</ul>
@@ -492,9 +492,8 @@ def build_apartment(a, idx, apts, counts):
     area = AREAS[a['location']]
     name = apt_name(a)
     url = SITE + apt_slug(a)
-    ref_phrase = f"Unit {a['ref']}"
     opener = OPENERS[idx % len(OPENERS)].format(
-        label=t['label'], short_l=t['short'].lower(), loc=a['location'], ref_phrase=ref_phrase)
+        label=t['label'], short_l=t['short'].lower(), loc=a['location'])
     feats = a['services']
     # lower-case amenity names inside a sentence, but keep words like WiFi and TV
     lc = lambda f: " ".join(w if sum(c.isupper() for c in w) > 1 else w.lower() for w in f.split())
@@ -502,11 +501,10 @@ def build_apartment(a, idx, apts, counts):
     para2 = (f"It comes with {feat_text}, and is priced at {ugx(a['price'])} per night. "
              f"It suits {t['suits']}, and works well for both short visits and longer stays.")
     para3 = area['intro'].split('. ')[0] + ". " + area['around']
-    short_type = {"Studio": "Studio", "One-bedroom": "1-Bedroom", "Three-bedroom": "3-Bedroom"}[t['short']]
-    title = f"{a['location']} {short_type} Apartment (Unit {a['ref']}) – {ugx(a['price'])}/Night"
+    title = f"{a['name']} – {ugx(a['price'])}/Night"
     desc = (f"{t['label']} in {a['location']}, Kampala for {ugx(a['price'])} per night. "
             f"{', '.join(feats[:3])}. See {len(a['gallery'])} photos and book directly on WhatsApp.")
-    msg = f"Hello, I'd like to book the {t['label'].lower()} in {a['location']} (Unit {a['ref']}, {ugx(a['price'])}/night). Is it available? My dates are: "
+    msg = f"Hello, I'd like to book the {a['name']} ({ugx(a['price'])}/night): {url} Is it available? My dates are: "
     lat, lng = area['geo']
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "Apartment", "@id": url + "#apartment", "name": name, "url": url,
@@ -520,11 +518,11 @@ def build_apartment(a, idx, apts, counts):
          "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lng},
          "containedInPlace": {"@id": f"{SITE}/#business"}},
         {**business_schema(apts)},
-        breadcrumbs([("Home", SITE + "/"), (f"Furnished apartments in {a['location']}", f"{SITE}/{area['slug']}/"), (f"Unit {a['ref']}", url)]),
+        breadcrumbs([("Home", SITE + "/"), (f"Furnished apartments in {a['location']}", f"{SITE}/{area['slug']}/"), (a['name'], url)]),
     ]}
     mw, mh = img_size(full(a['gallery'][0]))
     thumbs = "".join(
-        f'<button type="button" data-full="{full(g)}"><img src="{thumb(g)}" width="{img_size(thumb(g))[0]}" height="{img_size(thumb(g))[1]}" loading="lazy" decoding="async" alt="{esc(t["label"])} in {esc(a["location"])} – Unit {a["ref"]}, photo {n+1}"></button>'
+        f'<button type="button" data-full="{full(g)}"><img src="{thumb(g)}" width="{img_size(thumb(g))[0]}" height="{img_size(thumb(g))[1]}" loading="lazy" decoding="async" alt="{esc(a["name"])}, photo {n+1}"></button>'
         for n, g in enumerate(a['gallery']))
     others = [o for o in apts if o['location'] == a['location'] and o['ref'] != a['ref']][:3]
     if len(others) < 3:
@@ -535,13 +533,13 @@ def build_apartment(a, idx, apts, counts):
     page = head(title, desc, url, full(a['gallery'][0]), schema)
     page += navbar()
     page += f"""<main class="container" style="padding-top:72px">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/{area['slug']}/">{a['location']}</a> › Unit {a['ref']}</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/{area['slug']}/">{a['location']}</a> › {esc(a['name'])}</nav>
   <div class="row g-4">
     <div class="col-lg-8">
       <h1 class="fw-bold h2 mb-2">{esc(name)}</h1>
       <p class="mb-3"><span class="badge bg-primary me-2">{a['location']}, Kampala</span><span class="fw-bold text-success fs-5">{ugx(a['price'])}</span> <span class="text-muted">/ night</span></p>
       <button type="button" data-full="{full(a['gallery'][0])}" class="border-0 p-0 bg-transparent w-100" style="cursor:zoom-in">
-        <img class="main-photo" src="{full(a['gallery'][0])}" width="{mw}" height="{mh}" fetchpriority="high" alt="{esc(t['label'])} in {esc(a['location'])}, Kampala – Unit {a['ref']}">
+        <img class="main-photo" src="{full(a['gallery'][0])}" width="{mw}" height="{mh}" fetchpriority="high" alt="{esc(a['name'])}, Kampala">
       </button>
       <h2 class="h5 mt-4 mb-2">Photos ({len(a['gallery'])})</h2>
       <div class="thumbs mb-4">{thumbs}</div>
@@ -563,7 +561,6 @@ def build_apartment(a, idx, apts, counts):
         <ul class="list-unstyled my-3">
           <li><strong>Type:</strong> {t['short']} apartment</li>
           <li><strong>Area:</strong> <a href="/{area['slug']}/">{a['location']}</a>, Kampala</li>
-          <li><strong>Reference:</strong> Unit {a['ref']}</li>
           <li><strong>Stays:</strong> Short and long stays</li>
         </ul>
         <a href="{wa_link(msg)}" target="_blank" rel="noopener" class="btn btn-success btn-lg w-100 mb-2"><i class="bi bi-whatsapp"></i> Book on WhatsApp</a>

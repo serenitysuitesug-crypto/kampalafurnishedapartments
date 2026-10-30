@@ -1,5 +1,6 @@
 [
   {
+    "name": "Cosy Studio Apartment in Ntinda",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -20,6 +21,7 @@
     "ref": "A"
   },
   {
+    "name": "Modern Studio Apartment in Ntinda",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -41,6 +43,7 @@
     "ref": "B"
   },
   {
+    "name": "Bright Studio Apartment in Ntinda",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -62,6 +65,7 @@
     "ref": "C"
   },
   {
+    "name": "Ntinda Studio Apartment with Balcony",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -82,6 +86,7 @@
     "ref": "D"
   },
   {
+    "name": "Stylish Studio Apartment in Ntinda",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -102,6 +107,7 @@
     "ref": "E"
   },
   {
+    "name": "Comfortable Studio Apartment in Ntinda",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -121,6 +127,7 @@
     "ref": "F"
   },
   {
+    "name": "Furnished Studio with Kitchen in Ntinda",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -139,6 +146,7 @@
     "ref": "G"
   },
   {
+    "name": "Ntinda Studio with Daily Cleaning",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -158,6 +166,7 @@
     "ref": "H"
   },
   {
+    "name": "Contemporary Studio Apartment in Ntinda",
     "title": "Studio apartment",
     "price": 100000,
     "location": "Ntinda",
@@ -179,6 +188,7 @@
     "ref": "I"
   },
   {
+    "name": "Premium Studio Apartment in Kulambiro",
     "title": "Studio apartment",
     "price": 160000,
     "location": "Kulambiro",
@@ -202,6 +212,7 @@
     "ref": "J"
   },
   {
+    "name": "Kulambiro Studio Apartment with Balcony",
     "title": "Studio apartment",
     "price": 160000,
     "location": "Kulambiro",
@@ -225,6 +236,7 @@
     "ref": "K"
   },
   {
+    "name": "Kisaasi 3-Bedroom Apartment with Swimming Pool",
     "title": "Three bedroom apartment",
     "price": 300000,
     "location": "Kisaasi",
@@ -254,6 +266,7 @@
     "ref": "L"
   },
   {
+    "name": "Ntinda 3-Bedroom Family Apartment",
     "title": "Three bedroom apartment",
     "price": 300000,
     "location": "Ntinda",
@@ -280,6 +293,7 @@
     "ref": "M"
   },
   {
+    "name": "Kiwatule 1-Bedroom Apartment with Balcony",
     "title": "One bedroom apartment",
     "price": 160000,
     "location": "Kiwatule",
@@ -302,6 +316,7 @@
     "ref": "N"
   },
   {
+    "name": "Kisaasi 1-Bedroom Apartment with Smart TV",
     "title": "One bedroom apartment",
     "price": 160000,
     "location": "Kisaasi",
@@ -324,6 +339,7 @@
     "ref": "O"
   },
   {
+    "name": "Ntinda 1-Bedroom Apartment with Parking",
     "title": "One bedroom apartment",
     "price": 160000,
     "location": "Ntinda",
@@ -349,6 +365,7 @@
     "ref": "P"
   },
   {
+    "name": "Quiet 1-Bedroom Apartment in Ntinda",
     "title": "One bedroom apartment",
     "price": 160000,
     "location": "Ntinda",
