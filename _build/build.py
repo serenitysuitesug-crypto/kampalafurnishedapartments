@@ -48,7 +48,8 @@ def reviews_block(limit=4, heading="What Our Guests Say", wrap=True):
     <div class="row">{cards}</div>"""
     return f'<section class="section" id="reviews"><div class="container">{inner}</div></section>' if wrap else f'<section class="mt-4" id="reviews">{inner}</section>'
 
-def map_block(lat, lng, heading):
+def map_block(lat, lng, heading, profile=None):
+    profile = profile or GOOGLE_PROFILE
     return f"""<div class="info-card">
         <h2 class="h4">{heading}</h2>
         <div class="ratio ratio-16x9 rounded overflow-hidden mb-3" style="background:#dde1ea">
@@ -56,7 +57,7 @@ def map_block(lat, lng, heading):
         </div>
         <div class="d-flex flex-wrap gap-2">
           <a class="btn btn-outline-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination={lat},{lng}" target="_blank" rel="noopener"><i class="bi bi-sign-turn-right"></i> Get directions</a>
-          <a class="btn btn-outline-secondary btn-sm" href="{GOOGLE_PROFILE}" target="_blank" rel="noopener"><i class="bi bi-star-fill text-warning"></i> See our Google reviews</a>
+          <a class="btn btn-outline-secondary btn-sm" href="{profile}" target="_blank" rel="noopener"><i class="bi bi-star-fill text-warning"></i> See our Google reviews</a>
         </div>
       </div>"""
 CHECKIN, CHECKOUT = "1:00 PM", "11:00 AM"
@@ -711,7 +712,7 @@ def build_apartment(a, idx, apts, counts):
         <h3 class="h5 mt-3">The area: {a['location']}</h3>
         <p class="mb-0">{esc(para3)} <a href="/{area['slug']}/">More about staying in {a['location']}</a>.</p>
       </div>
-      {map_block(lat, lng, "Location") if a.get('geo') else ""}
+      {map_block(lat, lng, "Location", a.get('profile')) if a.get('geo') else ""}
       <div class="info-card">
         <h2 class="h4">Amenities</h2>
         <ul class="check">{feat_list}</ul>
@@ -794,8 +795,8 @@ def build_area(name, area, apts, counts):
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Why stay in {name}?</h2><ul class="check">{why}</ul></div></div>
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Getting around</h2><p class="mb-0">{esc(area['around'])}</p></div></div>
   </div>
-  {map_block(*(BUSINESS_GEO if any(tuple(a['geo']) == BUSINESS_GEO for a in pinned) else pinned[0]['geo']), f"Our {name} location") if pinned else ""}
-  {reviews_block(limit=4, heading=f"Guests on Our {name} Apartments", wrap=False) if pinned else ""}
+  {map_block(*(BUSINESS_GEO if any(tuple(a['geo']) == BUSINESS_GEO for a in pinned) else pinned[0]['geo']), f"Our {name} location", None if any(tuple(a['geo']) == BUSINESS_GEO for a in pinned) else pinned[0].get('profile')) if pinned else ""}
+  {reviews_block(limit=4, heading="What Our Guests Say", wrap=False) if pinned else ""}
   <section class="faq mt-2">
     <h2 class="h4 fw-bold mb-3">Questions about staying in {name}</h2>
     {faq_html(faqs)}

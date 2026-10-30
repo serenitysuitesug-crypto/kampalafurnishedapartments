@@ -465,5 +465,61 @@
       32.61903
     ],
     "featured": true
+  },
+  {
+    "name": "Modern Kisaasi Studio with Balcony & Smart TV",
+    "title": "Studio apartment",
+    "price": 100000,
+    "location": "Kisaasi",
+    "geo": [
+      0.3754498,
+      32.6014596
+    ],
+    "featured": true,
+    "profile": "https://www.google.com/maps?cid=3643128868956308707",
+    "services": [
+      "Free WiFi",
+      "Smart TV",
+      "Kitchenette with microwave & mini fridge",
+      "Private balcony",
+      "En-suite bathroom",
+      "Built-in wardrobe"
+    ],
+    "image": "images/S-1.webp",
+    "gallery": [
+      "images/S-1.webp",
+      "images/S-2.webp",
+      "images/S-3.webp",
+      "images/S-4.webp"
+    ],
+    "ref": "S"
+  },
+  {
+    "name": "Cosy Kisaasi Studio Apartment with Balcony",
+    "title": "Studio apartment",
+    "price": 100000,
+    "location": "Kisaasi",
+    "geo": [
+      0.3754498,
+      32.6014596
+    ],
+    "featured": true,
+    "profile": "https://www.google.com/maps?cid=3643128868956308707",
+    "services": [
+      "Free WiFi",
+      "Smart TV",
+      "Kitchenette with microwave & mini fridge",
+      "Private balcony",
+      "En-suite bathroom",
+      "Built-in wardrobe"
+    ],
+    "image": "images/T-1.webp",
+    "gallery": [
+      "images/T-1.webp",
+      "images/T-2.webp",
+      "images/T-3.webp",
+      "images/T-4.webp"
+    ],
+    "ref": "T"
   }
 ]
