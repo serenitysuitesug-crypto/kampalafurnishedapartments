@@ -427,5 +427,43 @@
       "Quiet Environment"
     ],
     "ref": "Q"
+  },
+  {
+    "name": "Spacious Ntinda 2-Bedroom Apartment with Balcony",
+    "title": "Two bedroom apartment",
+    "price": 180000,
+    "location": "Ntinda",
+    "image": "images/R-1.webp",
+    "gallery": [
+      "images/R-1.webp",
+      "images/R-2.webp",
+      "images/R-3.webp",
+      "images/R-4.webp",
+      "images/R-5.webp",
+      "images/R-6.webp",
+      "images/R-7.webp",
+      "images/R-8.webp",
+      "images/R-9.webp"
+    ],
+    "services": [
+      "Free WiFi",
+      "2 bedrooms & 2 bathrooms",
+      "Master bedroom with en-suite bathroom",
+      "Fully Equipped Kitchen",
+      "Washing machine",
+      "Smart TV with Netflix",
+      "Home theatre sound system",
+      "Balcony",
+      "Hot water",
+      "Security",
+      "Parking",
+      "Iron and ironing board"
+    ],
+    "ref": "R",
+    "geo": [
+      0.368148,
+      32.61903
+    ],
+    "featured": true
   }
 ]

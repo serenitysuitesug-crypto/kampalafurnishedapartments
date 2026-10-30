@@ -511,7 +511,7 @@ def build_index(apts, counts):
         f'<button type="button" class="chip" data-kind="{esc(t)}">{TYPE_SHORT[t]}</button>' for t in TYPES if t in by_type)
     groups, n = [], 0
     for k in order:
-        here = [a for a in apts if a['location'] == k]
+        here = sorted([a for a in apts if a['location'] == k], key=lambda a: not a.get('featured'))
         row = "".join(card(a, eager=(n + i) < 2, wrap=False) for i, a in enumerate(here))
         n += len(here)
         groups.append(f"""<div class="apt-group" data-location="{esc(k)}">
@@ -656,7 +656,8 @@ def build_apartment(a, idx, apts, counts):
         label=t['label'], short_l=t['short'].lower(), loc=a['location'])
     feats = a['services']
     # lower-case amenity names inside a sentence, but keep words like WiFi and TV
-    lc = lambda f: " ".join(w if sum(c.isupper() for c in w) > 1 else w.lower() for w in f.split())
+    keep = {"Netflix", "DSTV", "Kampala"}
+    lc = lambda f: " ".join(w if sum(c.isupper() for c in w) > 1 or w in keep else w.lower() for w in f.split())
     feat_text = ", ".join(lc(f) for f in feats[:-1]) + f" and {lc(feats[-1])}"
     para2 = (f"It comes with {feat_text}, and is priced at {ugx(a['price'])} per night. "
              f"It suits {t['suits']}, and works well for both short visits and longer stays.")
@@ -751,7 +752,7 @@ def build_apartment(a, idx, apts, counts):
     return page
 
 def build_area(name, area, apts, counts):
-    here = [a for a in apts if a['location'] == name]
+    here = sorted([a for a in apts if a['location'] == name], key=lambda a: not a.get('featured'))
     pinned = [a for a in here if a.get('geo')]
     url = f"{SITE}/{area['slug']}/"
     low = min(a['price'] for a in here)
@@ -793,7 +794,7 @@ def build_area(name, area, apts, counts):
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Why stay in {name}?</h2><ul class="check">{why}</ul></div></div>
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Getting around</h2><p class="mb-0">{esc(area['around'])}</p></div></div>
   </div>
-  {map_block(*pinned[0]['geo'], f"Our {name} location") if pinned else ""}
+  {map_block(*(BUSINESS_GEO if any(tuple(a['geo']) == BUSINESS_GEO for a in pinned) else pinned[0]['geo']), f"Our {name} location") if pinned else ""}
   {reviews_block(limit=4, heading=f"Guests on Our {name} Apartments", wrap=False) if pinned else ""}
   <section class="faq mt-2">
     <h2 class="h4 fw-bold mb-3">Questions about staying in {name}</h2>
