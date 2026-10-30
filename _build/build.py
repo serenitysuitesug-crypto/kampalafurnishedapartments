@@ -14,6 +14,9 @@ This folder starts with "_" so GitHub Pages does not publish it.
 """
 import json, os, re, html, datetime
 from PIL import Image
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from guides import GUIDES
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://kampalafurnishedapartments.com"
@@ -203,6 +206,19 @@ footer a:hover,.navbar-dark .nav-link:hover{color:var(--gold-light)!important}
 .apt-row>.apt-card{scroll-snap-align:start}
 @media (min-width:992px){.apt-row{grid-auto-columns:calc((100% - 42px)/4);scrollbar-width:none}.apt-row::-webkit-scrollbar{display:none}}
 .see-area{display:inline-block;font-size:.9rem;font-weight:600;text-decoration:none;margin-top:.1rem}
+.article{background:#fff;border:1px solid var(--line);border-radius:.85rem;padding:1.5rem 1.4rem}
+.article h2{font-size:1.35rem;margin-top:1.8rem}
+.article h3{font-size:1.08rem;margin-top:1.3rem}
+.article .lead{font-size:1.12rem;color:var(--ink)}
+.article li{margin-bottom:.35rem}
+table.compare{table-layout:fixed;width:100%}table.compare th{font-weight:700}table.compare th:first-child{width:28%}
+@media (max-width:576px){table.compare{font-size:.85rem}table.compare td,table.compare th{padding:.45rem .4rem!important}.article{padding:1.1rem .9rem}}
+table.compare td,table.compare th{padding:.6rem .7rem;vertical-align:top}
+table.compare thead th{background:var(--navy);color:#fff}
+.guide-card{display:flex;gap:.9rem;background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:1.1rem;text-decoration:none;color:var(--ink);height:100%}
+.guide-card:hover{border-color:var(--gold)}
+.guide-card i{font-size:1.6rem;color:var(--gold);flex:none}
+.guide-card p{color:var(--muted);font-size:.92rem;margin:0}
 .mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem 12px calc(.6rem + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.06)}
 .mobile-bar .btn{flex:1;font-weight:700;padding:.6rem}
 .mobile-bar .btn-success{flex:1.6}
@@ -345,6 +361,7 @@ def navbar():
           <a class="nav-link dropdown-toggle" href="/#areas" role="button" data-bs-toggle="dropdown" aria-expanded="false">Areas</a>
           <ul class="dropdown-menu">{area_links}</ul>
         </li>
+        <li class="nav-item"><a class="nav-link" href="/guides/">Guides</a></li>
         <li class="nav-item"><a class="nav-link" href="/#faq">FAQ</a></li>
         <li class="nav-item ms-lg-2"><a class="btn btn-success btn-sm px-3" href="{wa_link('Hello, I would like to check availability for a furnished apartment in Kampala.')}" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> Book on WhatsApp</a></li>
       </ul>
@@ -368,6 +385,8 @@ def footer(counts, wa_msg="Hello, I would like to check availability for a furni
       <div class="col-md-4 small-links">
         <div class="fw-bold mb-2">Areas</div>
         {area_links}
+        <div class="fw-bold mb-2 mt-3">Travel guides</div>
+        {"".join(f'<a href="/guides/{g["slug"]}/">{esc(g["title"])}</a>' for g in GUIDES)}
       </div>
       <div class="col-md-3">
         <div class="fw-bold mb-2">Contact</div>
@@ -599,6 +618,14 @@ def build_index(apts, counts):
   </div>
 </section>
 
+<section class="section" id="guides">
+  <div class="container">
+    <h2 class="fw-bold mb-1">Kampala Travel Guides</h2>
+    <p class="lead-muted mb-3">Practical tips to help you plan your stay.</p>
+    <div class="row g-3">{guide_cards()}</div>
+  </div>
+</section>
+
 <section class="section faq" id="faq">
   <div class="container" style="max-width:860px">
     <h2 class="fw-bold mb-4">Frequently Asked Questions</h2>
@@ -815,10 +842,101 @@ def build_area(name, area, apts, counts):
     page += "</body>\n</html>\n"
     return page
 
+def guide_cards():
+    return "".join(f"""<div class="col-md-6"><a class="guide-card" href="/guides/{g['slug']}/"><i class="bi {g['icon']}"></i>
+      <div><h3 class="h6 fw-bold mb-1">{esc(g['title'])}</h3><p>{esc(g['summary'])}</p></div></a></div>""" for g in GUIDES)
+
+def fill_guide(text, apts, counts):
+    def low(area):
+        ps = [a['price'] for a in apts if a['location'] == area]
+        return ugx(min(ps)) if ps else ""
+    vals = {"ntinda_from": low("Ntinda"), "kisaasi_from": low("Kisaasi"),
+            "ntinda_count": str(counts.get("Ntinda", 0)), "kisaasi_count": str(counts.get("Kisaasi", 0)),
+            "whatsapp_link": esc(wa_link("Hello, I'm planning a stay in Kampala and have a question.")),
+            "call": CALL_DISPLAY, "checkin": CHECKIN, "checkout": CHECKOUT,
+            "weekly_off": str(WEEKLY_OFF), "monthly_off": str(MONTHLY_OFF)}
+    for k, v in vals.items():
+        text = text.replace("{" + k + "}", v)
+    return text
+
+def build_guide(g, apts, counts):
+    url = f"{SITE}/guides/{g['slug']}/"
+    body = fill_guide(g['body'], apts, counts)
+    faqs = [(q, fill_guide(a, apts, counts)) for q, a in g['faqs']]
+    if g.get('area'):
+        picks = sorted([a for a in apts if a['location'] == g['area']], key=lambda a: not a.get('featured'))[:3]
+    else:
+        picks = [a for a in apts if a['location'] == "Ntinda" and a.get('featured')][:1] + [a for a in apts if a['location'] == "Kisaasi"][:2]
+    image = full(picks[0]['image']) if picks else "/images/hero.webp"
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "headline": g['title'], "description": g['description'], "url": url,
+         "image": SITE + image, "datePublished": g['updated'], "dateModified": g['updated'],
+         "author": {"@type": "Organization", "name": BRAND, "url": SITE + "/"},
+         "publisher": {"@id": f"{SITE}/#business"}, "mainEntityOfPage": url},
+        {**business_schema(apts)},
+        breadcrumbs([("Home", SITE + "/"), ("Guides", f"{SITE}/guides/"), (g['title'], url)]),
+        faq_schema(faqs),
+    ]}
+    side = "\n".join(card(a) .replace('col-sm-6 col-lg-4 col-xl-3 mb-4', 'mb-3') for a in picks)
+    others = "".join(f'<li><a href="/guides/{o["slug"]}/">{esc(o["title"])}</a></li>' for o in GUIDES if o['slug'] != g['slug'])
+    page = head(g['seo_title'], g['description'], url, image, schema)
+    page += navbar()
+    page += f"""<main class="container" style="padding-top:72px">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/guides/">Guides</a> › {esc(g['title'])}</nav>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <article class="article">
+        <h1 class="fw-bold h2 mb-1">{esc(g['title'])}</h1>
+        <p class="small text-muted mb-3">Updated {datetime.date.fromisoformat(g['updated']).strftime('%-d %B %Y')} · {BRAND}</p>
+        {body}
+        <h2>Frequently asked questions</h2>
+        <div class="faq">{faq_html(faqs)}</div>
+      </article>
+      {f'<div class="info-card mt-4"><h2 class="h5">More guides</h2><ul class="mb-0">{others}</ul></div>' if others else ''}
+    </div>
+    <aside class="col-lg-4">
+      <div class="info-card">
+        <h2 class="h5 fw-bold">Need a place to stay?</h2>
+        <p class="mb-3">Fully furnished apartments from {ugx(min(a['price'] for a in apts))} per night. {WEEKLY_OFF}% off weekly, {MONTHLY_OFF}% off monthly.</p>
+        <a href="{wa_link('Hello, I read your guide and would like to check availability.')}" target="_blank" rel="noopener" class="btn btn-success w-100 mb-2"><i class="bi bi-whatsapp"></i> Ask on WhatsApp</a>
+        <a href="/#apartments" class="btn btn-outline-primary w-100">See all apartments</a>
+      </div>
+      {side}
+    </aside>
+  </div>
+</main>
+"""
+    page += footer(counts)
+    page += "</body>\n</html>\n"
+    return page
+
+def build_guides_index(apts, counts):
+    url = f"{SITE}/guides/"
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "name": "Kampala travel guides", "url": url,
+         "hasPart": [{"@type": "Article", "headline": g['title'], "url": f"{SITE}/guides/{g['slug']}/"} for g in GUIDES]},
+        breadcrumbs([("Home", SITE + "/"), ("Guides", url)]),
+    ]}
+    page = head("Kampala Travel Guides | Furnished Apartments Uganda",
+                "Practical guides for visitors to Kampala: getting from Entebbe Airport, choosing a neighbourhood and planning your stay.",
+                url, "/images/hero.webp", schema)
+    page += navbar()
+    page += f"""<main class="container" style="padding-top:72px">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides</nav>
+  <h1 class="fw-bold h2">Kampala Travel Guides</h1>
+  <p class="lead-muted mb-4">Practical tips from our local hosts to help you plan your stay in Kampala.</p>
+  <div class="row g-3">{guide_cards()}</div>
+</main>
+"""
+    page += footer(counts)
+    page += "</body>\n</html>\n"
+    return page
+
 def build_sitemap(apts, counts):
     urls = [(SITE + "/", "1.0")]
     urls += [(f"{SITE}/{v['slug']}/", "0.9") for k, v in AREAS.items() if counts.get(k)]
     urls += [(SITE + apt_slug(a), "0.8") for a in apts]
+    urls += [(f"{SITE}/guides/", "0.6")] + [(f"{SITE}/guides/{g['slug']}/", "0.7") for g in GUIDES]
     body = "".join(f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{TODAY}</lastmod>\n    <priority>{p}</priority>\n  </url>\n" for u, p in urls)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}</urlset>\n'
 
@@ -844,6 +962,9 @@ def main():
     for k, v in AREAS.items():
         if counts.get(k):
             write(f"{v['slug']}/index.html", build_area(k, v, apts, counts))
+    write("guides/index.html", build_guides_index(apts, counts))
+    for g in GUIDES:
+        write(f"guides/{g['slug']}/index.html", build_guide(g, apts, counts))
     write("sitemap.xml", build_sitemap(apts, counts))
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     print(f"Built home page, {len(apts)} apartment pages, {sum(1 for k in AREAS if counts.get(k))} area pages, sitemap and robots.txt")
