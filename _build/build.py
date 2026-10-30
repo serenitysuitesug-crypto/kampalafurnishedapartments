@@ -25,6 +25,19 @@ CALL_DISPLAY = "+256 778 663411"
 ADS_ID = "AW-17287370504"
 ADS_CONVERSION = "AW-17287370504/txkQCNKT0J8bEIiuobNA"
 TODAY = datetime.date.today().isoformat()
+CHECKIN, CHECKOUT = "1:00 PM", "11:00 AM"
+WEEKLY_NIGHTS, WEEKLY_OFF = 7, 15     # 15% off stays of 7 nights or more
+MONTHLY_NIGHTS, MONTHLY_OFF = 30, 30  # 30% off stays of 30 nights or more
+
+def disc(price, pct):
+    return int(round(price * (100 - pct) / 100 / 1000.0) * 1000)
+
+STAY_FAQS = [
+    ("What are the check-in and check-out times?",
+     f"Check-in is from {CHECKIN} and check-out is by {CHECKOUT}. If you need an earlier check-in or later check-out, message us on WhatsApp and we will do our best to arrange it."),
+    ("Do you offer discounts for weekly or monthly stays?",
+     f"Yes. You get {WEEKLY_OFF}% off the nightly rate when you stay {WEEKLY_NIGHTS} nights or more, and {MONTHLY_OFF}% off when you stay {MONTHLY_NIGHTS} nights or more. For example, a studio at UGX 100,000 per night costs UGX {disc(100000, WEEKLY_OFF):,} per night on a weekly stay and UGX {disc(100000, MONTHLY_OFF):,} per night on a monthly stay."),
+]
 
 # Neighbourhood information. Coordinates are approximate neighbourhood centres.
 AREAS = {
@@ -301,6 +314,7 @@ def card(a, eager=False):
       <h3><a href="{apt_slug(a)}">{esc(a['name'])}</a></h3>
       <div class="loc"><i class="bi bi-geo-alt"></i> <a href="/{AREAS[a['location']]['slug']}/" class="text-reset">{esc(a['location'])}</a>, Kampala · {len(a['gallery'])} photos</div>
       <div class="price">{ugx(a['price'])} <span class="fw-normal text-muted">/ night</span></div>
+      <div class="small text-success">Save {WEEKLY_OFF}% weekly · {MONTHLY_OFF}% monthly</div>
       <ul>{feats}</ul>
       <div class="actions">
         <a href="{apt_slug(a)}" class="btn btn-outline-primary flex-fill">View details</a>
@@ -335,6 +349,8 @@ def business_schema(apts):
         "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": True},
                            {"@type": "LocationFeatureSpecification", "name": "Fully equipped kitchen", "value": True}],
         "openingHours": "Mo-Su 00:00-23:59",
+        "checkinTime": "13:00",
+        "checkoutTime": "11:00",
     }
 
 def breadcrumbs(items):
@@ -372,8 +388,7 @@ def build_index(apts, counts):
          "Every apartment has free WiFi and a fully equipped kitchen. Other amenities depend on the unit and include daily cleaning, balconies, parking, smart TVs, washing machines and, in one three-bedroom apartment, a swimming pool. Each apartment page lists exactly what it includes."),
         ("How do I book?",
          f"Send us a WhatsApp message on <a href='https://wa.me/{WHATSAPP}'>+256 704 229100</a> with your dates and the apartment you like, or call {CALL_DISPLAY}. A local host replies personally to confirm availability and arrange check-in."),
-        ("Can I stay for a week or a month?",
-         "Yes. Our apartments are set up for both short stays and long stays. Message us on WhatsApp with your dates to ask about weekly and monthly rates."),
+        *STAY_FAQS,
         ("How far are the apartments from Entebbe Airport?",
          "Entebbe International Airport is roughly 1 to 1.5 hours away by road, depending on traffic. Ask us on WhatsApp if you would like help arranging transport."),
     ]
@@ -385,7 +400,7 @@ def build_index(apts, counts):
     ]}
     title = f"Airbnb-Style Apartments in Kampala | From UGX {min_price:,}/Night"
     desc = (f"Fully furnished apartments in Ntinda, Kisaasi, Kiwatule and Kulambiro, Kampala, from {ugx(min_price)} per night. "
-            "WiFi and kitchen included. Book directly with local hosts on WhatsApp.")
+            f"{WEEKLY_OFF}% off weekly and {MONTHLY_OFF}% off monthly stays. Book directly with local hosts on WhatsApp.")
     types = "".join(f'<option value="{esc(t)}">{esc(TYPES[t]["short"])}</option>' for t in TYPES if t in by_type)
     locs = "".join(f'<option value="{esc(k)}">{esc(k)}</option>' for k in AREAS if counts.get(k))
     cards = "\n".join(card(a, eager=i < 3) for i, a in enumerate(apts))
@@ -402,6 +417,7 @@ def build_index(apts, counts):
     <h1 class="fw-bold mb-3">Airbnb-Style Furnished Apartments in Kampala</h1>
     <p class="lead mb-0">Studios, one- and three-bedroom apartments in Ntinda, Kisaasi, Kiwatule and Kulambiro.<br class="d-none d-md-inline"> Fully furnished · Local hosts · Book directly, no platform fees</p>
     <span class="price-pill"><i class="bi bi-tag-fill"></i> From {ugx(min_price)} per night</span>
+    <p class="mt-2 mb-0"><small>Save {WEEKLY_OFF}% on weekly stays and {MONTHLY_OFF}% on monthly stays · Check-in {CHECKIN}, check-out {CHECKOUT}</small></p>
     <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
       <a href="#apartments" class="btn btn-success btn-lg shadow"><i class="bi bi-house-door"></i> See apartments</a>
       <a href="tel:{CALL}" class="btn btn-primary btn-lg shadow"><i class="bi bi-telephone-fill"></i> Call {CALL_DISPLAY}</a>
@@ -441,7 +457,7 @@ def build_index(apts, counts):
   <div class="container">
     <h2 class="fw-bold text-center mb-4">Why Book Directly With Us?</h2>
     <div class="row g-3">
-      <div class="col-md-4"><div class="benefit"><i class="bi bi-cash-coin"></i><h3 class="h5 mt-2">Fair, clear prices</h3><p class="mb-0">Studios from <strong>{ugx(min_price)} per night</strong>. No booking platform fees and no hidden charges.</p></div></div>
+      <div class="col-md-4"><div class="benefit"><i class="bi bi-cash-coin"></i><h3 class="h5 mt-2">Fair, clear prices</h3><p class="mb-0">Studios from <strong>{ugx(min_price)} per night</strong>, with <strong>{WEEKLY_OFF}% off weekly</strong> and <strong>{MONTHLY_OFF}% off monthly</strong> stays. No platform fees or hidden charges.</p></div></div>
       <div class="col-md-4"><div class="benefit"><i class="bi bi-person-check"></i><h3 class="h5 mt-2">Local hosts</h3><p class="mb-0">Ugandan hosts who know Kampala well and can help with directions, transport and local tips.</p></div></div>
       <div class="col-md-4"><div class="benefit"><i class="bi bi-chat-dots"></i><h3 class="h5 mt-2">Real people on WhatsApp</h3><p class="mb-0">Message the property managers directly. No bots, just quick, personal replies.</p></div></div>
     </div>
@@ -561,8 +577,15 @@ def build_apartment(a, idx, apts, counts):
         <ul class="list-unstyled my-3">
           <li><strong>Type:</strong> {t['short']} apartment</li>
           <li><strong>Area:</strong> <a href="/{area['slug']}/">{a['location']}</a>, Kampala</li>
-          <li><strong>Stays:</strong> Short and long stays</li>
+          <li><strong>Check-in:</strong> from {CHECKIN}</li>
+          <li><strong>Check-out:</strong> by {CHECKOUT}</li>
         </ul>
+        <div class="rounded p-2 mb-3" style="background:#eaf6ee">
+          <div class="fw-bold mb-1"><i class="bi bi-percent"></i> Longer stays cost less</div>
+          <div class="d-flex justify-content-between"><span>{WEEKLY_NIGHTS}+ nights ({WEEKLY_OFF}% off)</span><strong>{ugx(disc(a['price'], WEEKLY_OFF))}</strong></div>
+          <div class="d-flex justify-content-between"><span>{MONTHLY_NIGHTS}+ nights ({MONTHLY_OFF}% off)</span><strong>{ugx(disc(a['price'], MONTHLY_OFF))}</strong></div>
+          <div class="small text-muted">Price per night</div>
+        </div>
         <a href="{wa_link(msg)}" target="_blank" rel="noopener" class="btn btn-success btn-lg w-100 mb-2"><i class="bi bi-whatsapp"></i> Book on WhatsApp</a>
         <a href="tel:{CALL}" class="btn btn-outline-primary w-100"><i class="bi bi-telephone"></i> Call {CALL_DISPLAY}</a>
         <p class="small text-muted mt-3 mb-0">Book directly with our local hosts. No platform fees.</p>
@@ -595,8 +618,7 @@ def build_area(name, area, apts, counts):
          f"Our apartments in {name} start from {ugx(low)} per night. Prices for each unit are shown above."),
         (f"How far is {name} from Entebbe Airport?",
          "Entebbe International Airport is roughly 1 to 1.5 hours away by road, depending on traffic."),
-        (f"Can I stay long-term in {name}?",
-         "Yes. Our apartments suit both short and long stays. Message us on WhatsApp to ask about weekly and monthly rates."),
+        *STAY_FAQS,
     ]
     lat, lng = area['geo']
     schema = {"@context": "https://schema.org", "@graph": [
@@ -617,7 +639,7 @@ def build_area(name, area, apts, counts):
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › {name}</nav>
   <h1 class="fw-bold h2">Furnished Apartments in {name}, Kampala</h1>
   <p class="lead-muted">{esc(area['intro'])}</p>
-  <p class="mb-4"><span class="fw-bold text-success">From {ugx(low)} per night</span> · {len(here)} apartment{'s' if len(here)>1 else ''} · Free WiFi and kitchen in every unit
+  <p class="mb-4"><span class="fw-bold text-success">From {ugx(low)} per night</span> · {WEEKLY_OFF}% off weekly, {MONTHLY_OFF}% off monthly · {len(here)} apartment{'s' if len(here)>1 else ''} · Free WiFi and kitchen in every unit
     <a href="{wa_link(msg)}" target="_blank" rel="noopener" class="btn btn-success btn-sm ms-md-2 mt-2 mt-md-0"><i class="bi bi-whatsapp"></i> Ask about availability</a></p>
   <div class="row">{cards}</div>
   <div class="row g-4 mt-1">
