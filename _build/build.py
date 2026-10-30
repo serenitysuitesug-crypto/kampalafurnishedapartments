@@ -151,23 +151,52 @@ CSS = """
 body{background:var(--bg);font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);font-size:1.02rem;line-height:1.65}
 h1,h2,h3,h4,.navbar-brand,.btn{font-weight:700;letter-spacing:.2px}
 a{color:var(--brand-dark)}
-.navbar-brand .logo{width:42px;height:42px;font-size:1.1rem;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.logo-mark{display:block;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.18))}
+.brand-text{font-size:1rem;line-height:1.1;display:flex;flex-direction:column}
+.brand-text small{font-weight:400;opacity:.8;font-size:.75rem;letter-spacing:.5px;margin-top:2px}
 .hero{position:relative;background:#123 url('/images/hero.webp') center/cover no-repeat;min-height:440px}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55))}
 .hero .inner{position:relative;z-index:1;padding:6.5rem 0 4.5rem;text-align:center;color:#fff}
 .hero h1{font-size:clamp(2rem,5vw,3.2rem)}
 .price-pill{display:inline-block;margin-top:1rem;padding:.55rem 1.2rem;border-radius:50px;background:linear-gradient(135deg,#28a745,#20c997);font-weight:700;color:#fff;box-shadow:0 4px 12px rgba(40,167,69,.3)}
-.form-availability{margin-top:-2.5rem;margin-bottom:2rem;background:#fff;border-radius:.6rem;box-shadow:0 .5rem 1rem rgba(0,0,0,.06);padding:1.25rem;position:relative;z-index:3}
-.apt-card{background:var(--card);border:1px solid var(--line);border-radius:.75rem;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
-.apt-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(20,30,60,.08)}
-.apt-card img{width:100%;height:240px;object-fit:cover;display:block;background:#dde1ea}
-.apt-card .body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;flex:1}
-.apt-card h3{font-size:1.08rem;margin:0 0 .25rem}
+.form-availability{background:#fff;border:1px solid var(--line);border-radius:.75rem;box-shadow:0 .5rem 1rem rgba(0,0,0,.04);padding:1.25rem}
+.apt-card{background:var(--card);border:1px solid var(--line);border-radius:.85rem;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:box-shadow .2s}
+.apt-card:hover{box-shadow:0 10px 24px rgba(20,30,60,.09)}
+.ph{position:relative;overflow:hidden;aspect-ratio:4/3;background:#dde1ea}
+.ph-track{display:flex;height:100%;transition:transform .3s ease}
+.ph-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;display:block}
+.ph-prev,.ph-next{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#222;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.25);font-size:.9rem}
+.ph-prev{left:8px}.ph-next{right:8px}
+@media (hover:hover){.ph-prev,.ph-next{opacity:0;transition:opacity .2s}.apt-card:hover .ph-prev,.apt-card:hover .ph-next{opacity:1}}
+.ph-count{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.6);color:#fff;font-size:.75rem;padding:.1rem .5rem;border-radius:50px}
+.apt-card .body{padding:.8rem .9rem .9rem;display:flex;flex-direction:column;flex:1}
+.apt-card h3{font-size:1rem;margin:0 0 .15rem;line-height:1.3}
 .apt-card h3 a{color:var(--ink);text-decoration:none}
-.apt-card .loc{color:var(--muted);font-size:.93rem;margin-bottom:.35rem}
-.apt-card .price{color:var(--ok);font-weight:700;font-size:1.05rem}
-.apt-card ul{padding-left:1.1rem;margin:.5rem 0 1rem;color:var(--muted);font-size:.92rem}
-.apt-card .actions{margin-top:auto;display:flex;gap:.5rem}
+.apt-card .meta{color:var(--muted);font-size:.85rem}
+.apt-card .price{font-weight:700;font-size:1.02rem;margin-top:.35rem}
+.apt-card .price span{font-weight:400;color:var(--muted);font-size:.88rem}
+.apt-card .deal{color:var(--ok);font-size:.8rem;margin-bottom:.7rem}
+.chips-bar{position:sticky;top:66px;z-index:20;background:var(--bg);padding:.5rem 0;margin:0 -12px .5rem;padding-left:12px;padding-right:12px}
+.chips{display:flex;gap:.45rem;overflow-x:auto;scrollbar-width:none;padding-bottom:.35rem}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:50px;padding:.38rem .9rem;font-size:.9rem;font-weight:600;white-space:nowrap}
+.chip span{color:var(--muted);font-weight:400;margin-left:.15rem}
+.chip.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.active span{color:#c9cfdb}
+.apt-group{margin-top:1.25rem}
+.group-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.group-head h3 span{font-weight:400;color:var(--muted);font-size:.88rem;margin-left:.3rem}
+.row-nav{gap:.4rem}
+.row-nav button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff}
+.row-nav button:hover{border-color:var(--ink)}
+.apt-row{display:grid;grid-auto-flow:column;grid-auto-columns:min(80%,290px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:2px;padding:2px 2px 10px;scrollbar-width:thin;overscroll-behavior-x:contain}
+.apt-row>.apt-card{scroll-snap-align:start}
+@media (min-width:992px){.apt-row{grid-auto-columns:calc((100% - 42px)/4);scrollbar-width:none}.apt-row::-webkit-scrollbar{display:none}}
+.see-area{display:inline-block;font-size:.9rem;font-weight:600;text-decoration:none;margin-top:.1rem}
+.mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem 12px calc(.6rem + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.06)}
+.mobile-bar .btn{flex:1;font-weight:700;padding:.6rem}
+.mobile-bar .btn-success{flex:1.6}
+@media (max-width:991.98px){body{padding-bottom:76px}}
 .section{padding:3.5rem 0}
 .section h2{margin-bottom:1rem}
 .lead-muted{color:var(--muted);max-width:760px}
@@ -203,7 +232,7 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
 .review blockquote{font-size:.95rem;color:var(--ink);flex:1}
 .review figcaption{font-weight:700;font-size:.9rem}
 .review-stars{color:#f5a623;letter-spacing:1px}
-@media (max-width:576px){.apt-card img{height:220px}.hero .inner{padding-top:5.5rem}}
+@media (max-width:767.98px){.hero{min-height:0}.hero .inner{padding:5.2rem 0 1.6rem}.hero h1{font-size:1.65rem;margin-bottom:.6rem!important}.hero .lead{font-size:1rem}.price-pill{margin-top:.7rem;font-size:.95rem;padding:.4rem 1rem}.chips-bar{top:62px}.brand-text{font-size:.92rem}}
 """
 
 def esc(s):
@@ -236,6 +265,8 @@ def apt_name(a):
     t = TYPES[a['title']]
     return a['name']
 
+LOGO_MARK = """<svg class="logo-mark" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#fff"/><path d="M10 24 24 12l14 12" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V22" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linejoin="round"/><rect x="21" y="28" width="6" height="10" rx="1.5" fill="#20c997"/></svg>"""
+
 def head(title, description, canonical, image, schema, extra=""):
     schema_json = json.dumps(schema, indent=2, ensure_ascii=False)
     return f"""<!DOCTYPE html>
@@ -246,7 +277,10 @@ def head(title, description, canonical, image, schema, extra=""):
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(description)}">
   <link rel="canonical" href="{canonical}">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="theme-color" content="#0d6efd">
   <meta name="google-site-verification" content="rLjEVKRM0qckd3z85iLLPBOh2bBnLd7H-qq3cSN0mAA" />
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{BRAND}">
@@ -287,8 +321,8 @@ def navbar():
     return f"""<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <span class="logo rounded-circle bg-white text-primary d-flex align-items-center justify-content-center">FA</span>
-      <span class="ms-2" style="font-size:.95rem;line-height:1.1">Furnished Apartments<br><small class="fw-normal opacity-75">Kampala</small></span>
+      {LOGO_MARK}
+      <span class="ms-2 brand-text">Furnished Apartments<small>Kampala · Uganda</small></span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Open menu">
       <span class="navbar-toggler-icon"></span>
@@ -309,14 +343,14 @@ def navbar():
 </nav>
 """
 
-def footer(counts):
+def footer(counts, wa_msg="Hello, I would like to check availability for a furnished apartment in Kampala."):
     area_links = "".join(f'<a href="/{v["slug"]}/">Furnished apartments in {k} ({counts.get(k,0)})</a>' for k, v in AREAS.items())
     return f"""<footer class="bg-primary text-white mt-5">
   <div class="container py-4">
     <div class="row g-4">
       <div class="col-md-5">
         <div class="d-flex align-items-center mb-2">
-          <span class="rounded-circle bg-white text-primary d-flex align-items-center justify-content-center me-3" style="width:52px;height:52px;font-weight:700">FA</span>
+          <span class="me-3">{LOGO_MARK}</span>
           <div><div class="fw-bold">{BRAND}</div><div class="opacity-75">Ntinda · Kisaasi · Kiwatule · Kulambiro, Kampala</div></div>
         </div>
         <p class="opacity-75 mb-0">Fully furnished, Airbnb-style apartments for short and long stays, booked directly with local Ugandan hosts.</p>
@@ -336,32 +370,54 @@ def footer(counts):
   </div>
   <div class="text-center text-white-50 py-2" style="background:rgba(0,0,0,.08);font-size:.92rem">&copy; {datetime.date.today().year} {BRAND}. All rights reserved.</div>
 </footer>
-<a class="wa-float" href="{wa_link('Hello, I would like to check availability for a furnished apartment in Kampala.')}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+<a class="wa-float d-none d-lg-inline-block" href="{wa_link(wa_msg)}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+<div class="mobile-bar d-lg-none">
+  <a class="btn btn-success" href="{wa_link(wa_msg)}" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+  <a class="btn btn-outline-primary" href="tel:{CALL}"><i class="bi bi-telephone-fill"></i> Call</a>
+</div>
+<script>
+  // photo arrows on apartment cards
+  document.addEventListener('click', function (e) {{
+    var b = e.target.closest('.ph-prev, .ph-next'); if (!b) return;
+    e.preventDefault();
+    var ph = b.closest('.ph'), imgs = ph.querySelectorAll('img'), n = imgs.length;
+    var i = ((+ph.dataset.i || 0) + (b.classList.contains('ph-next') ? 1 : -1) + n) % n;
+    [i, (i + 1) % n].forEach(function (k) {{ var im = imgs[k]; if (im.dataset.src) {{ im.src = im.dataset.src; im.removeAttribute('data-src'); }} }});
+    ph.dataset.i = i; ph.querySelector('.ph-track').style.transform = 'translateX(' + (-100 * i) + '%)';
+    ph.querySelector('.ph-count').textContent = (i + 1) + ' / ' + n;
+  }});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 """
 
-def card(a, eager=False):
-    t = TYPES[a['title']]
-    w, h = img_size(thumb(a['image']))
-    feats = "".join(f"<li>{esc(s)}</li>" for s in a['services'][:4])
+TYPE_SHORT = {"Studio apartment": "Studio", "One bedroom apartment": "1-Bedroom", "Three bedroom apartment": "3-Bedroom"}
+
+def card(a, eager=False, wrap=True):
     msg = f"Hello, I'd like to book the {a['name']} ({ugx(a['price'])}/night): {SITE}{apt_slug(a)} Is it available?"
-    loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
-    return f"""<div class="col-sm-6 col-lg-4 mb-4 apt-item" data-type="{esc(a['title'])}" data-location="{esc(a['location'])}">
-  <article class="apt-card">
-    <a href="{apt_slug(a)}"><img src="{thumb(a['image'])}" width="{w}" height="{h}" {loading} decoding="async" alt="{esc(a['name'])}, Kampala"></a>
+    pics = a['gallery'][:5]
+    w, h = img_size(thumb(pics[0]))
+    imgs = []
+    for k, g in enumerate(pics):
+        alt = f"{esc(a['name'])}, Kampala" + (f" – photo {k+1}" if k else "")
+        if k == 0:
+            load = 'fetchpriority="high"' if eager else 'loading="lazy"'
+            imgs.append(f'<img src="{thumb(g)}" width="{w}" height="{h}" {load} decoding="async" alt="{alt}">')
+        else:
+            imgs.append(f'<img data-src="{thumb(g)}" width="{w}" height="{h}" decoding="async" alt="{alt}">')
+    arrows = (f'<button type="button" class="ph-prev" aria-label="Previous photo"><i class="bi bi-chevron-left"></i></button>'
+              f'<button type="button" class="ph-next" aria-label="Next photo"><i class="bi bi-chevron-right"></i></button>'
+              f'<span class="ph-count">1 / {len(pics)}</span>') if len(pics) > 1 else ""
+    inner = f"""<article class="apt-card apt-item" data-type="{esc(a['title'])}" data-location="{esc(a['location'])}">
+    <div class="ph"><a class="ph-track" href="{apt_slug(a)}">{''.join(imgs)}</a>{arrows}</div>
     <div class="body">
       <h3><a href="{apt_slug(a)}">{esc(a['name'])}</a></h3>
-      <div class="loc"><i class="bi bi-geo-alt"></i> <a href="/{AREAS[a['location']]['slug']}/" class="text-reset">{esc(a['location'])}</a>, Kampala · {len(a['gallery'])} photos</div>
-      <div class="price">{ugx(a['price'])} <span class="fw-normal text-muted">/ night</span></div>
-      <div class="small text-success">Save {WEEKLY_OFF}% weekly · {MONTHLY_OFF}% monthly</div>
-      <ul>{feats}</ul>
-      <div class="actions">
-        <a href="{apt_slug(a)}" class="btn btn-outline-primary flex-fill">View details</a>
-        <a href="{wa_link(msg)}" target="_blank" rel="noopener" class="btn btn-success flex-fill"><i class="bi bi-whatsapp"></i> Book</a>
-      </div>
+      <div class="meta">{TYPE_SHORT[a['title']]} · {esc(a['location'])}, Kampala</div>
+      <div class="price">{ugx(a['price'])} <span>/ night</span></div>
+      <div class="deal">{WEEKLY_OFF}% off weekly · {MONTHLY_OFF}% off monthly</div>
+      <a href="{wa_link(msg)}" target="_blank" rel="noopener" class="btn btn-success btn-sm w-100 mt-auto"><i class="bi bi-whatsapp"></i> Book on WhatsApp</a>
     </div>
-  </article>
-</div>"""
+  </article>"""
+    return f'<div class="col-sm-6 col-lg-4 col-xl-3 mb-4">{inner}</div>' if wrap else inner
 
 def faq_html(items):
     return "".join(f"<details><summary>{esc(q)}</summary><p>{a}</p></details>" for q, a in items)
@@ -443,9 +499,26 @@ def build_index(apts, counts):
     title = f"Airbnb-Style Apartments in Kampala | From UGX {min_price:,}/Night"
     desc = (f"Fully furnished apartments in Ntinda, Kisaasi, Kiwatule and Kulambiro, Kampala, from {ugx(min_price)} per night. "
             f"{WEEKLY_OFF}% off weekly and {MONTHLY_OFF}% off monthly stays. Book directly with local hosts on WhatsApp.")
-    types = "".join(f'<option value="{esc(t)}">{esc(TYPES[t]["short"])}</option>' for t in TYPES if t in by_type)
     locs = "".join(f'<option value="{esc(k)}">{esc(k)}</option>' for k in AREAS if counts.get(k))
-    cards = "\n".join(card(a, eager=i < 3) for i, a in enumerate(apts))
+    order = sorted([k for k in AREAS if counts.get(k)], key=lambda k: -counts[k])
+    area_chips = '<button type="button" class="chip active" data-area="">All areas</button>' + "".join(
+        f'<button type="button" class="chip" data-area="{esc(k)}">{k} <span>{counts[k]}</span></button>' for k in order)
+    type_chips = '<button type="button" class="chip active" data-kind="">All types</button>' + "".join(
+        f'<button type="button" class="chip" data-kind="{esc(t)}">{TYPE_SHORT[t]}</button>' for t in TYPES if t in by_type)
+    groups, n = [], 0
+    for k in order:
+        here = [a for a in apts if a['location'] == k]
+        row = "".join(card(a, eager=(n + i) < 2, wrap=False) for i, a in enumerate(here))
+        n += len(here)
+        groups.append(f"""<div class="apt-group" data-location="{esc(k)}">
+    <div class="group-head">
+      <h3 class="h5 fw-bold mb-0"><a href="/{AREAS[k]['slug']}/" class="text-reset text-decoration-none">{k}</a> <span>{len(here)} apartment{'s' if len(here) != 1 else ''} · from {ugx(min(a['price'] for a in here))}</span></h3>
+      <div class="row-nav d-none d-lg-flex"><button type="button" class="row-prev" aria-label="Scroll left"><i class="bi bi-chevron-left"></i></button><button type="button" class="row-next" aria-label="Scroll right"><i class="bi bi-chevron-right"></i></button></div>
+    </div>
+    <div class="apt-row">{row}</div>
+    <a class="see-area" href="/{AREAS[k]['slug']}/">About staying in {k} <i class="bi bi-arrow-right"></i></a>
+  </div>""")
+    groups = "\n".join(groups)
     area_cards = "".join(f"""<div class="col-sm-6 col-lg-3 mb-3"><a class="area-card" href="/{v['slug']}/">
       <h3 class="h5 mb-1">{k}</h3><div class="count">{counts.get(k,0)} apartment{'s' if counts.get(k,0)!=1 else ''} · from {ugx(min(a['price'] for a in apts if a['location']==k))}/night</div>
       <p class="mb-0 mt-2" style="color:var(--muted);font-size:.93rem">{esc(v['intro'].split('. ')[0])}.</p></a></div>""" for k, v in AREAS.items() if counts.get(k))
@@ -457,35 +530,40 @@ def build_index(apts, counts):
 <header class="hero">
   <div class="container inner">
     <h1 class="fw-bold mb-3">Airbnb-Style Furnished Apartments in Kampala</h1>
-    <p class="lead mb-0">Studios, one- and three-bedroom apartments in Ntinda, Kisaasi, Kiwatule and Kulambiro.<br class="d-none d-md-inline"> Fully furnished · Local hosts · Book directly, no platform fees</p>
+    <p class="lead mb-0">Studios, one- and three-bedroom apartments in Ntinda, Kisaasi, Kiwatule and Kulambiro.<span class="d-none d-md-inline"><br> Fully furnished · Local hosts · Book directly, no platform fees</span></p>
     <span class="price-pill"><i class="bi bi-tag-fill"></i> From {ugx(min_price)} per night</span>
     <a href="#reviews" class="d-inline-block mt-2 ms-md-2 text-white text-decoration-none"><span class="review-stars">{stars_html(REVIEWS['rating'])}</span> <strong>{REVIEWS['rating']}</strong> on Google · {REVIEWS['count']} reviews</a>
-    <p class="mt-2 mb-0"><small>Save {WEEKLY_OFF}% on weekly stays and {MONTHLY_OFF}% on monthly stays · Check-in {CHECKIN}, check-out {CHECKOUT}</small></p>
-    <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
+    <p class="mt-2 mb-0 d-none d-md-block"><small>Save {WEEKLY_OFF}% on weekly stays and {MONTHLY_OFF}% on monthly stays · Check-in {CHECKIN}, check-out {CHECKOUT}</small></p>
+    <div class="d-none d-md-flex justify-content-center gap-3 mt-4">
       <a href="#apartments" class="btn btn-success btn-lg shadow"><i class="bi bi-house-door"></i> See apartments</a>
       <a href="tel:{CALL}" class="btn btn-primary btn-lg shadow"><i class="bi bi-telephone-fill"></i> Call {CALL_DISPLAY}</a>
     </div>
   </div>
 </header>
 
-<div class="container form-availability" id="form">
-  <form class="row g-2 align-items-end justify-content-center" onsubmit="sendWhatsApp();return false;">
-    <div class="col-6 col-lg-2"><label for="checkin" class="form-label mb-1">Check-in</label><input type="date" class="form-control" id="checkin"></div>
-    <div class="col-6 col-lg-2"><label for="checkout" class="form-label mb-1">Check-out</label><input type="date" class="form-control" id="checkout"></div>
-    <div class="col-6 col-lg-3"><label for="filter-size" class="form-label mb-1">Apartment type</label><select id="filter-size" class="form-select"><option value="">All types</option>{types}</select></div>
-    <div class="col-6 col-lg-3"><label for="filter-location" class="form-label mb-1">Area</label><select id="filter-location" class="form-select"><option value="">All areas</option>{locs}</select></div>
-    <div class="col-12 col-lg-2 d-grid"><button type="submit" class="btn btn-success"><i class="bi bi-whatsapp"></i> Check availability</button></div>
-  </form>
-</div>
-
 <main>
-<section class="container pb-4" id="apartments">
-  <h2 class="fw-bold">Our Furnished Apartments in Kampala</h2>
-  <p class="lead-muted mb-4">{len(apts)} fully furnished apartments, each with free WiFi and a fully equipped kitchen. Tap an apartment to see all photos, amenities and the nightly price, then book on WhatsApp.</p>
-  <div class="row" id="apartment-list">
-{cards}
+<section class="container pt-4 pb-2" id="apartments">
+  <h2 class="fw-bold mb-1">Our Furnished Apartments</h2>
+  <p class="lead-muted mb-3">{len(apts)} apartments with free WiFi and a full kitchen. Tap one for all photos and details.</p>
+  <div class="chips-bar">
+    <div class="chips" role="group" aria-label="Filter by area">{area_chips}</div>
+    <div class="chips" role="group" aria-label="Filter by type">{type_chips}</div>
   </div>
-  <p id="no-results" class="text-muted" hidden>No apartments match those filters. <a href="#" onclick="resetFilters();return false;">Show all apartments</a>.</p>
+  {groups}
+  <p id="no-results" class="text-muted mt-3" hidden>No apartments match those filters. <a href="#" onclick="resetFilters();return false;">Show all apartments</a>.</p>
+</section>
+
+<section class="container mb-4" id="form">
+  <div class="form-availability">
+    <h2 class="h5 fw-bold mb-3"><i class="bi bi-calendar-check text-success"></i> Check availability for your dates</h2>
+    <form class="row g-2 align-items-end" onsubmit="sendWhatsApp();return false;">
+      <div class="col-6 col-lg-3"><label for="checkin" class="form-label mb-1">Check-in</label><input type="date" class="form-control" id="checkin"></div>
+      <div class="col-6 col-lg-3"><label for="checkout" class="form-label mb-1">Check-out</label><input type="date" class="form-control" id="checkout"></div>
+      <div class="col-12 col-lg-3"><label for="form-area" class="form-label mb-1">Area</label><select id="form-area" class="form-select"><option value="">Any area</option>{locs}</select></div>
+      <div class="col-12 col-lg-3 d-grid"><button type="submit" class="btn btn-success"><i class="bi bi-whatsapp"></i> Ask on WhatsApp</button></div>
+    </form>
+    <p class="small text-muted mb-0 mt-2">Check-in from {CHECKIN} · Check-out by {CHECKOUT} · {WEEKLY_OFF}% off 7+ nights, {MONTHLY_OFF}% off 30+ nights</p>
+  </div>
 </section>
 
 <section class="section bg-white" id="areas">
@@ -519,29 +597,46 @@ def build_index(apts, counts):
 """
     page += footer(counts)
     page += f"""<script>
+  var state = {{area: '', kind: ''}};
   function filterApartments() {{
-    var t = document.getElementById('filter-size').value, l = document.getElementById('filter-location').value, shown = 0;
-    document.querySelectorAll('.apt-item').forEach(function (el) {{
-      var ok = (!t || el.dataset.type === t) && (!l || el.dataset.location === l);
-      el.hidden = !ok; if (ok) shown++;
+    var total = 0;
+    document.querySelectorAll('.apt-group').forEach(function (g) {{
+      var shown = 0, areaOk = !state.area || g.dataset.location === state.area;
+      g.querySelectorAll('.apt-item').forEach(function (el) {{
+        var ok = areaOk && (!state.kind || el.dataset.type === state.kind);
+        el.hidden = !ok; if (ok) shown++;
+      }});
+      g.hidden = shown === 0; total += shown;
+      g.querySelector('.apt-row').scrollLeft = 0;
     }});
-    document.getElementById('no-results').hidden = shown > 0;
+    document.getElementById('no-results').hidden = total > 0;
   }}
-  function resetFilters() {{
-    document.getElementById('filter-size').value = ''; document.getElementById('filter-location').value = ''; filterApartments();
+  function setChip(attr, value) {{
+    document.querySelectorAll('.chip[data-' + attr + ']').forEach(function (c) {{ c.classList.toggle('active', c.dataset[attr] === value); }});
   }}
+  function resetFilters() {{ state = {{area: '', kind: ''}}; setChip('area', ''); setChip('kind', ''); filterApartments(); }}
+  document.querySelectorAll('.chip').forEach(function (c) {{
+    c.addEventListener('click', function () {{
+      if ('area' in c.dataset) {{ state.area = c.dataset.area; setChip('area', state.area); if (state.area) document.getElementById('form-area').value = state.area; }}
+      else {{ state.kind = c.dataset.kind; setChip('kind', state.kind); }}
+      filterApartments();
+    }});
+  }});
+  document.querySelectorAll('.apt-group').forEach(function (g) {{
+    var row = g.querySelector('.apt-row');
+    g.querySelector('.row-prev').onclick = function () {{ row.scrollBy({{left: -row.clientWidth * 0.9, behavior: 'smooth'}}); }};
+    g.querySelector('.row-next').onclick = function () {{ row.scrollBy({{left: row.clientWidth * 0.9, behavior: 'smooth'}}); }};
+  }});
   function sendWhatsApp() {{
     var v = function (id) {{ return document.getElementById(id).value; }};
     var msg = "Hello, I'd like to check availability for a furnished apartment in Kampala." +
       "\\nCheck-in: " + (v('checkin') || 'Not specified') +
       "\\nCheck-out: " + (v('checkout') || 'Not specified') +
-      "\\nArea: " + (v('filter-location') || 'Any') +
-      "\\nApartment type: " + (v('filter-size') || 'Any');
+      "\\nArea: " + (v('form-area') || 'Any') +
+      (state.kind ? "\\nApartment type: " + state.kind : "");
     gtag('event', 'conversion', {{'send_to': '{ADS_CONVERSION}'}});
     window.open('https://wa.me/{WHATSAPP}?text=' + encodeURIComponent(msg), '_blank');
   }}
-  document.getElementById('filter-size').addEventListener('change', filterApartments);
-  document.getElementById('filter-location').addEventListener('change', filterApartments);
 </script>
 </body>
 </html>
@@ -647,7 +742,7 @@ def build_apartment(a, idx, apts, counts):
 </main>
 {VIEWER}
 """
-    page += footer(counts)
+    page += footer(counts, wa_msg=msg)
     page += "</body>\n</html>\n"
     return page
 

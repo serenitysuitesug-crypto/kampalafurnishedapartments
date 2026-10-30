@@ -6,7 +6,10 @@
   <title>Furnished Apartments in Kulambiro, Kampala | From UGX 160,000/Night</title>
   <meta name="description" content="2 fully furnished studio apartments in Kulambiro, Kampala, from UGX 160,000 per night. Free WiFi and kitchen. Book directly with local hosts on WhatsApp.">
   <link rel="canonical" href="https://kampalafurnishedapartments.com/furnished-apartments-kulambiro/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="theme-color" content="#0d6efd">
   <meta name="google-site-verification" content="rLjEVKRM0qckd3z85iLLPBOh2bBnLd7H-qq3cSN0mAA" />
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Furnished Apartments Uganda">
@@ -173,23 +176,52 @@
 body{background:var(--bg);font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);font-size:1.02rem;line-height:1.65}
 h1,h2,h3,h4,.navbar-brand,.btn{font-weight:700;letter-spacing:.2px}
 a{color:var(--brand-dark)}
-.navbar-brand .logo{width:42px;height:42px;font-size:1.1rem;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.logo-mark{display:block;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.18))}
+.brand-text{font-size:1rem;line-height:1.1;display:flex;flex-direction:column}
+.brand-text small{font-weight:400;opacity:.8;font-size:.75rem;letter-spacing:.5px;margin-top:2px}
 .hero{position:relative;background:#123 url('/images/hero.webp') center/cover no-repeat;min-height:440px}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55))}
 .hero .inner{position:relative;z-index:1;padding:6.5rem 0 4.5rem;text-align:center;color:#fff}
 .hero h1{font-size:clamp(2rem,5vw,3.2rem)}
 .price-pill{display:inline-block;margin-top:1rem;padding:.55rem 1.2rem;border-radius:50px;background:linear-gradient(135deg,#28a745,#20c997);font-weight:700;color:#fff;box-shadow:0 4px 12px rgba(40,167,69,.3)}
-.form-availability{margin-top:-2.5rem;margin-bottom:2rem;background:#fff;border-radius:.6rem;box-shadow:0 .5rem 1rem rgba(0,0,0,.06);padding:1.25rem;position:relative;z-index:3}
-.apt-card{background:var(--card);border:1px solid var(--line);border-radius:.75rem;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
-.apt-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(20,30,60,.08)}
-.apt-card img{width:100%;height:240px;object-fit:cover;display:block;background:#dde1ea}
-.apt-card .body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;flex:1}
-.apt-card h3{font-size:1.08rem;margin:0 0 .25rem}
+.form-availability{background:#fff;border:1px solid var(--line);border-radius:.75rem;box-shadow:0 .5rem 1rem rgba(0,0,0,.04);padding:1.25rem}
+.apt-card{background:var(--card);border:1px solid var(--line);border-radius:.85rem;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:box-shadow .2s}
+.apt-card:hover{box-shadow:0 10px 24px rgba(20,30,60,.09)}
+.ph{position:relative;overflow:hidden;aspect-ratio:4/3;background:#dde1ea}
+.ph-track{display:flex;height:100%;transition:transform .3s ease}
+.ph-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;display:block}
+.ph-prev,.ph-next{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#222;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.25);font-size:.9rem}
+.ph-prev{left:8px}.ph-next{right:8px}
+@media (hover:hover){.ph-prev,.ph-next{opacity:0;transition:opacity .2s}.apt-card:hover .ph-prev,.apt-card:hover .ph-next{opacity:1}}
+.ph-count{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.6);color:#fff;font-size:.75rem;padding:.1rem .5rem;border-radius:50px}
+.apt-card .body{padding:.8rem .9rem .9rem;display:flex;flex-direction:column;flex:1}
+.apt-card h3{font-size:1rem;margin:0 0 .15rem;line-height:1.3}
 .apt-card h3 a{color:var(--ink);text-decoration:none}
-.apt-card .loc{color:var(--muted);font-size:.93rem;margin-bottom:.35rem}
-.apt-card .price{color:var(--ok);font-weight:700;font-size:1.05rem}
-.apt-card ul{padding-left:1.1rem;margin:.5rem 0 1rem;color:var(--muted);font-size:.92rem}
-.apt-card .actions{margin-top:auto;display:flex;gap:.5rem}
+.apt-card .meta{color:var(--muted);font-size:.85rem}
+.apt-card .price{font-weight:700;font-size:1.02rem;margin-top:.35rem}
+.apt-card .price span{font-weight:400;color:var(--muted);font-size:.88rem}
+.apt-card .deal{color:var(--ok);font-size:.8rem;margin-bottom:.7rem}
+.chips-bar{position:sticky;top:66px;z-index:20;background:var(--bg);padding:.5rem 0;margin:0 -12px .5rem;padding-left:12px;padding-right:12px}
+.chips{display:flex;gap:.45rem;overflow-x:auto;scrollbar-width:none;padding-bottom:.35rem}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:50px;padding:.38rem .9rem;font-size:.9rem;font-weight:600;white-space:nowrap}
+.chip span{color:var(--muted);font-weight:400;margin-left:.15rem}
+.chip.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.active span{color:#c9cfdb}
+.apt-group{margin-top:1.25rem}
+.group-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.group-head h3 span{font-weight:400;color:var(--muted);font-size:.88rem;margin-left:.3rem}
+.row-nav{gap:.4rem}
+.row-nav button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff}
+.row-nav button:hover{border-color:var(--ink)}
+.apt-row{display:grid;grid-auto-flow:column;grid-auto-columns:min(80%,290px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:2px;padding:2px 2px 10px;scrollbar-width:thin;overscroll-behavior-x:contain}
+.apt-row>.apt-card{scroll-snap-align:start}
+@media (min-width:992px){.apt-row{grid-auto-columns:calc((100% - 42px)/4);scrollbar-width:none}.apt-row::-webkit-scrollbar{display:none}}
+.see-area{display:inline-block;font-size:.9rem;font-weight:600;text-decoration:none;margin-top:.1rem}
+.mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem 12px calc(.6rem + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.06)}
+.mobile-bar .btn{flex:1;font-weight:700;padding:.6rem}
+.mobile-bar .btn-success{flex:1.6}
+@media (max-width:991.98px){body{padding-bottom:76px}}
 .section{padding:3.5rem 0}
 .section h2{margin-bottom:1rem}
 .lead-muted{color:var(--muted);max-width:760px}
@@ -225,7 +257,7 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
 .review blockquote{font-size:.95rem;color:var(--ink);flex:1}
 .review figcaption{font-weight:700;font-size:.9rem}
 .review-stars{color:#f5a623;letter-spacing:1px}
-@media (max-width:576px){.apt-card img{height:220px}.hero .inner{padding-top:5.5rem}}
+@media (max-width:767.98px){.hero{min-height:0}.hero .inner{padding:5.2rem 0 1.6rem}.hero h1{font-size:1.65rem;margin-bottom:.6rem!important}.hero .lead{font-size:1rem}.price-pill{margin-top:.7rem;font-size:.95rem;padding:.4rem 1rem}.chips-bar{top:62px}.brand-text{font-size:.92rem}}
 </style>
   
   <!-- Google Ads tag. A conversion is now recorded only when someone taps WhatsApp or Call. -->
@@ -245,8 +277,8 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <span class="logo rounded-circle bg-white text-primary d-flex align-items-center justify-content-center">FA</span>
-      <span class="ms-2" style="font-size:.95rem;line-height:1.1">Furnished Apartments<br><small class="fw-normal opacity-75">Kampala</small></span>
+      <svg class="logo-mark" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#fff"/><path d="M10 24 24 12l14 12" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V22" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linejoin="round"/><rect x="21" y="28" width="6" height="10" rx="1.5" fill="#20c997"/></svg>
+      <span class="ms-2 brand-text">Furnished Apartments<small>Kampala · Uganda</small></span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Open menu">
       <span class="navbar-toggler-icon"></span>
@@ -271,38 +303,26 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
   <p class="lead-muted">Kulambiro is a quiet, green residential area in north-east Kampala, between Kisaasi, Najjera and Kiwatule. It is a good choice if you want rest and privacy, with Ntinda and Kisaasi close enough for shopping and dining.</p>
   <p class="mb-4"><span class="fw-bold text-success">From UGX 160,000 per night</span> · 15% off weekly, 30% off monthly · 2 apartments · Free WiFi and kitchen in every unit
     <a href="https://wa.me/256704229100?text=Hello%2C%20I%27m%20looking%20for%20a%20furnished%20apartment%20in%20Kulambiro.%20My%20dates%20are%3A%20" target="_blank" rel="noopener" class="btn btn-success btn-sm ms-md-2 mt-2 mt-md-0"><i class="bi bi-whatsapp"></i> Ask about availability</a></p>
-  <div class="row"><div class="col-sm-6 col-lg-4 mb-4 apt-item" data-type="Studio apartment" data-location="Kulambiro">
-  <article class="apt-card">
-    <a href="/apartments/apartment-j.html"><img src="/images/thumbs/J-1.webp" width="480" height="640" fetchpriority="high" decoding="async" alt="Premium Studio Apartment in Kulambiro, Kampala"></a>
+  <div class="row"><div class="col-sm-6 col-lg-4 col-xl-3 mb-4"><article class="apt-card apt-item" data-type="Studio apartment" data-location="Kulambiro">
+    <div class="ph"><a class="ph-track" href="/apartments/apartment-j.html"><img src="/images/thumbs/J-1.webp" width="480" height="640" fetchpriority="high" decoding="async" alt="Premium Studio Apartment in Kulambiro, Kampala"><img data-src="/images/thumbs/J-2.webp" width="480" height="640" decoding="async" alt="Premium Studio Apartment in Kulambiro, Kampala – photo 2"><img data-src="/images/thumbs/J-3.webp" width="480" height="640" decoding="async" alt="Premium Studio Apartment in Kulambiro, Kampala – photo 3"><img data-src="/images/thumbs/J-4.webp" width="480" height="640" decoding="async" alt="Premium Studio Apartment in Kulambiro, Kampala – photo 4"><img data-src="/images/thumbs/J-5.webp" width="480" height="640" decoding="async" alt="Premium Studio Apartment in Kulambiro, Kampala – photo 5"></a><button type="button" class="ph-prev" aria-label="Previous photo"><i class="bi bi-chevron-left"></i></button><button type="button" class="ph-next" aria-label="Next photo"><i class="bi bi-chevron-right"></i></button><span class="ph-count">1 / 5</span></div>
     <div class="body">
       <h3><a href="/apartments/apartment-j.html">Premium Studio Apartment in Kulambiro</a></h3>
-      <div class="loc"><i class="bi bi-geo-alt"></i> <a href="/furnished-apartments-kulambiro/" class="text-reset">Kulambiro</a>, Kampala · 8 photos</div>
-      <div class="price">UGX 160,000 <span class="fw-normal text-muted">/ night</span></div>
-      <div class="small text-success">Save 15% weekly · 30% monthly</div>
-      <ul><li>Free WiFi</li><li>Balcony View</li><li>Fully Equipped Kitchen</li><li>Daily Cleaning</li></ul>
-      <div class="actions">
-        <a href="/apartments/apartment-j.html" class="btn btn-outline-primary flex-fill">View details</a>
-        <a href="https://wa.me/256704229100?text=Hello%2C%20I%27d%20like%20to%20book%20the%20Premium%20Studio%20Apartment%20in%20Kulambiro%20%28UGX%20160%2C000/night%29%3A%20https%3A//kampalafurnishedapartments.com/apartments/apartment-j.html%20Is%20it%20available%3F" target="_blank" rel="noopener" class="btn btn-success flex-fill"><i class="bi bi-whatsapp"></i> Book</a>
-      </div>
+      <div class="meta">Studio · Kulambiro, Kampala</div>
+      <div class="price">UGX 160,000 <span>/ night</span></div>
+      <div class="deal">15% off weekly · 30% off monthly</div>
+      <a href="https://wa.me/256704229100?text=Hello%2C%20I%27d%20like%20to%20book%20the%20Premium%20Studio%20Apartment%20in%20Kulambiro%20%28UGX%20160%2C000/night%29%3A%20https%3A//kampalafurnishedapartments.com/apartments/apartment-j.html%20Is%20it%20available%3F" target="_blank" rel="noopener" class="btn btn-success btn-sm w-100 mt-auto"><i class="bi bi-whatsapp"></i> Book on WhatsApp</a>
     </div>
-  </article>
-</div>
-<div class="col-sm-6 col-lg-4 mb-4 apt-item" data-type="Studio apartment" data-location="Kulambiro">
-  <article class="apt-card">
-    <a href="/apartments/apartment-k.html"><img src="/images/thumbs/K-1.webp" width="480" height="640" fetchpriority="high" decoding="async" alt="Kulambiro Studio Apartment with Balcony, Kampala"></a>
+  </article></div>
+<div class="col-sm-6 col-lg-4 col-xl-3 mb-4"><article class="apt-card apt-item" data-type="Studio apartment" data-location="Kulambiro">
+    <div class="ph"><a class="ph-track" href="/apartments/apartment-k.html"><img src="/images/thumbs/K-1.webp" width="480" height="640" fetchpriority="high" decoding="async" alt="Kulambiro Studio Apartment with Balcony, Kampala"><img data-src="/images/thumbs/K-2.webp" width="480" height="640" decoding="async" alt="Kulambiro Studio Apartment with Balcony, Kampala – photo 2"><img data-src="/images/thumbs/K-3.webp" width="480" height="640" decoding="async" alt="Kulambiro Studio Apartment with Balcony, Kampala – photo 3"><img data-src="/images/thumbs/K-4.webp" width="480" height="640" decoding="async" alt="Kulambiro Studio Apartment with Balcony, Kampala – photo 4"><img data-src="/images/thumbs/K-5.webp" width="480" height="640" decoding="async" alt="Kulambiro Studio Apartment with Balcony, Kampala – photo 5"></a><button type="button" class="ph-prev" aria-label="Previous photo"><i class="bi bi-chevron-left"></i></button><button type="button" class="ph-next" aria-label="Next photo"><i class="bi bi-chevron-right"></i></button><span class="ph-count">1 / 5</span></div>
     <div class="body">
       <h3><a href="/apartments/apartment-k.html">Kulambiro Studio Apartment with Balcony</a></h3>
-      <div class="loc"><i class="bi bi-geo-alt"></i> <a href="/furnished-apartments-kulambiro/" class="text-reset">Kulambiro</a>, Kampala · 8 photos</div>
-      <div class="price">UGX 160,000 <span class="fw-normal text-muted">/ night</span></div>
-      <div class="small text-success">Save 15% weekly · 30% monthly</div>
-      <ul><li>Free WiFi</li><li>Balcony View</li><li>Fully Equipped Kitchen</li><li>Daily Cleaning</li></ul>
-      <div class="actions">
-        <a href="/apartments/apartment-k.html" class="btn btn-outline-primary flex-fill">View details</a>
-        <a href="https://wa.me/256704229100?text=Hello%2C%20I%27d%20like%20to%20book%20the%20Kulambiro%20Studio%20Apartment%20with%20Balcony%20%28UGX%20160%2C000/night%29%3A%20https%3A//kampalafurnishedapartments.com/apartments/apartment-k.html%20Is%20it%20available%3F" target="_blank" rel="noopener" class="btn btn-success flex-fill"><i class="bi bi-whatsapp"></i> Book</a>
-      </div>
+      <div class="meta">Studio · Kulambiro, Kampala</div>
+      <div class="price">UGX 160,000 <span>/ night</span></div>
+      <div class="deal">15% off weekly · 30% off monthly</div>
+      <a href="https://wa.me/256704229100?text=Hello%2C%20I%27d%20like%20to%20book%20the%20Kulambiro%20Studio%20Apartment%20with%20Balcony%20%28UGX%20160%2C000/night%29%3A%20https%3A//kampalafurnishedapartments.com/apartments/apartment-k.html%20Is%20it%20available%3F" target="_blank" rel="noopener" class="btn btn-success btn-sm w-100 mt-auto"><i class="bi bi-whatsapp"></i> Book on WhatsApp</a>
     </div>
-  </article>
-</div></div>
+  </article></div></div>
   <div class="row g-4 mt-1">
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Why stay in Kulambiro?</h2><ul class="check"><li><i class="bi bi-check-circle-fill text-success me-2"></i>Calm, green and residential, away from city noise</li><li><i class="bi bi-check-circle-fill text-success me-2"></i>Ideal for rest, remote work and longer stays</li><li><i class="bi bi-check-circle-fill text-success me-2"></i>Close to Kisaasi, Najjera and Ntinda for shops and restaurants</li><li><i class="bi bi-check-circle-fill text-success me-2"></i>Secure, private apartments with local hosts nearby</li></ul></div></div>
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Getting around</h2><p class="mb-0">Kulambiro connects by road to Kisaasi, Ntinda and Najjera. Entebbe International Airport is roughly 1 to 1.5 hours away by road, depending on traffic.</p></div></div>
@@ -320,7 +340,7 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
     <div class="row g-4">
       <div class="col-md-5">
         <div class="d-flex align-items-center mb-2">
-          <span class="rounded-circle bg-white text-primary d-flex align-items-center justify-content-center me-3" style="width:52px;height:52px;font-weight:700">FA</span>
+          <span class="me-3"><svg class="logo-mark" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#fff"/><path d="M10 24 24 12l14 12" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V22" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linejoin="round"/><rect x="21" y="28" width="6" height="10" rx="1.5" fill="#20c997"/></svg></span>
           <div><div class="fw-bold">Furnished Apartments Uganda</div><div class="opacity-75">Ntinda · Kisaasi · Kiwatule · Kulambiro, Kampala</div></div>
         </div>
         <p class="opacity-75 mb-0">Fully furnished, Airbnb-style apartments for short and long stays, booked directly with local Ugandan hosts.</p>
@@ -340,7 +360,23 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
   </div>
   <div class="text-center text-white-50 py-2" style="background:rgba(0,0,0,.08);font-size:.92rem">&copy; 2026 Furnished Apartments Uganda. All rights reserved.</div>
 </footer>
-<a class="wa-float" href="https://wa.me/256704229100?text=Hello%2C%20I%20would%20like%20to%20check%20availability%20for%20a%20furnished%20apartment%20in%20Kampala." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+<a class="wa-float d-none d-lg-inline-block" href="https://wa.me/256704229100?text=Hello%2C%20I%20would%20like%20to%20check%20availability%20for%20a%20furnished%20apartment%20in%20Kampala." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+<div class="mobile-bar d-lg-none">
+  <a class="btn btn-success" href="https://wa.me/256704229100?text=Hello%2C%20I%20would%20like%20to%20check%20availability%20for%20a%20furnished%20apartment%20in%20Kampala." target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+  <a class="btn btn-outline-primary" href="tel:+256778663411"><i class="bi bi-telephone-fill"></i> Call</a>
+</div>
+<script>
+  // photo arrows on apartment cards
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.ph-prev, .ph-next'); if (!b) return;
+    e.preventDefault();
+    var ph = b.closest('.ph'), imgs = ph.querySelectorAll('img'), n = imgs.length;
+    var i = ((+ph.dataset.i || 0) + (b.classList.contains('ph-next') ? 1 : -1) + n) % n;
+    [i, (i + 1) % n].forEach(function (k) { var im = imgs[k]; if (im.dataset.src) { im.src = im.dataset.src; im.removeAttribute('data-src'); } });
+    ph.dataset.i = i; ph.querySelector('.ph-track').style.transform = 'translateX(' + (-100 * i) + '%)';
+    ph.querySelector('.ph-count').textContent = (i + 1) + ' / ' + n;
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>
