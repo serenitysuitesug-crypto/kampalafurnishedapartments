@@ -575,7 +575,7 @@ def build_index(apts, counts):
 <main>
 <section class="container pt-4 pb-2" id="apartments">
   <h2 class="fw-bold mb-1">Our Furnished Apartments</h2>
-  <p class="lead-muted mb-3">{len(apts)} apartments with free WiFi and a full kitchen. Tap one for all photos and details.</p>
+  <p class="lead-muted mb-3">You can choose your preferred location.</p>
   <div class="chips-bar">
     <div class="chips" role="group" aria-label="Filter by area">{area_chips}</div>
     <div class="chips" role="group" aria-label="Filter by type">{type_chips}</div>
