@@ -25,6 +25,20 @@ CALL_DISPLAY = "+256 778 663411"
 ADS_ID = "AW-17287370504"
 ADS_CONVERSION = "AW-17287370504/txkQCNKT0J8bEIiuobNA"
 TODAY = datetime.date.today().isoformat()
+GOOGLE_PROFILE = "https://www.google.com/maps?cid=17499836862195176242"  # Google Business Profile
+BUSINESS_GEO = (0.3675737, 32.6198788)
+
+def map_block(lat, lng, heading):
+    return f"""<div class="info-card">
+        <h2 class="h4">{heading}</h2>
+        <div class="ratio ratio-16x9 rounded overflow-hidden mb-3" style="background:#dde1ea">
+          <iframe src="https://www.google.com/maps?q={lat},{lng}&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing the apartment location" style="border:0" allowfullscreen></iframe>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-outline-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination={lat},{lng}" target="_blank" rel="noopener"><i class="bi bi-sign-turn-right"></i> Get directions</a>
+          <a class="btn btn-outline-secondary btn-sm" href="{GOOGLE_PROFILE}" target="_blank" rel="noopener"><i class="bi bi-star-fill text-warning"></i> See our Google reviews</a>
+        </div>
+      </div>"""
 CHECKIN, CHECKOUT = "1:00 PM", "11:00 AM"
 WEEKLY_NIGHTS, WEEKLY_OFF = 7, 15     # 15% off stays of 7 nights or more
 MONTHLY_NIGHTS, MONTHLY_OFF = 30, 30  # 30% off stays of 30 nights or more
@@ -292,6 +306,7 @@ def footer(counts):
         <div><i class="bi bi-whatsapp"></i> <a href="https://wa.me/{WHATSAPP}" target="_blank" rel="noopener">+256 704 229100</a></div>
         <div><i class="bi bi-whatsapp"></i> <a href="https://wa.me/{WHATSAPP_2}" target="_blank" rel="noopener">+256 780 228391</a></div>
         <div><i class="bi bi-telephone-fill"></i> <a href="tel:{CALL}">{CALL_DISPLAY}</a></div>
+        <div class="mt-2"><i class="bi bi-star-fill text-warning"></i> <a href="{GOOGLE_PROFILE}" target="_blank" rel="noopener">Our reviews on Google</a></div>
       </div>
     </div>
   </div>
@@ -339,6 +354,9 @@ def business_schema(apts):
         "@id": f"{SITE}/#business",
         "name": BRAND,
         "url": SITE + "/",
+        "hasMap": GOOGLE_PROFILE,
+        "sameAs": [GOOGLE_PROFILE],
+        "geo": {"@type": "GeoCoordinates", "latitude": BUSINESS_GEO[0], "longitude": BUSINESS_GEO[1]},
         "image": f"{SITE}/images/hero.webp",
         "telephone": CALL,
         "priceRange": f"UGX {min(prices):,} – {max(prices):,} per night",
@@ -521,7 +539,7 @@ def build_apartment(a, idx, apts, counts):
     desc = (f"{t['label']} in {a['location']}, Kampala for {ugx(a['price'])} per night. "
             f"{', '.join(feats[:3])}. See {len(a['gallery'])} photos and book directly on WhatsApp.")
     msg = f"Hello, I'd like to book the {a['name']} ({ugx(a['price'])}/night): {url} Is it available? My dates are: "
-    lat, lng = area['geo']
+    lat, lng = a.get('geo') or area['geo']
     schema = {"@context": "https://schema.org", "@graph": [
         {"@type": "Apartment", "@id": url + "#apartment", "name": name, "url": url,
          "description": opener + " " + para2,
@@ -566,6 +584,7 @@ def build_apartment(a, idx, apts, counts):
         <h3 class="h5 mt-3">The area: {a['location']}</h3>
         <p class="mb-0">{esc(para3)} <a href="/{area['slug']}/">More about staying in {a['location']}</a>.</p>
       </div>
+      {map_block(lat, lng, "Location") if a.get('geo') else ""}
       <div class="info-card">
         <h2 class="h4">Amenities</h2>
         <ul class="check">{feat_list}</ul>
@@ -606,6 +625,7 @@ def build_apartment(a, idx, apts, counts):
 
 def build_area(name, area, apts, counts):
     here = [a for a in apts if a['location'] == name]
+    pinned = [a for a in here if a.get('geo')]
     url = f"{SITE}/{area['slug']}/"
     low = min(a['price'] for a in here)
     kinds = sorted({TYPES[a['title']]['short'].lower() for a in here}, key=lambda k: ["studio", "one-bedroom", "three-bedroom"].index(k))
@@ -646,6 +666,7 @@ def build_area(name, area, apts, counts):
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Why stay in {name}?</h2><ul class="check">{why}</ul></div></div>
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Getting around</h2><p class="mb-0">{esc(area['around'])}</p></div></div>
   </div>
+  {map_block(*pinned[0]['geo'], f"Our {name} location") if pinned else ""}
   <section class="faq mt-2">
     <h2 class="h4 fw-bold mb-3">Questions about staying in {name}</h2>
     {faq_html(faqs)}

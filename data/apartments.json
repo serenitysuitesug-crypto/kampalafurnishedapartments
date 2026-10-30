@@ -18,7 +18,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "A"
+    "ref": "A",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Modern Studio Apartment in Ntinda",
@@ -40,7 +44,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "B"
+    "ref": "B",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Bright Studio Apartment in Ntinda",
@@ -62,7 +70,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "C"
+    "ref": "C",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Ntinda Studio Apartment with Balcony",
@@ -83,7 +95,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "D"
+    "ref": "D",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Stylish Studio Apartment in Ntinda",
@@ -104,7 +120,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "E"
+    "ref": "E",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Comfortable Studio Apartment in Ntinda",
@@ -124,7 +144,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "F"
+    "ref": "F",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Furnished Studio with Kitchen in Ntinda",
@@ -143,7 +167,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "G"
+    "ref": "G",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Ntinda Studio with Daily Cleaning",
@@ -163,7 +191,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "H"
+    "ref": "H",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Contemporary Studio Apartment in Ntinda",
@@ -185,7 +217,11 @@
       "Fully Equipped Kitchen",
       "Daily Cleaning"
     ],
-    "ref": "I"
+    "ref": "I",
+    "geo": [
+      0.3675737,
+      32.6198788
+    ]
   },
   {
     "name": "Premium Studio Apartment in Kulambiro",
