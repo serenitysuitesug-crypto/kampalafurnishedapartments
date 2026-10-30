@@ -64,6 +64,7 @@ def map_block(lat, lng, heading, profile=None):
         </div>
       </div>"""
 CHECKIN, CHECKOUT = "1:00 PM", "11:00 AM"
+PICKUP_PRICE = 180000  # airport pickup, per trip
 WEEKLY_NIGHTS, WEEKLY_OFF = 7, 15     # 15% off stays of 7 nights or more
 MONTHLY_NIGHTS, MONTHLY_OFF = 30, 30  # 30% off stays of 30 nights or more
 
@@ -517,7 +518,7 @@ def build_index(apts, counts):
          f"Send us a WhatsApp message on <a href='https://wa.me/{WHATSAPP}'>+256 704 229100</a> with your dates and the apartment you like, or call {CALL_DISPLAY}. A local host replies personally to confirm availability and arrange check-in."),
         *STAY_FAQS,
         ("How far are the apartments from Entebbe Airport? Do you offer airport pickup?",
-         "Entebbe International Airport is roughly 1 to 1.5 hours away by road, depending on traffic. We can arrange an airport pickup at an extra cost; send your flight details on WhatsApp for a price. Read our <a href='/guides/entebbe-airport-to-ntinda/'>airport transfer guide</a> for all the options."),
+         f"Entebbe International Airport is roughly 1 to 1.5 hours away by road, depending on traffic. We offer airport pickup for {ugx(PICKUP_PRICE)} per trip; send your flight number and arrival time on WhatsApp to book it. Read our <a href='/guides/entebbe-airport-to-ntinda/'>airport transfer guide</a> for all the options."),
     ]
     schema = {"@context": "https://schema.org", "@graph": [
         business_schema(apts),
@@ -854,7 +855,7 @@ def fill_guide(text, apts, counts):
             "ntinda_count": str(counts.get("Ntinda", 0)), "kisaasi_count": str(counts.get("Kisaasi", 0)),
             "whatsapp_link": esc(wa_link("Hello, I'm planning a stay in Kampala and have a question.")),
             "call": CALL_DISPLAY, "checkin": CHECKIN, "checkout": CHECKOUT,
-            "weekly_off": str(WEEKLY_OFF), "monthly_off": str(MONTHLY_OFF)}
+            "weekly_off": str(WEEKLY_OFF), "monthly_off": str(MONTHLY_OFF), "pickup_price": ugx(PICKUP_PRICE)}
     for k, v in vals.items():
         text = text.replace("{" + k + "}", v)
     return text

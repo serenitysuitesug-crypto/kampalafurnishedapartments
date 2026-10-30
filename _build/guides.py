@@ -4,7 +4,7 @@ Travel guide articles. Each guide becomes a page at /guides/<slug>/.
 Body text is HTML. Placeholders in {curly braces} are filled in by build.py
 from the live apartment data, so prices stay correct when apartments change:
   {ntinda_from} {kisaasi_from} {ntinda_count} {kisaasi_count}
-  {whatsapp_link} {call} {checkin} {checkout} {weekly_off} {monthly_off}
+  {whatsapp_link} {call} {checkin} {checkout} {weekly_off} {monthly_off} {pickup_price}
 To add a guide, copy one of the dictionaries below and change its fields.
 """
 
@@ -25,14 +25,14 @@ GUIDES = [
 <ul>
   <li><strong>Distance:</strong> about 40–45 km by road</li>
   <li><strong>Travel time:</strong> around 1 to 1.5 hours; allow up to 2 hours on weekday mornings and evenings</li>
-  <li><strong>Easiest option:</strong> our airport pickup (extra cost), an airport taxi or an Uber</li>
+  <li><strong>Easiest option:</strong> our airport pickup ({pickup_price}), an airport taxi or an Uber</li>
   <li><strong>Expressway toll:</strong> UGX 5,000 per car, paid in cash (Ugandan shillings only) at the toll plaza</li>
 </ul>
 
 <h2>Your transport options</h2>
 
 <h3>1. Book an airport pickup with us</h3>
-<p>If you're staying with us, the simplest option is our airport pickup, available at an extra cost. Send us your flight number and arrival time on <a href="{whatsapp_link}">WhatsApp</a> and we'll confirm the price and arrange a driver to meet you at arrivals and bring you straight to your apartment. It's the least stressful choice after a long flight, especially if you land at night.</p>
+<p>If you're staying with us, the simplest option is our airport pickup for <strong>{pickup_price}</strong> per trip. Send us your flight number and arrival time on <a href="{whatsapp_link}">WhatsApp</a> and we'll arrange a driver to meet you at arrivals and bring you straight to your apartment. It's the least stressful choice after a long flight, especially if you land at night.</p>
 
 <h3>2. Uber</h3>
 <p>Uber operates at Entebbe Airport, and ride-hailing apps are widely used across Kampala. Open the app once you have mobile data or the airport WiFi, check the fare estimate, and follow the in-app directions to the pickup point. Fares change with demand and traffic, so compare the estimate before you confirm.</p>
@@ -68,7 +68,7 @@ GUIDES = [
             ("Does Uber work at Entebbe Airport?",
              "Yes. Uber operates pickups at Entebbe International Airport. Check the app for the current fare estimate and pickup point."),
             ("Can you arrange an airport pickup?",
-             "Yes, at an extra cost. If you're staying with us, send your flight number and arrival time on WhatsApp and we'll confirm the price and arrange a driver to meet you at arrivals."),
+             "Yes. Our airport pickup costs {pickup_price} per trip. Send your flight number and arrival time on WhatsApp and we'll arrange a driver to meet you at arrivals."),
         ],
     },
     {
