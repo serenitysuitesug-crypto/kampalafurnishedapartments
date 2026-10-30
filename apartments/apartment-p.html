@@ -9,7 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <meta name="theme-color" content="#0d6efd">
+  <meta name="theme-color" content="#1b2a41">
   <meta name="google-site-verification" content="rLjEVKRM0qckd3z85iLLPBOh2bBnLd7H-qq3cSN0mAA" />
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Furnished Apartments Uganda">
@@ -170,11 +170,18 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-:root{--brand:#0d6efd;--brand-dark:#0a58ca;--ink:#1d2433;--muted:#5c6577;--bg:#f5f6fa;--card:#fff;--line:#e6e8ef;--ok:#198754}
+:root{--brand:#1b2a41;--brand-dark:#8a6420;--navy:#1b2a41;--navy-2:#2a3d5c;--gold:#b8892e;--gold-light:#e3c27a;--ink:#1d2433;--muted:#5c6577;--bg:#f5f6fa;--card:#fff;--line:#e6e8ef;--ok:#198754}
 *{box-sizing:border-box}
 body{background:var(--bg);font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);font-size:1.02rem;line-height:1.65}
 h1,h2,h3,h4,.navbar-brand,.btn{font-weight:700;letter-spacing:.2px}
 a{color:var(--brand-dark)}
+:root{--bs-primary:#1b2a41;--bs-primary-rgb:27,42,65;--bs-link-color:#8a6420;--bs-link-color-rgb:138,100,32;--bs-link-hover-color:#6b4c14;--bs-link-hover-color-rgb:107,76,20}
+.btn-primary{--bs-btn-bg:#1b2a41;--bs-btn-border-color:#1b2a41;--bs-btn-hover-bg:#2a3d5c;--bs-btn-hover-border-color:#2a3d5c;--bs-btn-active-bg:#142033;--bs-btn-active-border-color:#142033}
+.btn-outline-primary{--bs-btn-color:#1b2a41;--bs-btn-border-color:#1b2a41;--bs-btn-hover-bg:#1b2a41;--bs-btn-hover-border-color:#1b2a41;--bs-btn-active-bg:#142033;--bs-btn-active-border-color:#142033}
+.navbar.bg-primary{border-bottom:2px solid var(--gold)}
+footer.bg-primary{border-top:3px solid var(--gold)}
+footer a:hover,.navbar-dark .nav-link:hover{color:var(--gold-light)!important}
+.dropdown-item:active{background:var(--navy)}
 .logo-mark{display:block;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.18))}
 .brand-text{font-size:1rem;line-height:1.1;display:flex;flex-direction:column}
 .brand-text small{font-weight:400;opacity:.8;font-size:.75rem;letter-spacing:.5px;margin-top:2px}
@@ -182,7 +189,7 @@ a{color:var(--brand-dark)}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55))}
 .hero .inner{position:relative;z-index:1;padding:6.5rem 0 4.5rem;text-align:center;color:#fff}
 .hero h1{font-size:clamp(2rem,5vw,3.2rem)}
-.price-pill{display:inline-block;margin-top:1rem;padding:.55rem 1.2rem;border-radius:50px;background:linear-gradient(135deg,#28a745,#20c997);font-weight:700;color:#fff;box-shadow:0 4px 12px rgba(40,167,69,.3)}
+.price-pill{display:inline-block;margin-top:1rem;padding:.55rem 1.2rem;border-radius:50px;background:var(--gold);font-weight:700;color:#fff;box-shadow:0 4px 12px rgba(184,137,46,.35)}
 .form-availability{background:#fff;border:1px solid var(--line);border-radius:.75rem;box-shadow:0 .5rem 1rem rgba(0,0,0,.04);padding:1.25rem}
 .apt-card{background:var(--card);border:1px solid var(--line);border-radius:.85rem;overflow:hidden;height:100%;display:flex;flex-direction:column;transition:box-shadow .2s}
 .apt-card:hover{box-shadow:0 10px 24px rgba(20,30,60,.09)}
@@ -205,7 +212,7 @@ a{color:var(--brand-dark)}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:50px;padding:.38rem .9rem;font-size:.9rem;font-weight:600;white-space:nowrap}
 .chip span{color:var(--muted);font-weight:400;margin-left:.15rem}
-.chip.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.active{background:var(--navy);border-color:var(--navy);color:#fff}
 .chip.active span{color:#c9cfdb}
 .apt-group{margin-top:1.25rem}
 .group-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
@@ -225,10 +232,10 @@ a{color:var(--brand-dark)}
 .section h2{margin-bottom:1rem}
 .lead-muted{color:var(--muted);max-width:760px}
 .area-card{display:block;background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:1.25rem;text-decoration:none;color:var(--ink);height:100%}
-.area-card:hover{border-color:var(--brand)}
+.area-card:hover{border-color:var(--gold)}
 .area-card .count{color:var(--muted);font-size:.92rem}
 .benefit{background:#fff;border-radius:.75rem;padding:1.5rem;height:100%;text-align:center;border:1px solid var(--line)}
-.benefit i{font-size:1.8rem;color:var(--brand)}
+.benefit i{font-size:1.8rem;color:var(--gold)}
 .faq details{background:#fff;border:1px solid var(--line);border-radius:.6rem;padding:1rem 1.2rem;margin-bottom:.75rem}
 .faq summary{font-weight:700;cursor:pointer}
 .faq details p{margin:.75rem 0 0;color:var(--muted)}
@@ -276,7 +283,7 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <svg class="logo-mark" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#fff"/><path d="M10 24 24 12l14 12" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V22" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linejoin="round"/><rect x="21" y="28" width="6" height="10" rx="1.5" fill="#20c997"/></svg>
+      <svg class="logo-mark" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#fff"/><path d="M10 24 24 12l14 12" fill="none" stroke="#1b2a41" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V22" fill="none" stroke="#1b2a41" stroke-width="4" stroke-linejoin="round"/><rect x="21" y="28" width="6" height="10" rx="1.5" fill="#b8892e"/></svg>
       <span class="ms-2 brand-text">Furnished Apartments<small>Kampala · Uganda</small></span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Open menu">
@@ -396,7 +403,7 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
     <div class="row g-4">
       <div class="col-md-5">
         <div class="d-flex align-items-center mb-2">
-          <span class="me-3"><svg class="logo-mark" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#fff"/><path d="M10 24 24 12l14 12" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V22" fill="none" stroke="#0d6efd" stroke-width="4" stroke-linejoin="round"/><rect x="21" y="28" width="6" height="10" rx="1.5" fill="#20c997"/></svg></span>
+          <span class="me-3"><svg class="logo-mark" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#fff"/><path d="M10 24 24 12l14 12" fill="none" stroke="#1b2a41" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 22v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V22" fill="none" stroke="#1b2a41" stroke-width="4" stroke-linejoin="round"/><rect x="21" y="28" width="6" height="10" rx="1.5" fill="#b8892e"/></svg></span>
           <div><div class="fw-bold">Furnished Apartments Uganda</div><div class="opacity-75">Ntinda · Kisaasi · Kiwatule · Kulambiro, Kampala</div></div>
         </div>
         <p class="opacity-75 mb-0">Fully furnished, Airbnb-style apartments for short and long stays, booked directly with local Ugandan hosts.</p>
