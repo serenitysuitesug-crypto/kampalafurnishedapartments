@@ -585,18 +585,6 @@ def build_index(apts, counts):
   <p id="no-results" class="text-muted mt-3" hidden>No apartments match those filters. <a href="#" onclick="resetFilters();return false;">Show all apartments</a>.</p>
 </section>
 
-<section class="container mb-4" id="form">
-  <div class="form-availability">
-    <h2 class="h5 fw-bold mb-3"><i class="bi bi-calendar-check text-success"></i> Check availability for your dates</h2>
-    <form class="row g-2 align-items-end" onsubmit="sendWhatsApp();return false;">
-      <div class="col-6 col-lg-3"><label for="checkin" class="form-label mb-1">Check-in</label><input type="date" class="form-control" id="checkin"></div>
-      <div class="col-6 col-lg-3"><label for="checkout" class="form-label mb-1">Check-out</label><input type="date" class="form-control" id="checkout"></div>
-      <div class="col-12 col-lg-3"><label for="form-area" class="form-label mb-1">Area</label><select id="form-area" class="form-select"><option value="">Any area</option>{locs}</select></div>
-      <div class="col-12 col-lg-3 d-grid"><button type="submit" class="btn btn-success"><i class="bi bi-whatsapp"></i> Ask on WhatsApp</button></div>
-    </form>
-    <p class="small text-muted mb-0 mt-2">Check-in from {CHECKIN} · Check-out by {CHECKOUT} · {WEEKLY_OFF}% off 7+ nights, {MONTHLY_OFF}% off 30+ nights</p>
-  </div>
-</section>
 
 <section class="section bg-white" id="areas">
   <div class="container">
@@ -657,7 +645,7 @@ def build_index(apts, counts):
   function resetFilters() {{ state = {{area: '', kind: ''}}; setChip('area', ''); setChip('kind', ''); filterApartments(); }}
   document.querySelectorAll('.chip').forEach(function (c) {{
     c.addEventListener('click', function () {{
-      if ('area' in c.dataset) {{ state.area = c.dataset.area; setChip('area', state.area); if (state.area) document.getElementById('form-area').value = state.area; }}
+      if ('area' in c.dataset) {{ state.area = c.dataset.area; setChip('area', state.area); }}
       else {{ state.kind = c.dataset.kind; setChip('kind', state.kind); }}
       filterApartments();
     }});
@@ -667,16 +655,6 @@ def build_index(apts, counts):
     g.querySelector('.row-prev').onclick = function () {{ row.scrollBy({{left: -row.clientWidth * 0.9, behavior: 'smooth'}}); }};
     g.querySelector('.row-next').onclick = function () {{ row.scrollBy({{left: row.clientWidth * 0.9, behavior: 'smooth'}}); }};
   }});
-  function sendWhatsApp() {{
-    var v = function (id) {{ return document.getElementById(id).value; }};
-    var msg = "Hello, I'd like to check availability for a furnished apartment in Kampala." +
-      "\\nCheck-in: " + (v('checkin') || 'Not specified') +
-      "\\nCheck-out: " + (v('checkout') || 'Not specified') +
-      "\\nArea: " + (v('form-area') || 'Any') +
-      (state.kind ? "\\nApartment type: " + state.kind : "");
-    gtag('event', 'conversion', {{'send_to': '{ADS_CONVERSION}'}});
-    window.open('https://wa.me/{WHATSAPP}?text=' + encodeURIComponent(msg), '_blank');
-  }}
 </script>
 </body>
 </html>
