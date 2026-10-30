@@ -586,13 +586,6 @@ def build_index(apts, counts):
 </section>
 
 
-<section class="section bg-white" id="areas">
-  <div class="container">
-    <h2 class="fw-bold">Where to Stay in Kampala</h2>
-    <p class="lead-muted mb-4">Our apartments are in four neighbourhoods in north-east Kampala, each with its own feel. Pick the one that suits your trip.</p>
-    <div class="row">{area_cards}</div>
-  </div>
-</section>
 
 {reviews_block()}
 
@@ -607,7 +600,15 @@ def build_index(apts, counts):
   </div>
 </section>
 
-<section class="section" id="guides">
+<section class="section" id="areas">
+  <div class="container">
+    <h2 class="fw-bold">Where to Stay in Kampala</h2>
+    <p class="lead-muted mb-4">Our apartments are in four neighbourhoods in north-east Kampala, each with its own feel. Pick the one that suits your trip.</p>
+    <div class="row">{area_cards}</div>
+  </div>
+</section>
+
+<section class="section bg-white" id="guides">
   <div class="container">
     <h2 class="fw-bold mb-1">Kampala Travel Guides</h2>
     <p class="lead-muted mb-3">Practical tips to help you plan your stay.</p>
@@ -713,11 +714,21 @@ def build_apartment(a, idx, apts, counts):
     <div class="col-lg-8">
       <h1 class="fw-bold h2 mb-2">{esc(name)}</h1>
       <p class="mb-3"><span class="badge bg-primary me-2">{a['location']}, Kampala</span><span class="fw-bold text-success fs-5">{ugx(a['price'])}</span> <span class="text-muted">/ night</span></p>
+      <div class="info-card d-lg-none py-3">
+        <div class="d-flex justify-content-between small mb-1"><span>{WEEKLY_NIGHTS}+ nights ({WEEKLY_OFF}% off)</span><strong>{ugx(disc(a['price'], WEEKLY_OFF))} / night</strong></div>
+        <div class="d-flex justify-content-between small mb-2"><span>{MONTHLY_NIGHTS}+ nights ({MONTHLY_OFF}% off)</span><strong>{ugx(disc(a['price'], MONTHLY_OFF))} / night</strong></div>
+        <div class="small text-muted mb-2">Check-in from {CHECKIN} · Check-out by {CHECKOUT}</div>
+        <a href="{wa_link(msg)}" target="_blank" rel="noopener" class="btn btn-success w-100"><i class="bi bi-whatsapp"></i> Book on WhatsApp</a>
+      </div>
       <button type="button" data-full="{full(a['gallery'][0])}" class="border-0 p-0 bg-transparent w-100" style="cursor:zoom-in">
         <img class="main-photo" src="{full(a['gallery'][0])}" width="{mw}" height="{mh}" fetchpriority="high" alt="{esc(a['name'])}, Kampala">
       </button>
       <h2 class="h5 mt-4 mb-2">Photos ({len(a['gallery'])})</h2>
       <div class="thumbs mb-4">{thumbs}</div>
+      <div class="info-card">
+        <h2 class="h4">Amenities</h2>
+        <ul class="check">{feat_list}</ul>
+      </div>
       <div class="info-card">
         <h2 class="h4">About this apartment</h2>
         <p>{esc(opener)}</p>
@@ -726,10 +737,6 @@ def build_apartment(a, idx, apts, counts):
         <p class="mb-0">{esc(para3)} <a href="/{area['slug']}/">More about staying in {a['location']}</a>.</p>
       </div>
       {map_block(lat, lng, "Location", a.get('profile')) if a.get('geo') else ""}
-      <div class="info-card">
-        <h2 class="h4">Amenities</h2>
-        <ul class="check">{feat_list}</ul>
-      </div>
     </div>
     <aside class="col-lg-4">
       <div class="info-card sticky-book">
