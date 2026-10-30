@@ -130,6 +130,8 @@ TYPES = {
                          "suits": "solo travellers, couples and business visitors"},
     "One bedroom apartment": {"short": "One-bedroom", "label": "One-bedroom apartment", "rooms": 2, "beds": 1,
                               "suits": "couples, remote workers and business travellers"},
+    "Two bedroom apartment": {"short": "Two-bedroom", "label": "Two-bedroom apartment", "rooms": 3, "beds": 2,
+                              "suits": "families, small groups and colleagues travelling together"},
     "Three bedroom apartment": {"short": "Three-bedroom", "label": "Three-bedroom apartment", "rooms": 4, "beds": 3,
                                 "suits": "families, groups of friends, work teams and relocations"},
 }
@@ -390,7 +392,7 @@ def footer(counts, wa_msg="Hello, I would like to check availability for a furni
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 """
 
-TYPE_SHORT = {"Studio apartment": "Studio", "One bedroom apartment": "1-Bedroom", "Three bedroom apartment": "3-Bedroom"}
+TYPE_SHORT = {"Studio apartment": "Studio", "One bedroom apartment": "1-Bedroom", "Two bedroom apartment": "2-Bedroom", "Three bedroom apartment": "3-Bedroom"}
 
 def card(a, eager=False, wrap=True):
     msg = f"Hello, I'd like to book the {a['name']} ({ugx(a['price'])}/night): {SITE}{apt_slug(a)} Is it available?"
@@ -479,7 +481,7 @@ def build_index(apts, counts):
         by_type.setdefault(a['title'], []).append(a['price'])
     faqs = [
         ("How much does a furnished apartment in Kampala cost per night?",
-         f"Our studios start from {ugx(min_price)} per night. One-bedroom apartments are from {ugx(min(by_type['One bedroom apartment']))} and three-bedroom apartments from {ugx(min(by_type['Three bedroom apartment']))} per night. There are no booking platform fees because you book directly with us."),
+         f"Our studios start from {ugx(min_price)} per night. " + " ".join(f"{TYPES[t]['short']} apartments are from {ugx(min(by_type[t]))} per night." for t in TYPES if t in by_type and t != 'Studio apartment') + " There are no booking platform fees because you book directly with us."),
         ("Which areas of Kampala are your apartments in?",
          "All our apartments are in north-east Kampala: <a href='/furnished-apartments-ntinda/'>Ntinda</a>, <a href='/furnished-apartments-kisaasi/'>Kisaasi</a>, <a href='/furnished-apartments-kiwatule/'>Kiwatule</a> and <a href='/furnished-apartments-kulambiro/'>Kulambiro</a>."),
         ("What is included in the apartments?",
@@ -500,6 +502,8 @@ def build_index(apts, counts):
     desc = (f"Fully furnished apartments in Ntinda, Kisaasi, Kiwatule and Kulambiro, Kampala, from {ugx(min_price)} per night. "
             f"{WEEKLY_OFF}% off weekly and {MONTHLY_OFF}% off monthly stays. Book directly with local hosts on WhatsApp.")
     locs = "".join(f'<option value="{esc(k)}">{esc(k)}</option>' for k in AREAS if counts.get(k))
+    kinds_present = [TYPES[t]['short'].lower().replace('-bedroom', '') for t in TYPES if t in by_type and t != 'Studio apartment']
+    hero_kinds = "Studios, " + (", ".join(k + "-" for k in kinds_present[:-1]) + " and " + kinds_present[-1] + "-bedroom apartments" if len(kinds_present) > 1 else kinds_present[0] + "-bedroom apartments")
     order = sorted([k for k in AREAS if counts.get(k)], key=lambda k: -counts[k])
     area_chips = '<button type="button" class="chip active" data-area="">All areas</button>' + "".join(
         f'<button type="button" class="chip" data-area="{esc(k)}">{k} <span>{counts[k]}</span></button>' for k in order)
@@ -530,7 +534,7 @@ def build_index(apts, counts):
 <header class="hero">
   <div class="container inner">
     <h1 class="fw-bold mb-3">Airbnb-Style Furnished Apartments in Kampala</h1>
-    <p class="lead mb-0">Studios, one- and three-bedroom apartments in Ntinda, Kisaasi, Kiwatule and Kulambiro.<span class="d-none d-md-inline"><br> Fully furnished · Local hosts · Book directly, no platform fees</span></p>
+    <p class="lead mb-0">{hero_kinds} in Ntinda, Kisaasi, Kiwatule and Kulambiro.<span class="d-none d-md-inline"><br> Fully furnished · Local hosts · Book directly, no platform fees</span></p>
     <span class="price-pill"><i class="bi bi-tag-fill"></i> From {ugx(min_price)} per night</span>
     <a href="#reviews" class="d-inline-block mt-2 ms-md-2 text-white text-decoration-none"><span class="review-stars">{stars_html(REVIEWS['rating'])}</span> <strong>{REVIEWS['rating']}</strong> on Google · {REVIEWS['count']} reviews</a>
     <p class="mt-2 mb-0 d-none d-md-block"><small>Save {WEEKLY_OFF}% on weekly stays and {MONTHLY_OFF}% on monthly stays · Check-in {CHECKIN}, check-out {CHECKOUT}</small></p>
@@ -751,7 +755,7 @@ def build_area(name, area, apts, counts):
     pinned = [a for a in here if a.get('geo')]
     url = f"{SITE}/{area['slug']}/"
     low = min(a['price'] for a in here)
-    kinds = sorted({TYPES[a['title']]['short'].lower() for a in here}, key=lambda k: ["studio", "one-bedroom", "three-bedroom"].index(k))
+    kinds = sorted({TYPES[a['title']]['short'].lower() for a in here}, key=lambda k: ["studio", "one-bedroom", "two-bedroom", "three-bedroom"].index(k))
     kinds_text = (", ".join(kinds[:-1]) + " and " + kinds[-1]) if len(kinds) > 1 else kinds[0]
     title = f"Furnished Apartments in {name}, Kampala | From UGX {low:,}/Night"
     desc = (f"{len(here)} fully furnished {kinds_text} apartment{'s' if len(here)>1 else ''} in {name}, Kampala, from {ugx(low)} per night. "
