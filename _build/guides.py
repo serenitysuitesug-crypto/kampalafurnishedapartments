@@ -25,14 +25,14 @@ GUIDES = [
 <ul>
   <li><strong>Distance:</strong> about 40–45 km by road</li>
   <li><strong>Travel time:</strong> around 1 to 1.5 hours; allow up to 2 hours on weekday mornings and evenings</li>
-  <li><strong>Easiest option:</strong> a pre-arranged pickup, an airport taxi or an Uber</li>
+  <li><strong>Easiest option:</strong> our airport pickup (extra cost), an airport taxi or an Uber</li>
   <li><strong>Expressway toll:</strong> UGX 5,000 per car, paid in cash (Ugandan shillings only) at the toll plaza</li>
 </ul>
 
 <h2>Your transport options</h2>
 
-<h3>1. Ask us to arrange a pickup</h3>
-<p>If you're staying with us, the simplest option is to let us help. Send us your flight number and arrival time on <a href="{whatsapp_link}">WhatsApp</a> and we'll help you arrange a driver to meet you at arrivals. It's the least stressful choice after a long flight, especially if you land at night.</p>
+<h3>1. Book an airport pickup with us</h3>
+<p>If you're staying with us, the simplest option is our airport pickup, available at an extra cost. Send us your flight number and arrival time on <a href="{whatsapp_link}">WhatsApp</a> and we'll confirm the price and arrange a driver to meet you at arrivals and bring you straight to your apartment. It's the least stressful choice after a long flight, especially if you land at night.</p>
 
 <h3>2. Uber</h3>
 <p>Uber operates at Entebbe Airport, and ride-hailing apps are widely used across Kampala. Open the app once you have mobile data or the airport WiFi, check the fare estimate, and follow the in-app directions to the pickup point. Fares change with demand and traffic, so compare the estimate before you confirm.</p>
@@ -68,7 +68,7 @@ GUIDES = [
             ("Does Uber work at Entebbe Airport?",
              "Yes. Uber operates pickups at Entebbe International Airport. Check the app for the current fare estimate and pickup point."),
             ("Can you arrange an airport pickup?",
-             "Yes. If you're staying with us, send your flight details on WhatsApp and we'll help you arrange a driver to meet you at arrivals."),
+             "Yes, at an extra cost. If you're staying with us, send your flight number and arrival time on WhatsApp and we'll confirm the price and arrange a driver to meet you at arrivals."),
         ],
     },
     {

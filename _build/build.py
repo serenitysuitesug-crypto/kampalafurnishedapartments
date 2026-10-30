@@ -516,8 +516,8 @@ def build_index(apts, counts):
         ("How do I book?",
          f"Send us a WhatsApp message on <a href='https://wa.me/{WHATSAPP}'>+256 704 229100</a> with your dates and the apartment you like, or call {CALL_DISPLAY}. A local host replies personally to confirm availability and arrange check-in."),
         *STAY_FAQS,
-        ("How far are the apartments from Entebbe Airport?",
-         "Entebbe International Airport is roughly 1 to 1.5 hours away by road, depending on traffic. Ask us on WhatsApp if you would like help arranging transport."),
+        ("How far are the apartments from Entebbe Airport? Do you offer airport pickup?",
+         "Entebbe International Airport is roughly 1 to 1.5 hours away by road, depending on traffic. We can arrange an airport pickup at an extra cost; send your flight details on WhatsApp for a price. Read our <a href='/guides/entebbe-airport-to-ntinda/'>airport transfer guide</a> for all the options."),
     ]
     schema = {"@context": "https://schema.org", "@graph": [
         business_schema(apts),
