@@ -27,6 +27,26 @@ ADS_CONVERSION = "AW-17287370504/txkQCNKT0J8bEIiuobNA"
 TODAY = datetime.date.today().isoformat()
 GOOGLE_PROFILE = "https://www.google.com/maps?cid=17499836862195176242"  # Google Business Profile
 BUSINESS_GEO = (0.3675737, 32.6198788)
+REVIEWS = json.load(open(os.path.join(ROOT, "data/reviews.json")))
+
+def stars_html(n):
+    n = round(n * 2) / 2
+    return "".join('<i class="bi bi-star-fill"></i>' if i + 1 <= n else ('<i class="bi bi-star-half"></i>' if i + 0.5 == n else '<i class="bi bi-star"></i>') for i in range(5))
+
+def reviews_block(limit=4, heading="What Our Guests Say", wrap=True):
+    items = REVIEWS["reviews"][:limit]
+    cards = "".join(f"""<div class="col-md-6 {'col-lg-3' if limit >= 4 else ''} mb-3"><figure class="review h-100">
+        <div class="review-stars" aria-label="{r['stars']} out of 5 stars">{stars_html(r['stars'])}</div>
+        <blockquote class="mb-2">{esc(r['text'])}</blockquote>
+        <figcaption>{esc(r['name'])} <span class="text-muted">· Google review</span></figcaption>
+      </figure></div>""" for r in items)
+    inner = f"""<div class="d-flex flex-wrap align-items-end justify-content-between gap-2 mb-3">
+      <div><h2 class="fw-bold {'h4' if not wrap else ''} mb-1">{heading}</h2>
+      <div><span class="review-stars">{stars_html(REVIEWS['rating'])}</span> <strong>{REVIEWS['rating']}</strong> on Google from {REVIEWS['count']} reviews</div></div>
+      <a class="btn btn-outline-primary btn-sm" href="{GOOGLE_PROFILE}" target="_blank" rel="noopener">Read all reviews on Google</a>
+    </div>
+    <div class="row">{cards}</div>"""
+    return f'<section class="section" id="reviews"><div class="container">{inner}</div></section>' if wrap else f'<section class="mt-4" id="reviews">{inner}</section>'
 
 def map_block(lat, lng, heading):
     return f"""<div class="info-card">
@@ -179,6 +199,10 @@ footer a{color:#fff}
 footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
 .wa-float{position:fixed;right:16px;bottom:16px;z-index:50;background:#25d366;color:#fff;border-radius:50px;padding:.7rem 1.1rem;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.2)}
 .wa-float:hover{color:#fff;background:#1ebe57}
+.review{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:1.1rem;margin:0;display:flex;flex-direction:column}
+.review blockquote{font-size:.95rem;color:var(--ink);flex:1}
+.review figcaption{font-weight:700;font-size:.9rem}
+.review-stars{color:#f5a623;letter-spacing:1px}
 @media (max-width:576px){.apt-card img{height:220px}.hero .inner{padding-top:5.5rem}}
 """
 
@@ -361,7 +385,7 @@ def business_schema(apts):
         "telephone": CALL,
         "priceRange": f"UGX {min(prices):,} – {max(prices):,} per night",
         "currenciesAccepted": "UGX",
-        "address": {"@type": "PostalAddress", "addressLocality": "Kampala",
+        "address": {"@type": "PostalAddress", "streetAddress": "Namuganza Road, Ntinda", "addressLocality": "Kampala",
                     "addressRegion": "Central Region", "addressCountry": "UG"},
         "areaServed": [{"@type": "Place", "name": f"{k}, Kampala"} for k in AREAS],
         "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": True},
@@ -435,6 +459,7 @@ def build_index(apts, counts):
     <h1 class="fw-bold mb-3">Airbnb-Style Furnished Apartments in Kampala</h1>
     <p class="lead mb-0">Studios, one- and three-bedroom apartments in Ntinda, Kisaasi, Kiwatule and Kulambiro.<br class="d-none d-md-inline"> Fully furnished · Local hosts · Book directly, no platform fees</p>
     <span class="price-pill"><i class="bi bi-tag-fill"></i> From {ugx(min_price)} per night</span>
+    <a href="#reviews" class="d-inline-block mt-2 ms-md-2 text-white text-decoration-none"><span class="review-stars">{stars_html(REVIEWS['rating'])}</span> <strong>{REVIEWS['rating']}</strong> on Google · {REVIEWS['count']} reviews</a>
     <p class="mt-2 mb-0"><small>Save {WEEKLY_OFF}% on weekly stays and {MONTHLY_OFF}% on monthly stays · Check-in {CHECKIN}, check-out {CHECKOUT}</small></p>
     <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4">
       <a href="#apartments" class="btn btn-success btn-lg shadow"><i class="bi bi-house-door"></i> See apartments</a>
@@ -471,7 +496,9 @@ def build_index(apts, counts):
   </div>
 </section>
 
-<section class="section" id="why-us">
+{reviews_block()}
+
+<section class="section bg-white" id="why-us">
   <div class="container">
     <h2 class="fw-bold text-center mb-4">Why Book Directly With Us?</h2>
     <div class="row g-3">
@@ -482,7 +509,7 @@ def build_index(apts, counts):
   </div>
 </section>
 
-<section class="section bg-white faq" id="faq">
+<section class="section faq" id="faq">
   <div class="container" style="max-width:860px">
     <h2 class="fw-bold mb-4">Frequently Asked Questions</h2>
     {faq_html(faqs)}
@@ -611,6 +638,7 @@ def build_apartment(a, idx, apts, counts):
       </div>
     </aside>
   </div>
+  {reviews_block(limit=2, heading="What Guests Say", wrap=False) if a.get('geo') else ""}
   <section class="mt-4">
     <h2 class="h4 fw-bold mb-3">More furnished apartments {"in " + a['location'] if any(o['location']==a['location'] for o in others) else "you may like"}</h2>
     <div class="row">{other_cards}</div>
@@ -667,6 +695,7 @@ def build_area(name, area, apts, counts):
     <div class="col-lg-6"><div class="info-card h-100"><h2 class="h4">Getting around</h2><p class="mb-0">{esc(area['around'])}</p></div></div>
   </div>
   {map_block(*pinned[0]['geo'], f"Our {name} location") if pinned else ""}
+  {reviews_block(limit=4, heading=f"Guests on Our {name} Apartments", wrap=False) if pinned else ""}
   <section class="faq mt-2">
     <h2 class="h4 fw-bold mb-3">Questions about staying in {name}</h2>
     {faq_html(faqs)}
