@@ -562,10 +562,9 @@ def build_index(apts, counts):
 <header class="hero">
   <div class="container inner">
     <h1 class="fw-bold mb-3">Airbnb-Style Furnished Apartments in Kampala</h1>
-    <p class="lead mb-0">{hero_kinds} in Ntinda, Kisaasi, Kiwatule and Kulambiro.<span class="d-none d-md-inline"><br> Fully furnished · Local hosts · Book directly, no platform fees</span></p>
+    <p class="lead mb-0"><i class="bi bi-geo-alt"></i> Ntinda · Kisaasi · Kiwatule · Kulambiro</p>
     <span class="price-pill"><i class="bi bi-tag-fill"></i> From {ugx(min_price)} per night</span>
     <a href="#reviews" class="d-inline-block mt-2 ms-md-2 text-white text-decoration-none"><span class="review-stars">{stars_html(REVIEWS['rating'])}</span> <strong>{REVIEWS['rating']}</strong> on Google · {REVIEWS['count']} reviews</a>
-    <p class="mt-2 mb-0 d-none d-md-block"><small>Save {WEEKLY_OFF}% on weekly stays and {MONTHLY_OFF}% on monthly stays · Check-in {CHECKIN}, check-out {CHECKOUT}</small></p>
     <div class="d-none d-md-flex justify-content-center gap-3 mt-4">
       <a href="#apartments" class="btn btn-success btn-lg shadow"><i class="bi bi-house-door"></i> See apartments</a>
       <a href="tel:{CALL}" class="btn btn-outline-light btn-lg shadow"><i class="bi bi-telephone-fill"></i> Call {CALL_DISPLAY}</a>
