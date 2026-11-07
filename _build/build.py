@@ -574,6 +574,7 @@ def build_index(apts, counts):
 
 <main>
 <section class="container pt-4 pb-2" id="apartments">
+  <span id="form" aria-hidden="true"></span>
   <h2 class="fw-bold mb-1">Our Furnished Apartments</h2>
   <p class="lead-muted mb-3">You can choose your preferred location.</p>
   <div class="chips-bar">
