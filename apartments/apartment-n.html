@@ -234,6 +234,9 @@ table.compare thead th{background:var(--navy);color:#fff}
 .guide-card:hover{border-color:var(--gold)}
 .guide-card i{font-size:1.6rem;color:var(--gold);flex:none}
 .guide-card p{color:var(--muted);font-size:.92rem;margin:0}
+.unit{scroll-margin-top:84px}
+a.chip{text-decoration:none}
+.unit .main-photo{max-height:420px}
 .mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem 12px calc(.6rem + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.06)}
 .mobile-bar .btn{flex:1;font-weight:700;padding:.6rem}
 .mobile-bar .btn-success{flex:1.6}
@@ -404,10 +407,10 @@ footer .small-links a{display:inline-block;margin:0 .6rem .4rem 0;opacity:.9}
 <dialog class="viewer" id="viewer"><img id="viewer-img" alt=""><div class="bar"><button type="button" id="v-prev">‹ Prev</button><button type="button" id="v-close">Close ✕</button><button type="button" id="v-next">Next ›</button></div></dialog>
 <script>
 (function(){
-  var btns=[].slice.call(document.querySelectorAll('[data-full]')),d=document.getElementById('viewer'),im=document.getElementById('viewer-img'),i=0;
-  if(!btns.length||!d)return;
+  var all=[].slice.call(document.querySelectorAll('[data-full]')),btns=all,d=document.getElementById('viewer'),im=document.getElementById('viewer-img'),i=0;
+  if(!all.length||!d)return;
   function show(n){i=(n+btns.length)%btns.length;im.src=btns[i].dataset.full;im.alt=btns[i].querySelector('img').alt;}
-  btns.forEach(function(b,n){b.addEventListener('click',function(){show(n);if(d.showModal){d.showModal();}else{window.open(b.dataset.full,'_blank');}});});
+  all.forEach(function(b){b.addEventListener('click',function(){var g=b.closest('[data-gallery]');btns=g?[].slice.call(g.querySelectorAll('[data-full]')):all;show(btns.indexOf(b));if(d.showModal){d.showModal();}else{window.open(b.dataset.full,'_blank');}});});
   document.getElementById('v-prev').onclick=function(){show(i-1)};
   document.getElementById('v-next').onclick=function(){show(i+1)};
   document.getElementById('v-close').onclick=function(){d.close()};

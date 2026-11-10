@@ -220,6 +220,9 @@ table.compare thead th{background:var(--navy);color:#fff}
 .guide-card:hover{border-color:var(--gold)}
 .guide-card i{font-size:1.6rem;color:var(--gold);flex:none}
 .guide-card p{color:var(--muted);font-size:.92rem;margin:0}
+.unit{scroll-margin-top:84px}
+a.chip{text-decoration:none}
+.unit .main-photo{max-height:420px}
 .mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem 12px calc(.6rem + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.06)}
 .mobile-bar .btn{flex:1;font-weight:700;padding:.6rem}
 .mobile-bar .btn-success{flex:1.6}
@@ -285,8 +288,25 @@ def thumb(path):
 def full(path):
     return "/" + path.lstrip('/')
 
-def apt_slug(a):
+GROUPS = {
+    "ntinda-studios": {
+        "title": "Ntinda Studio Apartments",
+        "intro": "Nine furnished studio apartments in one building in Ntinda, each set up and decorated differently. "
+                 "Every studio is fully private, with its own kitchen and bathroom, free WiFi, daily cleaning and a balcony view. "
+                 "Scroll through the studios below, pick the one you like and book it directly on WhatsApp.",
+    },
+}
+
+def old_slug(a):
     return f"/apartments/apartment-{a['ref'].lower()}.html"
+
+def group_url(g):
+    return f"/apartments/{g}.html"
+
+def apt_slug(a):
+    if a.get('group'):
+        return f"{group_url(a['group'])}#unit-{a['ref'].lower()}"
+    return old_slug(a)
 
 def apt_name(a):
     t = TYPES[a['title']]
@@ -488,10 +508,10 @@ def breadcrumbs(items):
 VIEWER = """<dialog class="viewer" id="viewer"><img id="viewer-img" alt=""><div class="bar"><button type="button" id="v-prev">‹ Prev</button><button type="button" id="v-close">Close ✕</button><button type="button" id="v-next">Next ›</button></div></dialog>
 <script>
 (function(){
-  var btns=[].slice.call(document.querySelectorAll('[data-full]')),d=document.getElementById('viewer'),im=document.getElementById('viewer-img'),i=0;
-  if(!btns.length||!d)return;
+  var all=[].slice.call(document.querySelectorAll('[data-full]')),btns=all,d=document.getElementById('viewer'),im=document.getElementById('viewer-img'),i=0;
+  if(!all.length||!d)return;
   function show(n){i=(n+btns.length)%btns.length;im.src=btns[i].dataset.full;im.alt=btns[i].querySelector('img').alt;}
-  btns.forEach(function(b,n){b.addEventListener('click',function(){show(n);if(d.showModal){d.showModal();}else{window.open(b.dataset.full,'_blank');}});});
+  all.forEach(function(b){b.addEventListener('click',function(){var g=b.closest('[data-gallery]');btns=g?[].slice.call(g.querySelectorAll('[data-full]')):all;show(btns.indexOf(b));if(d.showModal){d.showModal();}else{window.open(b.dataset.full,'_blank');}});});
   document.getElementById('v-prev').onclick=function(){show(i-1)};
   document.getElementById('v-next').onclick=function(){show(i+1)};
   document.getElementById('v-close').onclick=function(){d.close()};
@@ -772,6 +792,121 @@ def build_apartment(a, idx, apts, counts):
     page += "</body>\n</html>\n"
     return page
 
+def build_group(gkey, apts, counts):
+    g = GROUPS[gkey]
+    units = [a for a in apts if a.get('group') == gkey]
+    first = units[0]
+    area = AREAS[first['location']]
+    url = SITE + group_url(gkey)
+    low = min(a['price'] for a in units)
+    lat, lng = first.get('geo') or area['geo']
+    title = f"{g['title']} – {len(units)} Furnished Studios from {ugx(low)}/Night"
+    desc = (f"{len(units)} furnished studio apartments in {first['location']}, Kampala, from {ugx(low)} per night. "
+            f"Free WiFi, kitchen, daily cleaning. See every studio's photos and book directly on WhatsApp.")
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "ItemList", "name": f"{g['title']}, Kampala", "url": url,
+         "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": {
+             "@type": "Apartment", "@id": SITE + apt_slug(a), "name": a['name'], "url": SITE + apt_slug(a),
+             "image": [SITE + full(x) for x in a['gallery']], "numberOfRooms": 1,
+             "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": f, "value": True} for f in a['services']],
+             "address": {"@type": "PostalAddress", "addressLocality": f"{a['location']}, Kampala", "addressRegion": "Central Region", "addressCountry": "UG"},
+             "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lng},
+             "containedInPlace": {"@id": f"{SITE}/#business"}}} for i, a in enumerate(units)]},
+        {**business_schema(apts)},
+        breadcrumbs([("Home", SITE + "/"), (f"Furnished apartments in {first['location']}", f"{SITE}/{area['slug']}/"), (g['title'], url)]),
+    ]}
+    general_msg = f"Hello, I'd like to book one of the {g['title']} ({ugx(low)}/night): {url} Is one available? My dates are: "
+    nav = "".join(f'<a class="chip" href="#unit-{a["ref"].lower()}">{esc(a["name"].replace(" in Ntinda", "").replace("Ntinda ", ""))}</a>' for a in units)
+    sections = []
+    for n, a in enumerate(units):
+        msg = f"Hello, I'd like to book the {a['name']} ({ugx(a['price'])}/night): {SITE}{apt_slug(a)} Is it available? My dates are: "
+        mw, mh = img_size(full(a['gallery'][0]))
+        load = 'fetchpriority="high"' if n == 0 else 'loading="lazy"'
+        thumbs = "".join(
+            f'<button type="button" data-full="{full(x)}"><img src="{thumb(x)}" width="{img_size(thumb(x))[0]}" height="{img_size(thumb(x))[1]}" loading="lazy" decoding="async" alt="{esc(a["name"])}, photo {k+1}"></button>'
+            for k, x in enumerate(a['gallery'][1:], start=1))
+        feats = "".join(f'<span class="badge rounded-pill text-bg-light border me-1 mb-1 fw-normal">{esc(f)}</span>' for f in a['services'])
+        sections.append(f"""<section class="info-card unit" id="unit-{a['ref'].lower()}" data-gallery>
+        <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-2">
+          <h2 class="h4 fw-bold mb-0">{n+1}. {esc(a['name'])}</h2>
+          <span class="fw-bold text-success">{ugx(a['price'])} <span class="fw-normal text-muted small">/ night</span></span>
+        </div>
+        <button type="button" data-full="{full(a['gallery'][0])}" class="border-0 p-0 bg-transparent w-100 mb-2" style="cursor:zoom-in">
+          <img class="main-photo" src="{thumb(a['gallery'][0]) if n else full(a['gallery'][0])}" width="{mw}" height="{mh}" {load} decoding="async" alt="{esc(a['name'])}, Kampala">
+        </button>
+        {f'<div class="thumbs mb-3">{thumbs}</div>' if thumbs else ''}
+        <div class="mb-3">{feats}</div>
+        <a href="{wa_link(msg)}" target="_blank" rel="noopener" class="btn btn-success"><i class="bi bi-whatsapp"></i> Book this studio</a>
+        <span class="small text-muted ms-2">{len(a['gallery'])} photos</span>
+      </section>""")
+    others = [o for o in apts if o['location'] == first['location'] and not o.get('group')][:3]
+    page = head(title, desc, url, full(first['gallery'][0]), schema)
+    page += navbar()
+    page += f"""<main class="container" style="padding-top:72px">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/{area['slug']}/">{first['location']}</a> › {g['title']}</nav>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <h1 class="fw-bold h2 mb-2">{g['title']}</h1>
+      <p class="mb-2"><span class="badge bg-primary me-2">{first['location']}, Kampala</span><span class="fw-bold text-success fs-5">From {ugx(low)}</span> <span class="text-muted">/ night · {len(units)} studios</span></p>
+      <p class="lead-muted">{esc(g['intro'])}</p>
+      <div class="info-card d-lg-none py-3">
+        <div class="d-flex justify-content-between small mb-1"><span>{WEEKLY_NIGHTS}+ nights ({WEEKLY_OFF}% off)</span><strong>{ugx(disc(low, WEEKLY_OFF))} / night</strong></div>
+        <div class="d-flex justify-content-between small mb-2"><span>{MONTHLY_NIGHTS}+ nights ({MONTHLY_OFF}% off)</span><strong>{ugx(disc(low, MONTHLY_OFF))} / night</strong></div>
+        <div class="small text-muted mb-0">Check-in from {CHECKIN} · Check-out by {CHECKOUT}</div>
+      </div>
+      <div class="chips mb-3" aria-label="Jump to a studio">{nav}</div>
+      {"".join(sections)}
+      <div class="info-card">
+        <h2 class="h4">The area: {first['location']}</h2>
+        <p class="mb-0">{esc(area['intro'])} {esc(area['around'])} <a href="/{area['slug']}/">More about staying in {first['location']}</a>.</p>
+      </div>
+      {map_block(lat, lng, "Location", first.get('profile')) if first.get('geo') else ""}
+    </div>
+    <aside class="col-lg-4">
+      <div class="info-card sticky-book">
+        <div class="fs-4 fw-bold text-success">From {ugx(low)} <span class="fs-6 fw-normal text-muted">/ night</span></div>
+        <ul class="list-unstyled my-3">
+          <li><strong>Studios:</strong> {len(units)} in one building</li>
+          <li><strong>Area:</strong> <a href="/{area['slug']}/">{first['location']}</a>, Kampala</li>
+          <li><strong>Check-in:</strong> from {CHECKIN}</li>
+          <li><strong>Check-out:</strong> by {CHECKOUT}</li>
+        </ul>
+        <div class="rounded p-2 mb-3" style="background:#eaf6ee">
+          <div class="fw-bold mb-1"><i class="bi bi-percent"></i> Longer stays cost less</div>
+          <div class="d-flex justify-content-between"><span>{WEEKLY_NIGHTS}+ nights ({WEEKLY_OFF}% off)</span><strong>{ugx(disc(low, WEEKLY_OFF))}</strong></div>
+          <div class="d-flex justify-content-between"><span>{MONTHLY_NIGHTS}+ nights ({MONTHLY_OFF}% off)</span><strong>{ugx(disc(low, MONTHLY_OFF))}</strong></div>
+          <div class="small text-muted">Price per night</div>
+        </div>
+        <a href="{wa_link(general_msg)}" target="_blank" rel="noopener" class="btn btn-success btn-lg w-100 mb-2"><i class="bi bi-whatsapp"></i> Ask which are free</a>
+        <a href="tel:{CALL}" class="btn btn-outline-primary w-100"><i class="bi bi-telephone"></i> Call {CALL_DISPLAY}</a>
+        <p class="small text-muted mt-3 mb-0">Book directly with our local hosts. No platform fees.</p>
+      </div>
+    </aside>
+  </div>
+  {reviews_block(limit=2, heading="What Guests Say", wrap=False)}
+  <section class="mt-4">
+    <h2 class="h4 fw-bold mb-3">Larger apartments in {first['location']}</h2>
+    <div class="row">{"".join(card(o) for o in others)}</div>
+    <p><a href="/#apartments">See all {len(apts)} apartments</a></p>
+  </section>
+</main>
+{VIEWER}
+"""
+    page += footer(counts, wa_msg=general_msg)
+    page += "</body>\n</html>\n"
+    return page
+
+def build_redirect(a):
+    target = apt_slug(a)
+    return f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>{esc(a['name'])}</title>
+<link rel="canonical" href="{SITE}{group_url(a['group'])}">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url={target}">
+</head><body><p>This studio is now on our <a href="{target}">{esc(GROUPS[a['group']]['title'])}</a> page.</p></body></html>
+"""
+
 def build_area(name, area, apts, counts):
     here = sorted([a for a in apts if a['location'] == name], key=lambda a: not a.get('featured'))
     pinned = [a for a in here if a.get('geo')]
@@ -921,7 +1056,8 @@ def build_guides_index(apts, counts):
 def build_sitemap(apts, counts):
     urls = [(SITE + "/", "1.0")]
     urls += [(f"{SITE}/{v['slug']}/", "0.9") for k, v in AREAS.items() if counts.get(k)]
-    urls += [(SITE + apt_slug(a), "0.8") for a in apts]
+    urls += [(SITE + apt_slug(a), "0.8") for a in apts if not a.get('group')]
+    urls += [(SITE + group_url(gk), "0.85") for gk in GROUPS if any(a.get('group') == gk for a in apts)]
     urls += [(f"{SITE}/guides/", "0.6")] + [(f"{SITE}/guides/{g['slug']}/", "0.7") for g in GUIDES]
     body = "".join(f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{TODAY}</lastmod>\n    <priority>{p}</priority>\n  </url>\n" for u, p in urls)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}</urlset>\n'
@@ -944,7 +1080,13 @@ def main():
 
     write("index.html", build_index(apts, counts))
     for i, a in enumerate(apts):
-        write(apt_slug(a).lstrip('/'), build_apartment(a, i, apts, counts))
+        if a.get('group'):
+            write(old_slug(a).lstrip('/'), build_redirect(a))
+        else:
+            write(apt_slug(a).lstrip('/'), build_apartment(a, i, apts, counts))
+    for gk in GROUPS:
+        if any(a.get('group') == gk for a in apts):
+            write(group_url(gk).lstrip('/'), build_group(gk, apts, counts))
     for k, v in AREAS.items():
         if counts.get(k):
             write(f"{v['slug']}/index.html", build_area(k, v, apts, counts))
